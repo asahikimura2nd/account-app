@@ -1,11 +1,11 @@
-@extends('common.layout')
-
+{{-- @extends('common.layout') --}}
+@include('common.layout')
 @section('title','会員登録')
 
 @section('content')
 
 
-  <h1>会員登録フォーム</h1>
+  <h1 class="">会員登録フォーム</h1>
   @foreach ($errors->all() as $error)
   <li>{{$error}}</li>
 @endforeach

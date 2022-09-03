@@ -33,10 +33,8 @@ class MemberRequest extends FormRequest
         //重複なし
         'member_email'=>'required|unique:users,member_email',
         'member_password'=>'required|min:8',
-
         'member_tel'=>['required', new tel_check],
         'member_postcode'=>['required', new postcode_check],
-        
         'member_prefectures'=>'required',
         'member_city'=>'required|max:30',
         'member_address_and_building'=>'required|max:50',

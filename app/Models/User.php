@@ -24,12 +24,11 @@ class User extends Authenticatable
 
     protected $fillable = [
         //管理者
-        'admin_email',
-        'password',
         //会員一覧
         'member_id',
         'member_name',
         'member_email',
+        'member_password',
         'member_tel',
         'member_prefectures',
         'member_city',
@@ -40,20 +39,8 @@ class User extends Authenticatable
         'member_password',
         'member_postcode',
         'member_content',
-        //対応状況
-        'status',
-        //お問い合わせ備考
-        'remarks'
+
     ];
-    
-    // https://nogson2.hatenablog.com/entry/2019/09/29/213202
-    // https://qiita.com/naoya-11/items/3d9f04f661a572020df0
-    // https://biz.addisteria.com/relation_exception/
-    
-    //Contactモデルと紐づけ
-    public function contacts(){
-        return $this->hasMany(Contact::class);
-    }
 
     /**
      * The attributes that should be hidden for serialization.
