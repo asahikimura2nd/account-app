@@ -2,6 +2,9 @@
 
 @section('title','会員一覧')
 
+@section('mainTitle','会員一覧')
+
+
 @section('content')
   @if (session('member_success'))
     {{session('member_success')}}
@@ -9,7 +12,7 @@
   
   <table>
     <thead>
-    <tr>
+    <tr >
       <th>編集</th>
       <th>メールアドレス</th>
       <th>電話番号</th>
@@ -23,7 +26,8 @@
         <td>    
           @foreach ($members as $member)
             <pre>
-            <a href="{{ route('showEdit',['member_id' => $member->member_id]) }}">{{$member->member_id}}</a>
+            <a href="{{ route('showEdit',['member_id' => $member->member_id]) }}"></a>
+            {{-- <img class="pen" src="{{asset('images/pen.svg')}}" alt="edit"> --}}
             <pre>
             @endforeach
         </td>

@@ -1,0 +1,18 @@
+.innerContainer{
+
+  box-shadow: -2px -2px 1px ;
+  display: flex;
+  padding:50px 0px 0px 50px ;
+  align-items: start;
+  line-height: 1.5;
+  flex-direction: column;
+
+
+}
+.title{
+  display: flex;
+  background-color: beige;
+  padding: 5px;
+  border-radius: 20px;
+  
+  }

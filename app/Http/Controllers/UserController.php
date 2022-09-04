@@ -14,15 +14,10 @@ use PhpParser\Node\Stmt\Foreach_;
 
 class UserController extends Controller
 {
-
-    
         //ホーム
      public function home(){
         return view('home');
-    }
-
-        
-    
+    } 
         // 会員一覧画面
     public function users(){
         $members = DB::table('users')->get();
@@ -82,17 +77,10 @@ class UserController extends Controller
         // https://progtext.net/programming/laravel-user-data/
         //お問い合わせ編集処理
         public function contactEdit(Request $request){
-            $contacts = User::find(Auth::id());
-            //代入
-            $contacts->remarks = $request->remarks;
-            $contacts->status = $request->status;
-            // dd($thisAuthInfomation);
+            $contacts= Contact::find(1);
+            // dd($contacts);
             //更新
-            $contacts->update();
-
-            // $userContact = new Contact;
-            // dd($userContact->use_id = ->id);
-
+            $contacts->update($request->all());
             return redirect()->route('showContacts',['contacts'=>$contacts])->with('flash_message','変更を更新しました。');
         }
     /**

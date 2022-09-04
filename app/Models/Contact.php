@@ -13,6 +13,7 @@ class Contact extends Model
          * 
          */
         protected $fillable =[
+        'user_random_id',
         'user_company',
         'user_name',
         'user_tel',

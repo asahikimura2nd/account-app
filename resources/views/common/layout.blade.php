@@ -13,17 +13,17 @@
 
 <body class="text-center">
   <header>
-    <div class="admin">管理者：</div>
+    <div class="admin">管理者</div>
   </header>  
 
   <main>
-    <div class="sideBar" id="sideBar" >
+    <aside class="sideBar" id="sideBar">
       <div class="sideContents">
         <div class="hambarger"><img src="{{asset('images/menu50.png')}}" alt="hambarger" class="menuIcon" id="hambarger"></div>
         <div class="home">
           <a href="{{route('home')}}">
             <div><img src="{{asset('images/home50.png')}}" alt="home" class="homeIcon"></div>
-            <div class="items">@yield('mainTitle')</div>
+            <div class="items">ホーム</div>
           </a>
         </div>
         
@@ -40,22 +40,24 @@
           </a>
         </div>
       </div>
-    </div>
+    </aside>
  
     <div class="mainContainer" id="mainContainer">   
-      <div class="title"><h1>@yield('main')</h1>
+      <div class="mainTitle">@yield('style')<h1>@yield('mainTitle')</h1>
         <div>@yield('newCreate')</div>
       </div>      
       
       <div class="backImage">
-          <div class="innerContainer">
-            <div>@yield('content')</div>
-          </div>
+        <div class="innerContainer">
+          @yield('content')
+        </div>
       </div>
     </div>  
   </main>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="{{asset('js/jquery.frix.min.js')}}"></script>
   <script src="{{asset('js/menu.js')}}"></script>
+  <script src="{{asset('js/init.js')}}"></script>
 </body>
 </html>
