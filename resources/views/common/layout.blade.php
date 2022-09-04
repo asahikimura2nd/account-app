@@ -44,6 +44,7 @@
  
     <div class="mainContainer" id="mainContainer">   
       <div class="mainTitle">@yield('style')<h1>@yield('mainTitle')</h1>
+        <div>@yield('session')</div>
         <div>@yield('newCreate')</div>
       </div>      
       

@@ -9,6 +9,8 @@
   margin-left: auto;
   background-color: aqua;
   border-radius: 20%;
-  cursor: move
-  h
+  cursor: move;
+
+  border:3px solid;
+border-color: black;
 }

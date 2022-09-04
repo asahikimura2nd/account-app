@@ -7,12 +7,12 @@
   line-height: 1.5;
   flex-direction: column;
 
-
 }
 .title{
   display: flex;
   background-color: beige;
   padding: 5px;
   border-radius: 20px;
-  
+  border:3px solid;
+  border-color: black;
   }

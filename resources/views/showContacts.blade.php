@@ -2,13 +2,18 @@
 
 @section('title','お問い合わせ一覧')
 
-@section('main','お問い合わせ一覧')
+@section('mainTitle','お問い合わせ一覧')
 
-
-@section('content')
+@section('session')
 @if (session('flash_message'))
       {{ session('flash_message') }}
   @endif
+@endsection
+
+
+
+@section('content')
+
 
   <table>
     <thead>
@@ -22,52 +27,16 @@
   </thead>
 
     <tbody>
-      <tr>           
-        <td>    
-          @foreach ($contacts as $contact)
-            <pre>
-              {{-- <img class="edit" src="{{asset('images/pen.svg')}}" alt="membersIcon" class="membersIcon">{{ route('showEditContact',['user_random_id' => $contact->user_random_id]) }} --}}
-            <a href="{{ route('showEditContact',['user_random_id' => $contact->user_random_id]) }}"> </a>
-            <pre>
-            @endforeach
-        </td>
 
-        <td>
-          @foreach ($contacts as $contact)
-            <pre>
-              @if($contact->status===null)
-                未対応
-              @endif
-              {{$contact->status}}
-              
-            <pre>
-            @endforeach
-        </td>
-
-        <td>
-        @foreach ($contacts as $contact)
-        <pre>
-          {{$contact->user_company}}
-        <pre>
-        @endforeach
-        </td>
-
-        <td>    
-          @foreach ($contacts as $contact)
-            <pre>
-            {{$contact->user_name}}
-            <pre>
-            @endforeach
-        </td>
-
-        <td>    
-          @foreach ($contacts as $contact)
-            <pre>
-            {{$contact->user_tel}}  
-            <pre>
-            @endforeach
-        </td>
+      @foreach ($contacts as $contact)
+      <tr>
+        <td> <a href="{{ route('showEditContact',['user_random_id' => $contact->user_random_id]) }}"> <img class="pen" src="{{asset('images/pen.svg')}}" alt="edit"></a></td>
+        <td> @if($contact->status===null)未対応@endif{{$contact->status}}</td>
+        <td> {{$contact->user_company}}</td>
+        <td>{{$contact->user_name}}</td>
+        <td>{{$contact->user_tel}} </td>
       </tr>
+      @endforeach
     </tbody>
   </table>
   
