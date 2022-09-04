@@ -1,13 +1,16 @@
-@extends('common.layout')
+@extends('common.userLayout')
 
 @section('title','お問い合わせ一覧')
 
 @section('mainTitle','お問い合わせ一覧')
 
 @section('session')
-@if (session('flash_message'))
-      {{ session('flash_message') }}
+<div class="sessionColor">
+  @if (session('flash_message'))
+  {{ session('flash_message') }}
   @endif
+</div>
+      
 @endsection
 
 

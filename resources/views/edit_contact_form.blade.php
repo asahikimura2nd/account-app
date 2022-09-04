@@ -1,4 +1,4 @@
-@extends('common.layout')
+@extends('common.userLayout')
 
 @section('title','お問い合わせ編集')
 

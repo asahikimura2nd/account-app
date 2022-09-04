@@ -1,4 +1,4 @@
-@extends('common.layout')
+@extends('common.userLayout')
 
 @section('title','会員登録')
 @section('mainTitle','会員登録')
@@ -8,9 +8,12 @@
 
 @section('content')
 
+<div class="sessionError"> 
   @foreach ($errors->all() as $error)
-  <li>{{$error}}</li>
-@endforeach
+ <li>{{$error}}</li>
+@endforeach</div>
+
+
   <form action="{{route('user')}}" method="POST">
     @csrf
     <input type="hidden" name="member_id" value="{{Str::random(30)}}">

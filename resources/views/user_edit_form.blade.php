@@ -1,4 +1,4 @@
-@extends('common.layout')
+@extends('common.userLayout')
 
 
 @section('title','会員編集')
@@ -9,9 +9,11 @@
 
 @section('content')
   <h1>会員編集フォーム</h1>
-  @foreach ($errors->all() as $error)
+  <div class="sessionError"> 
+     @foreach ($errors->all() as $error)
     <li>{{$error}}</li>
-  @endforeach
+  @endforeach</div>
+
     <form action="{{route('editUser', $editMember->member_id)}}" method="POST">
       @csrf
       <input type="hidden" name="member_id" value="{{$editMember->member_id}}">
