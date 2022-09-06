@@ -19,37 +19,18 @@ use Illuminate\Support\Facades\Route;
 /**
  * @param App\Http\Kernel
  */
-//ログイン前 guest
-Route::group(['middleware'=>['guest']],function(){
-    //ログイン管理画面
-    Route::get('/',[UserController::class,'showLogin'])->name('showLogin');
-    //ログイン認証
-    Route::post('/login',[UserController::class,'login'])->name('login');
-    //管理者登録画面
-    Route::get('/show/register',[UserController::class,'showRegister'])->name('showRegister');
-    //管理者認証
-    Route::post('/register',[UserController::class,'register'])->name('register');
-/**
- * 
- * 
- * お問い合わせ側（user）
- */
+
+
     //お問い合わせ
     Route::get('/contact',[UserController::class,'form'])->name('form');
     //確認ページ
     Route::post('/contact/form/confirm',[UserController::class,'confirm'])->name('confirm');
     //送信完了ページ
     Route::get('/contact/form/send',[UserController::class,'send'])->name('send');
-});
 
 
-
-//ログイン後 auth karnel.php参照
-Route::group(['middleware'=>['auth']],function(){
     //ホーム画面
-    Route::get('/home',[UserController::class,'home'])->name('home');
-    //ログアウト
-    Route::post('/logout',[UserController::class,'logout'])->name('logout');
+    Route::get('/',[UserController::class,'home'])->name('home');
     //会員登録一覧
     Route::get('/users',[UserController::class,'users'])->name('users');
     //新規会員作成
@@ -63,8 +44,7 @@ Route::group(['middleware'=>['auth']],function(){
      //お問い合わせ一覧
      Route::get('/show/contacts',[UserController::class,'showContacts'])->name('showContacts');
     //お問い合わせ編集画面
-    Route::get('/show/edit/contact/{user_random_id?}',[UserController::class,'showEditContact'])->name('showEditContact');
-    });
-    //編集処理
-    Route::post('contact/edit',[UserController::class,'contactEdit'])->name('contactEdit');
+    Route::get('/show/contact/edit/{user_random_id?}',[UserController::class,'showEditContact'])->name('showEditContact');
+    //お問い合わせ編集処理
+    Route::post('/contact/edit/{user_random_id?}',[UserController::class,'contactEdit'])->name('contactEdit');
     

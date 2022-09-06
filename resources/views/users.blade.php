@@ -2,14 +2,21 @@
 
 @section('title','会員一覧')
 
-@section('content')
+@section('mainTitle','会員一覧')
+
+@section('session')
+<div class="session">
   @if (session('member_success'))
-    {{session('member_success')}}
+  {{session('member_success')}}
   @endif
-  
+</div>
+
+@endsection
+
+@section('content') 
   <table>
     <thead>
-    <tr>
+    <tr >
       <th>編集</th>
       <th>メールアドレス</th>
       <th>電話番号</th>
@@ -18,52 +25,18 @@
       <th>番地・アパート名</th>
     </tr>
     <thead>
+    
     <tbody>
-      <tr>           
-        <td>    
-          @foreach ($members as $member)
-            <pre>
-            <a href="{{ route('showEdit',['member_id' => $member->member_id]) }}">{{$member->member_id}}</a>
-            <pre>
-            @endforeach
-        </td>
-
-        <td>    
-          @foreach ($members as $member)
-            <pre>
-            {{$member->member_email}}
-            <pre>
-            @endforeach
-        </td>
-        <td>    
-          @foreach ($members as $member)
-            <pre>
-            {{$member->member_tel}}
-            <pre>
-            @endforeach
-        </td>
-        <td>    
-          @foreach ($members as $member)
-            <pre>
-            {{$member->member_prefectures}}
-            <pre>
-            @endforeach
-        </td>
-        <td>    
-          @foreach ($members as $member)
-            <pre>
-            {{$member->member_city}}
-            <pre>
-            @endforeach
-        </td>
-        <td>    
-          @foreach ($members as $member)
-            <pre>
-            {{$member->member_address_and_building}}
-            <pre>
-            @endforeach
-        </td>
-      </tr>
+        @foreach ($members as $member)
+        <tr>             
+          <td><a href="{{ route('showEdit',['member_id' => $member->member_id]) }}"><img class="pen" src="{{asset('images/pen.svg')}}" alt="edit"></a></td> 
+          <td>{{$member->member_email}}</td> 
+          <td> {{$member->member_tel}}</td> 
+          <td> {{$member->member_prefectures}}</td> 
+          <td>  {{$member->member_city}}</td> 
+          <td>  {{$member->member_address_and_building}}</td> 
+        </tr>
+        @endforeach
     </tbody>
   </table>
 @endsection

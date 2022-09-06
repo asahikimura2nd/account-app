@@ -21,14 +21,6 @@ class CreateContactsTable extends Migration
              * 
              */
             $table->id();
-            //外部キー
-            $table->unsignedBigInteger('user_id')->nullable();
-            // $table->unsignedBigInteger('response_id')->nullable();
-            // $table->primary('user_id','response_id');
-            // 外部キー制約
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            // $table->foreign('response_id')->references('id')->on('responses')->onDelete('cascade');            
-
             $table->string('user_random_id')->nullable();
             $table->string('user_company',20)->nullable();
             $table->string('user_name',20)->nullable();
@@ -38,21 +30,11 @@ class CreateContactsTable extends Migration
             $table->string('user_gender')->nullable();
             $table->string('user_job')->nullable();
             $table->string('user_content')->nullable();
-          
-
-            // $table->foreign('user_id')
-            //     ->references('id')
-            //     ->on('users')
-            //     ->onDelete('cascade');
-
-            // $table->foreign('user_id')->references('id')->on('users');
-            // foreign(フィールド) = このフィールドは下記を参照します
-            // references(フィールド) = 参照先のフィールド
-            // on(テーブル名) = 参照先のテーブル
-            // onDelete('cascade'); = 上記が削除されたら該当データも一緒に削除
+            //顧客対応状況
+            $table->string('status')->nullable();
+            //顧客お問い合わせ備考
+            $table->string('remarks')->nullable();
             $table->timestamps();
-
-
         });
     }
 

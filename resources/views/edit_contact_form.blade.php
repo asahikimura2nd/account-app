@@ -1,16 +1,14 @@
 @extends('common.layout')
 
-@section('title','会員登録')
+@section('title','お問い合わせ編集')
+
+@section('mainTitle','お問い合わせ編集')
 
 @section('content')
-  <h1>お問い合わせ編集</h1>
-
-  {{-- @foreach ($errors->all() as $error)
-  <li>{{$error}}</li>
-@endforeach --}}
-  <form action="{{route('contactEdit')}}" method="POST">
+  <form class="editForm" action="{{ route('contactEdit',['user_random_id',$editContact->user_random_id])}}" method="POST">
     @csrf
-    ステータス
+    <input type="hidden" name= 'user_random_id' value = "{{$editContact->user_random_id}}">
+    ステータス : 
       <select name="status">
         <option value="未対応" @if(old('status')==="未対応") selected @endif>未対応</option>
         <option value="対応中" @if(old('status')==="対応中") selected @endif>対応中</option>
@@ -22,10 +20,11 @@
       {{$editContact->user_content}}
       <br>
       <label for="remarks">備考<br>
-        <textarea name="remarks" id="remarks" cols="30" rows="10">{{old('remarks',$editContact->remarks)}}</textarea>  
+        <textarea class="remarks" name="remarks" id="remarks" cols="30" rows="10">{{old('remarks',$editContact->remarks)}}</textarea>  
       </label>
       <br>
-      お問い合わせ情報
+      <div style="font-size:24px;">お問い合わせ情報</div>
+      <br>
       氏名：{{$editContact->user_name}}
       <br>
       電話番号：{{$editContact->user_tel}}
@@ -38,7 +37,6 @@
       <br>
       職業：{{$editContact->user_job}}
       <br>
-      <input type="submit" value="登録する。">
-
+      <input class="submit" type="submit" value="登録する">
   </form>
 @endsection
