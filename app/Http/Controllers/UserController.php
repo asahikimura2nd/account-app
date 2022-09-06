@@ -4,13 +4,11 @@ namespace App\Http\Controllers;
 use App\Http\Requests\MemberRequest;
 use App\Http\Requests\TestRequest;
 use App\Http\Requests\EditMemberRequest;
-use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Contact;
-use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use PhpParser\Node\Stmt\Foreach_;
+
 
 class UserController extends Controller
 {
@@ -60,24 +58,25 @@ class UserController extends Controller
     //お問い合わせ一覧画面
     public function showContacts(){
         // https://readouble.com/laravel/6.x/ja/pagination.html
-        $contacts = Contact::where('user_random_id','!=',null)->paginate(1);   
+        $contacts = Contact::where('user_random_id','!=',null)->paginate(10);   
         // dd($contacts);
         $contacts->withPath('/show/contacts/');        
-        return view('showContacts',['contacts'=>$contacts]);
+        return view('show_contacts',['contacts'=>$contacts]);
         }
-        
         
         //お問い合わせ編集画面
         public function showEditContact($user_random_id){
-          
-
+            // dd($user_random_id);
             $editContact = Contact::where('user_random_id',$user_random_id)->first();
-            return view('edit_contact_form',['editContact'=> $editContact]);
+            // dd($editContact);
+            return view('edit_contact_form',['editContact'=>$editContact]);
         }
+
         // https://progtext.net/programming/laravel-user-data/
         //お問い合わせ編集処理
         public function contactEdit(Request $request){
-            $contacts= Contact::find(1);
+            // dd($request->all());
+            $contacts= Contact::where('user_random_id',$request->user_random_id)->first();
             // dd($contacts);
             //更新
             $contacts->update($request->all());
@@ -95,7 +94,6 @@ class UserController extends Controller
 
         public function confirm(TestRequest $request){
             $forms=$request->all();
-
             // dd($forms);
             session()->put('forms', $forms);
             return view('contacts.confirm',['forms'=>$forms]);
@@ -106,15 +104,6 @@ class UserController extends Controller
             $forms = session()->get('forms');
             $formData = new Contact;
             $formData->fill($forms)->save();
-            // $company = $forms['company'];
-            // $name = $forms['name'];
-            // $tel= $forms['tel'];
-            // $email = $forms['email'];
-            //  $birth_date = $forms['birth_date'];
-            //  $gender = $forms['gender'];
-            // $job = $forms['job'];
-            // $content = $forms['content'];
-            // Mail::send(new FormMail($company,$name,$tel,$email,$birth_date,$gender,$job,$content));
         return view('contacts.send',['forms'=>$forms]);
     }    
 }

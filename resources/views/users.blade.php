@@ -5,14 +5,13 @@
 @section('mainTitle','会員一覧')
 
 @section('session')
-@if (session('member_success'))
-{{session('member_success')}}
-@endif
+<div class="session">
+  @if (session('member_success'))
+  {{session('member_success')}}
+  @endif
+</div>
+
 @endsection
-
-
-
-
 
 @section('content') 
   <table>
@@ -26,10 +25,8 @@
       <th>番地・アパート名</th>
     </tr>
     <thead>
-      {{-- <img class="pen" src="{{asset('images/pen.svg')}}" alt="edit"> --}}
+    
     <tbody>
-      
-        
         @foreach ($members as $member)
         <tr>             
           <td><a href="{{ route('showEdit',['member_id' => $member->member_id]) }}"><img class="pen" src="{{asset('images/pen.svg')}}" alt="edit"></a></td> 
@@ -40,8 +37,6 @@
           <td>  {{$member->member_address_and_building}}</td> 
         </tr>
         @endforeach
-            
-
     </tbody>
   </table>
 @endsection

@@ -44,7 +44,7 @@ use Illuminate\Support\Facades\Route;
      //お問い合わせ一覧
      Route::get('/show/contacts',[UserController::class,'showContacts'])->name('showContacts');
     //お問い合わせ編集画面
-    Route::get('/show/edit/contact/{user_random_id?}',[UserController::class,'showEditContact'])->name('showEditContact');
-    //編集処理
-    Route::post('contact/edit',[UserController::class,'contactEdit'])->name('contactEdit');
+    Route::get('/show/contact/edit/{user_random_id?}',[UserController::class,'showEditContact'])->name('showEditContact');
+    //お問い合わせ編集処理
+    Route::post('/contact/edit/{user_random_id?}',[UserController::class,'contactEdit'])->name('contactEdit');
     

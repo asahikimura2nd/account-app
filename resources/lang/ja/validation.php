@@ -173,10 +173,17 @@ return [
         'member_city'=>'市区町村',
         'member_address_and_building'=>'番号・アパート名',
         'content'=>'備考欄',
-        'user_tel'             => '電話番号',
         
-
-
+        
+        //お問い合わせ側
+        'user_company'=>'会社名',
+        'user_name'=>'氏名',
+        'user_tel'=>'電話番号',
+        'user_email'=>'メールアドレス',
+        'user_birth_date'=>'生年月日',
+        'user_gender'=>'性別',
+        'user_job'=>'職業',
+        'user_content'=>'お問い合わせ内容',
     ],
 
 ];

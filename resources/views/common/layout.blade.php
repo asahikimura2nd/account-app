@@ -29,16 +29,24 @@
         
         <div class="members">
             <a href="{{route('showUser')}}">
-                <div><img src="{{asset('images/component48.png')}}" alt="members" class="membersIcon"></div>
-                <div class="items">会員登録</div>
+              <div><img src="{{asset('images/component48.png')}}" alt="members" class="membersIcon"></div>
+              <div class="items">会員登録</div>
             </a>
         </div>
       
         <div class="contact">
-          <a href="{{route('showContacts')}}"><div><img src="{{asset('images/component48.png')}}" alt="contact" class="membersIcon"></div>
-           <div class="items">お問い合わせ一覧</div>
+          <a href="{{route('showContacts')}}">
+            <div><img src="{{asset('images/component48.png')}}" alt="contact" class="membersIcon"></div>
+            <div class="items">お問い合わせ一覧</div>
           </a>
         </div>
+      </div>
+      
+      
+      <div style="margin-top: 200px">  
+        <a href="{{route('form')}}">
+          (ユーザー用のお問い合わせページ=>本来不要)
+        </a>
       </div>
     </aside>
  
