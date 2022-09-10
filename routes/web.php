@@ -25,8 +25,11 @@ use Illuminate\Support\Facades\Route;
     Route::get('/contact',[UserController::class,'form'])->name('form');
     //確認ページ
     Route::post('/contact/form/confirm',[UserController::class,'confirm'])->name('confirm');
+    //お問い合わせ（戻るとき）
+    Route::get('/contact/{id?}',[UserController::class,'formEdit'])->name('formEdit');
+    //確認ページ
     //送信完了ページ
-    Route::get('/contact/form/send',[UserController::class,'send'])->name('send');
+    Route::get('/contact/form/send/{id?}',[UserController::class,'send'])->name('send');
 
 
     //ホーム画面

@@ -14,6 +14,20 @@
 </head>
 
 <body> 
+    {{-- {{dd($forms);}} --}}
+    {{-- @if($forms===null)
+        {{-- {{$forms["user_company"] = null}} --}}
+       {{-- {{dd($forms->user_company)}} --}}
+        {{-- {{$forms["user_name"] = null}}
+        {{$forms["user_email"] = null}}
+        {{$forms["user_tel"] = null}}
+        {{$forms["user_birth_date"] = null}}
+        {{$forms["user_job"] = null}}
+        {{$forms["user_content"] = null}}
+        {{$forms["user_gender"] = null}} --}}
+    
+        
+
 
     <header>
         <div class="container-fluid">
@@ -32,7 +46,7 @@
             <div class="form-group row">
                 <label for="user_company" class="col-sm-4 col-form-label"><div type="button" class="btn btn-success" >必須</div>会社名</label>
                 <div class="col-sm-5">
-                    <input  class="form-control" type="text" name="user_company"  id="user_company" value="{{old("user_company")}}" placeholder="株式会社〇〇" > 
+                    <input  class="form-control" type="text" name="user_company"  id="user_company" value="{{old("user_company",$forms->user_company)}}" placeholder="株式会社〇〇" > 
                 </div>
             </div>
                     
@@ -45,7 +59,7 @@
             <div class="form-group row">
                 <label for="user_name" class="col-sm-4 col-form-label"><div type="button" class="btn btn-success">必須</div>氏名</label>
                 <div class="col-sm-5">
-                    <input class="form-control" type="text" name="user_name" id="user_name" placeholder="山田 太郎" value="{{old("user_name")}}">
+                    <input class="form-control" type="text" name="user_name" id="user_name" placeholder="山田 太郎" value="{{old("user_name",$forms->user_name) }}">
                 </div>
             </div>
 
@@ -59,7 +73,7 @@
             <div class="form-group row">
                 <label for="user_tel" class="col-sm-4 col-form-label"><div type="button" class="btn btn-success" >必須</div>電話番号</label>
                 <div class="col-sm-5">         
-                    <input class="form-control" type="text" name="user_tel" id="tel" placeholder="000-0000-0000" value="{{old("user_tel")}}">
+                    <input class="form-control" type="text" name="user_tel" id="tel" placeholder="000-0000-0000" value="{{old("user_tel",$forms->user_tel)}}">
                 </div>
             </div>
              @if($errors->has('user_tel'))
@@ -70,7 +84,7 @@
             <div class="form-group row">
                 <label for="user_email" class="col-sm-4 col-form-label"><div type="button" class="btn btn-success">必須</div>メールアドレス</label>
                 <div class="col-sm-5">   
-                    <input class="form-control" type="text" name="user_email" id="user_email" placeholder="example@gmail.com" value="{{old("user_email")}}">
+                    <input class="form-control" type="text" name="user_email" id="user_email" placeholder="example@gmail.com" value="{{old("user_email",$forms->user_email)}}">
                 </div>
             </div>
 
@@ -82,7 +96,7 @@
              <div class="form-group row">
                 <label for="user_birth_date" class="col-sm-4 col-form-label"><div type="button" class="btn btn-success" placeholder="yyyy/mm/dd">必須</div>生年月日</label>
                 <div class="col-sm-5">
-                    <input class="form-control" type="date" name="user_birth_date" id="user_birth_date" value="{{old("user_birth_date")}}">
+                    <input class="form-control" type="date" name="user_birth_date" id="user_birth_date" value="{{old("user_birth_date",$forms->user_birth_date)}}">
                 </div>
             </div>
 
@@ -94,21 +108,21 @@
             <div type="button" class="btn btn-success col-form-label">必須</div> 性別
             <label for="hidden" class="col-sm-4 col-form-label"></label>
             <div class="form-check-inline ">
-                <input class="form-check-input " type="radio" name="user_gender" id="user_gender" value="男" {{old('user_gender') === '男' ? 'checked':''}}>
+                <input class="form-check-input " type="radio" name="user_gender" id="user_gender" value="男" {{old('user_gender',$forms->user_gender) === '男' ? 'checked':''}}>
                 <label class="form-check-label " for="user_gender">男</label>
             </div>
             <div class="form-check-inline col-sm-2 col-form-label">
-                <input class="form-check-input" type="radio" name="user_gender" id="user_gender" value="女" {{ old('user_gender') === '女' ? 'checked' : '' }}>
+                <input class="form-check-input" type="radio" name="user_gender" id="user_gender" value="女" {{ old('user_gender',$forms->user_gender) === '女' ? 'checked' : '' }}>
                 <label class="form-check-label" for="user_gender">女</label>
             </div>
-        
+   
              @if($errors->has('user_gender'))
                 <div class="text-danger">{{$errors->first('user_gender')}}</div>
             @endif
             <div class="mb-5 "></div>
             <div class="col-sm-2 col-form-label" ></div>
 
-
+           
             
             <div type="button" class="btn btn-success col-form-label">必須</div> 職業
             <div class="col-sm-2 col-form-label" ></div>
@@ -118,21 +132,22 @@
                     <option value="電気工事士">電気工事士</option>
                     <option value="建築士">建築士</option>
                 </select>
-            
+               
                  @if($errors->has('user_job'))
-                    <div class="text-danger">{{$errors->first('user_job')}}</div>
+                 <div class="text-danger">{{$errors->first('user_job')}}</div>
                  @endif
+                 
                  <div class="col-sm-2 col-form-label" ></div>
                  <div class="mb-5 "></div>              
                
-                
+                 {{-- {{dd($forms);}}   --}}
                  <div class="form-group row">
                     <label for="user_content" class="col-sm-4 col-form-label"><div type="button" class="btn btn-success" >必須</div>お問い合わせ内容</label>
-                    <div class="col-sm-5"><textarea class="form-control" name="user_content" id="user_content" cols="30" rows="10">{{old('user_content')}} 
+                    <div class="col-sm-5"><textarea class="form-control" name="user_content" id="user_content" cols="30" rows="10">{{old('user_content',$forms->user_content)}}
                         </textarea>
                     </div>
                 </div>
-
+                
                 @if($errors->has('user_content'))
                     <div class="text-danger">{{$errors->first('user_content')}}</div>
                 @endif

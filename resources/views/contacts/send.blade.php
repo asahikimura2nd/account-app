@@ -24,22 +24,23 @@
 {{-- データの形で->演算子が使用できるか検討する。 --}}
     <div><h1 class="font-weight-bold text-center">送信完了しました</h1></div>
     <div class="mb-5 "></div>
-    
-    <div><h4 class="font-size-20 text-center">会社名:{{$forms['user_company']}}</h4></div>
+
+    <div><h4 class="font-size-20 text-center">会社名:{{$forms->user_company}}</h4></div>
+    {{-- {{dd($forms->user_content)}}    --}}
     <div class="mb-3 "></div>
-    <div><h4 class="font-size-20 text-center">氏名:{{$forms['user_name']}}</h4></div>
+    <div><h4 class="font-size-20 text-center">氏名:{{$forms->user_name}}</h4></div>
     <div class="mb-3 "></div>
-    <div><h4 class="font-size-20 text-center">電話番号:{{$forms['user_tel']}}</h4></div>
+    <div><h4 class="font-size-20 text-center">電話番号:{{$forms->user_tel}}</h4></div>
     <div class="mb-3 "></div>
-    <div><h4 class="font-size-20 text-center">メールアドレス:{{$forms['user_email']}}</h4></div>
+    <div><h4 class="font-size-20 text-center">メールアドレス:{{$forms->user_email}}</h4></div>
     <div class="mb-3 "></div>
-    <div><h4 class="font-size-20 text-center">生年月日:{{$forms['user_birth_date']}}</h4></div>
+    <div><h4 class="font-size-20 text-center">生年月日:{{$forms->user_birth_date}}</h4></div>
     <div class="mb-3 "></div>
-    <div><h4 class="font-size-20 text-center">性別:{{$forms['user_gender']}}</h4></div>
+    <div><h4 class="font-size-20 text-center">性別:{{$forms->user_gender}}</h4></div>
     <div class="mb-3 "></div>
-    <div><h4 class="font-size-20 text-center">職業:{{$forms['user_job']}}</h4></div>
+    <div><h4 class="font-size-20 text-center">職業:{{$forms->user_job}}</h4></div>
     <div class="mb-3 "></div>
-    <div><h4 class="font-size-20 text-center">お問い合わせ内容:<br>{{$forms['user_content']}}</h4></div>
+    <div><h4 class="font-size-20 text-center">お問い合わせ内容:<br>{!! nl2br($forms->user_content) !!}</h4></div>
     <div class="mb-3 "></div>
     <div class="container">
         <div class="row">
