@@ -82,6 +82,8 @@ class UserController extends Controller
             $contacts->update($request->all());
             return redirect()->route('showContacts',['contacts'=>$contacts])->with('flash_message','変更を更新しました。');
         }
+
+        
     /**
      * 
      * お問い合わせ側（user）
@@ -90,20 +92,33 @@ class UserController extends Controller
      */
         public function form(){
             return view('contacts.form');
-    }
+        } 
 
+        //確認ページ
         public function confirm(TestRequest $request){
-            $forms=$request->all();
+            $attributes=$request->all();
+            // dd($attributes);
+            $forms = new Contact;
+            $forms->fill($attributes) ->save();
             // dd($forms);
-            session()->put('forms', $forms);
             return view('contacts.confirm',['forms'=>$forms]);
         }
 
+        // 戻る選択時
+        public function formEdit($id){
+          $forms = DB::table('contacts')->where('id',$id)->first();
+        //   dd($forms);
+            return view('contacts.formEdit' , ['forms' => $forms] );
+        }
 
-        public function send(){
-            $forms = session()->get('forms');
-            $formData = new Contact;
-            $formData->fill($forms)->save();
+
+        public function send($id){
+            // dd($id);
+            $forms = DB::table('contacts')->where('id',$id)->first();
+            // dd($forms);
+            // $formData->fill($forms)->save();
+            // $forms->session()->flush();
+            
         return view('contacts.send',['forms'=>$forms]);
     }    
 }
