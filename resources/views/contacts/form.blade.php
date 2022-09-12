@@ -112,11 +112,12 @@
             
             <div type="button" class="btn btn-success col-form-label">必須</div> 職業
             <div class="col-sm-2 col-form-label" ></div>
+
                 <select name="user_job" class="form-group row form-select col-sm-1 col-form-label" aria-label="職業を選択してください" id="user_job" >
-                    <option id="user_job" selected value="">職業を選択してください</option>
-                    <option value="セキュリティエンジニア">セキュリティエンジニア</option>
-                    <option value="電気工事士">電気工事士</option>
-                    <option value="建築士">建築士</option>
+                    <option value="">職業を選択してください</option>
+                    <option value="セキュリティエンジニア"  @if(old('user_job') === 'セキュリティエンジニア') selected @endif>セキュリティエンジニア</option>
+                    <option value="電気工事士" @if(old('user_job') === '電気工事士') selected @endif>電気工事士</option>
+                    <option value="建築士" @if(old('user_job') === '建築士') selected @endif>建築士</option>
                 </select>
             
                  @if($errors->has('user_job'))

@@ -116,7 +116,6 @@ class UserController extends Controller
             // dd($id);
             $forms = DB::table('contacts')->where('id',$id)->first();
             // dd($forms);
-
             // $formData->fill($forms)->save();
             // $forms->session()->flush();
             

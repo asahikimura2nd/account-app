@@ -17,7 +17,7 @@
     <br>
       お問い合わせ内容
       <br>
-      {{$editContact->user_content}}
+      {!! nl2br($editContact->user_content) !!}
       <br>
       <label for="remarks">備考<br>
         <textarea class="remarks" name="remarks" id="remarks" cols="30" rows="10">{{old('remarks',$editContact->remarks)}}</textarea>  
