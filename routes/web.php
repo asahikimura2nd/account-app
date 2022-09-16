@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\UserController;
-use App\Models\User;
+use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,14 +22,12 @@ use Illuminate\Support\Facades\Route;
 
 
     //お問い合わせ
-    Route::get('/contact',[UserController::class,'form'])->name('form');
+    Route::get('/contact',[ContactController::class,'form'])->name('form');
     //確認ページ
-    Route::post('/contact/form/confirm',[UserController::class,'confirm'])->name('confirm');
-    //お問い合わせ（戻るとき）
-    Route::get('/contact/{id?}',[UserController::class,'formEdit'])->name('formEdit');
-    //確認ページ
+    Route::post('/contact/form/confirm',[ContactController::class,'confirm'])->name('confirm');
     //送信完了ページ
-    Route::get('/contact/form/send/{id?}',[UserController::class,'send'])->name('send');
+    Route::post('/contact/form/send',[ContactController::class,'send'])->name('send');
+
 
 
     //ホーム画面
@@ -45,9 +43,9 @@ use Illuminate\Support\Facades\Route;
      //再登録処理
      Route::post('/user/edit/{member_id}',[UserController::class,'editUser'])->name('editUser');
      //お問い合わせ一覧
-     Route::get('/show/contacts',[UserController::class,'showContacts'])->name('showContacts');
+     Route::get('/show/contacts',[ContactController::class,'showContacts'])->name('showContacts');
     //お問い合わせ編集画面
-    Route::get('/show/contact/edit/{user_random_id?}',[UserController::class,'showEditContact'])->name('showEditContact');
+    Route::get('/show/contact/edit/{user_random_id?}',[ContactController::class,'showEditContact'])->name('showEditContact');
     //お問い合わせ編集処理
-    Route::post('/contact/edit/{user_random_id?}',[UserController::class,'contactEdit'])->name('contactEdit');
+    Route::post('/contact/edit/{user_random_id?}',[ContactController::class,'contactEdit'])->name('contactEdit');
     
