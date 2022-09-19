@@ -59,9 +59,10 @@
             <div class="form-group row">
                 <label for="user_tel" class="col-sm-4 col-form-label"><div type="button" class="btn btn-success" >必須</div>電話番号</label>
                 <div class="col-sm-5">         
-                    <input class="form-control" type="text" name="user_tel" id="tel" placeholder="000-0000-0000" value="{{old("user_tel")}}">
+                    <input class="form-control" type="text" name="user_tel" id="user_tel" placeholder="000-0000-0000" value="{{old("user_tel")}}">
                 </div>
             </div>
+
              @if($errors->has('user_tel'))
                 <div class="text-danger">{{$errors->first('user_tel')}}</div>
             @endif
@@ -90,8 +91,8 @@
                 <div class="text-danger">{{$errors->first('user_birth_date')}}</div>
             @endif
             <div class="mb-5 "></div>
-
-            <div type="button" class="btn btn-success col-form-label">必須</div> 性別
+            
+            <label for="user_gender" type="button" class="btn btn-success col-form-label">必須</label> <label for="user_gender">性別</label>
             <label for="hidden" class="col-sm-4 col-form-label"></label>
             <div class="form-check-inline ">
                 <input class="form-check-input " type="radio" name="user_gender" id="user_gender" value="男" {{old('user_gender') === '男' ? 'checked':''}}>
@@ -110,11 +111,11 @@
 
 
             
-            <div type="button" class="btn btn-success col-form-label">必須</div> 職業
+            <label for="user_job" type="button"  class="btn btn-success col-form-label">必須</label> <label for="user_job">職業</label>
             <div class="col-sm-2 col-form-label" ></div>
 
                 <select name="user_job" class="form-group row form-select col-sm-1 col-form-label" aria-label="職業を選択してください" id="user_job" >
-                    <option value="">職業を選択してください</option>
+                    <option id="user_job" value="">職業を選択してください</option>
                     <option value="セキュリティエンジニア"  @if(old('user_job') === 'セキュリティエンジニア') selected @endif>セキュリティエンジニア</option>
                     <option value="電気工事士" @if(old('user_job') === '電気工事士') selected @endif>電気工事士</option>
                     <option value="建築士" @if(old('user_job') === '建築士') selected @endif>建築士</option>
@@ -142,7 +143,7 @@
                 
                 <input type="submit" class="btn btn-primary" value="送信する">
                 <div class="mb-5"></div>
-            </div>
+            </la>
             
         </form>
         </div>
