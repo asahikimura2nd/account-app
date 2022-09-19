@@ -46,8 +46,8 @@
         <div class="container">
             <div class="row">
                 <div class="col text-center">
-                    <input type="submit" value="送信する">
-                    <input type="button" onclick="history.back()" value="戻る">
+                    <input type="submit"  class="btn btn-success col-form-label" value="送信する">
+                    <input type="button"  class="btn btn-success col-form-label" onclick="history.back()" value="戻る">
                 </div>
             </div>
         </div>
