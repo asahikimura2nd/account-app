@@ -5,6 +5,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Validator;
 use App\Rules\tel_check;
 use App\Rules\postcode_check;
+use Illuminate\Support\Facades\Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -31,5 +32,7 @@ class AppServiceProvider extends ServiceProvider
         Validator::extend('member_postcode',[postcode_check::class,'passes']);
         //お問い合わせ側
         Validator::extend('user_tel', [App\Rules\TelRule::class,'passes']);
+        //heroku 
+        Schema::defaultStringLength(191);
     }
 }
