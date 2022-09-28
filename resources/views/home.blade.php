@@ -7,12 +7,12 @@
 @section('mainTitle','Home')
 
 @section('style')
-  <link rel="stylesheet" href="{{ asset('css/home/home.css') }}">
+  <link rel="stylesheet" href="{{ mix('css/home/home.css') }}">
 @endsection
 
 @section('newCreate')
   <div class="newCreate"><a href="{{route('showUser')}}">新規作成</a></div>
-  <link rel="stylesheet" href="{{ asset('css/home/newCreate.css') }}">
+  <link rel="stylesheet" href="{{ mix('css/home/newCreate.css') }}">
 @endsection
 
 @section('content')
