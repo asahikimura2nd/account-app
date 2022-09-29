@@ -92,15 +92,15 @@
             @endif
             <div class="mb-5 "></div>
             
-            <label for="user_gender" type="button" class="btn btn-success col-form-label">必須</label> <label for="user_gender">性別</label>
+            <label for="user_gender_m" type="button" class="btn btn-success col-form-label">必須</label> <label for="user_gender_m">性別</label>
             <label for="hidden" class="col-sm-4 col-form-label"></label>
             <div class="form-check-inline ">
-                <input class="form-check-input " type="radio" name="user_gender" id="user_gender" value="男" {{old('user_gender') === '男' ? 'checked':''}}>
-                <label class="form-check-label " for="user_gender">男</label>
+                <input class="form-check-input " type="radio" name="user_gender" id="user_gender_m" value="男" {{old('user_gender') === '男' ? 'checked':''}}>
+                <label class="form-check-label " for="user_gender_m">男</label>
             </div>
             <div class="form-check-inline col-sm-2 col-form-label">
-                <input class="form-check-input" type="radio" name="user_gender" id="user_gender" value="女" {{ old('user_gender') === '女' ? 'checked' : '' }}>
-                <label class="form-check-label" for="user_gender">女</label>
+                <input class="form-check-input" type="radio" name="user_gender" id="user_gender_w" value="女" {{ old('user_gender') === '女' ? 'checked' : '' }}>
+                <label class="form-check-label" for="user_gender_w">女</label>
             </div>
         
              @if($errors->has('user_gender'))

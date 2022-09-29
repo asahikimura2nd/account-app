@@ -43,7 +43,14 @@
         </label>
         <br>
         <label for="member_prefectures"><button class="inputButton">必須</button>都道府県<br>
-          <input type="text" name="member_prefectures" id="member_prefectures" value="{{ old('member_prefectures',$editMember->member_prefectures) }}">
+          {{-- <input type="text" name="member_prefectures" id="member_prefectures" value="{{ old('member_prefectures',$editMember->member_prefectures) }}"> --}}
+          
+          <select class="pref_select" name="member_prefectures" id="member_prefectures">
+            <option value="{{ old('member_prefectures',$editMember->member_prefectures) }}">{{$editMember->member_prefectures}}</option>
+            @foreach ($prefs as $pref)
+            <option value="{{$pref}}">{{$pref}}</option>
+            @endforeach
+          </select>
         </label>
         <br>
         <label for="member_city"><button class="inputButton">必須</button>市区町村<br>
@@ -58,7 +65,7 @@
           <textarea name="member_content" id="member_content" cols="30" rows="10">{{ old('member_content',$editMember->member_content) }}</textarea>
         </label>
         <br>
-        <input type="submit" value="再登録する。">
+        <input class="submit" type="submit" value="再登録する。">
     </form>
 
 @endsection

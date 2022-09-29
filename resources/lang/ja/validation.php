@@ -172,7 +172,7 @@ return [
         'member_prefectures'=>'都道府県',
         'member_city'=>'市区町村',
         'member_address_and_building'=>'番号・アパート名',
-        'content'=>'備考欄',
+        'member_content'=>'備考欄',
         
         
         //お問い合わせ側
