@@ -21,7 +21,9 @@ class UserController extends Controller
    
     //会員登録
     public function showUser(){
-        return view('user_form');
+        $prefs = config('pref');
+        // dd($pref);
+        return view('user_form',compact('prefs'));
     }
 
     //会員登録処理
@@ -39,7 +41,8 @@ class UserController extends Controller
         // dd($member_id);
         $editMember = User::where('member_id',$member_id)->first();
         // dd($editMember);
-        return view('user_edit_form',['editMember'=> $editMember]);
+        $prefs = config('pref');
+        return view('user_edit_form',['editMember'=> $editMember,'prefs'=>$prefs]);
     }
     //会員登録処理(編集)
     

@@ -211,12 +211,13 @@ padding-bottom: 20px;
 */
 form{
   font-weight: bold;
+  width: 100%;
 }
 label{
   cursor: pointer;
 }
 
-select{
+select {
   font-size: 16px;
   font-weight: bold;
   background-color: brown;
@@ -226,6 +227,17 @@ select{
   color: bisque;
   
 }
+.pref_select{
+  font-weight:initial;
+  color: black;
+  background-color: white;
+  border: 2px solid;
+  border-color: black;
+  width: 30%;
+  border-radius: 2px;
+  line-height: 1.5;
+  padding: 3px 0;
+}
 select:hover{
   opacity: 0.67;
 }
@@ -234,10 +246,10 @@ input{
   background-color: white;
   border: 2px solid;
   border-color: black;
-
   border-radius: 2px;
   line-height: 1.5;
   padding: 3px 0;
+  width: 30%;
 }
 
 .submit{
@@ -248,7 +260,7 @@ input{
   border: 1px solid black;
   padding: 5px;
   border-radius: 30%;
-  
+  width: 100px;
   font-weight: bold;
 }
 .submit:hover{
@@ -269,6 +281,7 @@ textarea{
   background-color: white ;
   border: 2px solid;
   border-color: black;
+  width: 30%;
 }
 .editForm{
 padding:20px;

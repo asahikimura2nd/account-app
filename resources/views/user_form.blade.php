@@ -44,7 +44,13 @@
       </label>
       <br>
       <label for="member_prefectures"><button class="inputButton">必須</button>都道府県<br>
-        <input class="input" type="text" name="member_prefectures" id="member_prefectures" value="{{ old('member_prefectures') }}">
+        {{-- <input class="input" type="text" name="member_prefectures" id="member_prefectures" value="{{ old('member_prefectures') }}"> --}}
+        <select class="pref_select" name="member_prefectures" id="member_prefectures">
+          <option value="">選択してください</option>
+          @foreach ($prefs as $pref)
+          <option value="{{$pref}}">{{$pref}}</option>
+          @endforeach
+        </select>
       </label>
       <br>
       <label for="member_city"><button class="inputButton">必須</button>市区町村<br>
@@ -59,7 +65,7 @@
         <textarea class="input" name="member_content" id="member_content" cols="80" rows="6">{{ old('member_content') }}</textarea>
       </label>
       <br>
-      <label for="submit"><input class="submit" type="submit" value="登録する。"></label>
+      <label for="submit"><input class="submit" type="submit" value="登録する"></label>
 
       
 

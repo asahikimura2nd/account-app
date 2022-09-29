@@ -9,7 +9,7 @@
     @csrf
     <input type="hidden" name= 'user_random_id' value = "{{$editContact->user_random_id}}">
     ステータス : 
-      <select name="status">
+      <select class='status' name="status">
         <option value="未対応" @if(old('status')==="未対応") selected @endif>未対応</option>
         <option value="対応中" @if(old('status')==="対応中") selected @endif>対応中</option>
         <option value="対応済み" @if(old('status')==="対応済み") selected @endif>対応済み</option>
