@@ -3,7 +3,7 @@
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,19 +16,22 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-/**
+  /**
  * @param App\Http\Kernel
  */
 
+//ログイン前 guest
+Route::group(['middleware'=>['guest']],function(){
+    //ログイン管理画面
+    Route::get('/show/login',[UserController::class,'showLogin'])->name('showLogin');
+    //ログイン認証
+    Route::post('/login',[UserController::class,'login'])->name('login');
+    Route::get('/show/first/create',[UserController::class,'showFirstCreate'])->name('showFirstCreate');
+    Route::post('/first/create',[UserController::class,'firstCreate'])->name('firstCreate');
+});
 
-    //お問い合わせ
-    Route::get('/contact',[ContactController::class,'form'])->name('form');
-    //確認ページ
-    Route::post('/contact/form/confirm',[ContactController::class,'confirm'])->name('confirm');
-    //送信完了ページ
-    Route::post('/contact/form/send',[ContactController::class,'send'])->name('send');
-
-
+//ログイン後
+Route::group(['middleware'=>['auth']],function(){
 
     //ホーム画面
     Route::get('/',[UserController::class,'home'])->name('home');
@@ -48,4 +51,15 @@ use Illuminate\Support\Facades\Route;
     Route::get('/show/contact/edit/{user_random_id?}',[ContactController::class,'showEditContact'])->name('showEditContact');
     //お問い合わせ編集処理
     Route::post('/contact/edit/{user_random_id?}',[ContactController::class,'contactEdit'])->name('contactEdit');
-    
+});
+
+
+
+    //お問い合わせ
+    Route::get('/contact',[ContactController::class,'form'])->name('form');
+    //確認ページ
+    Route::post('/contact/form/confirm',[ContactController::class,'confirm'])->name('confirm');
+    //送信完了ページ
+    Route::post('/contact/form/send',[ContactController::class,'send'])->name('send');
+
+

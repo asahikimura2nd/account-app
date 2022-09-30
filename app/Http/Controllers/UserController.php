@@ -1,14 +1,62 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Requests\LoginRequest;
 use App\Http\Requests\MemberRequest;
 use App\Http\Requests\EditMemberRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-        //ホーム
+
+//ログイン画面
+    public function showLogin(){
+        
+        return view('login_form');
+
+    }
+    
+    public function login(LoginRequest $request ){
+        dd($request->all());
+        $credentials = ['member_email'=>$request->member_email,
+        'member_password'=>$request->member_password
+    ];
+    
+        // dd($credentials);
+        if (Auth::attempt(($credentials))){
+            dd($request);
+            $request->session()->regenerate();
+            //認証成功時にセッションを返す 二回以上のリダイレクト回避
+            dd($request);
+            return redirect()->route('home');
+            // ->with('login_success','ログインが成功しました');
+        }
+            //認証失敗 エラーの内容をセッションと一緒に返せる
+            return back()->withErrors(['login_error'=> 'メールアドレスかパスワード一致しません。']);
+     }
+
+    //新規会員登録
+    public function showFirstCreate(){
+        $prefs = config('pref');
+        // dd($pref);
+        return view('first_create_form',compact('prefs'));
+    }
+
+    //新規会員登録処理
+    public function firstCreate(MemberRequest $request){
+        $attributes = $request ->all();
+        // dd($attributes);
+        $member = new User;
+        $member -> fill($attributes);
+        $member -> save();
+         return redirect()->route('showLogin')->with('member_success','登録完了しました');
+        }
+
+    
+
+    //ホーム
      public function home(){
         return view('home');
     } 
