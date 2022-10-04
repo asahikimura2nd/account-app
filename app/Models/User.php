@@ -10,6 +10,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Database\Factories\Administration\MemberFactory;
 use App\Models\Contact;
 
+
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -21,25 +22,25 @@ class User extends Authenticatable
      *
      */
 
+    protected $table = 'users';
 
     protected $fillable = [
         //管理者
         //会員一覧
         'member_id',
-        'member_name',
-        'member_email',
-        'member_password',
-        'member_tel',
-        'member_prefectures',
-        'member_city',
-        'member_address_and_building',
+        'name',
+        'email',
+        'password',
+        'tel',
+        'prefectures',
+        'city',
+        'address_and_building',
         //詳細
-        'member_company',
-        'member_name_katakana',
-        'member_password',
-        'member_postcode',
-        'member_content',
-
+        'company',
+        'name_katakana',
+        'password',
+        'postcode',
+        'content',
     ];
 
     /**
@@ -48,7 +49,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-        'member_password',
+        'password',
         // 'remember_token',
     ];
 
@@ -62,6 +63,6 @@ class User extends Authenticatable
     // ];
     public function getAuthPassword()
 {
-    return $this->member_password;
+    return $this->password;
 }
 }

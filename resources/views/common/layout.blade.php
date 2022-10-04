@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
+  <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title')</title>
     <script src="{{ asset('js/app.js') }}" defer></script>
     <link rel="stylesheet" href="{{ asset('css/reset.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-
 </head>
 
 <body class="text-center">
   <header>
     <div class="admin">管理者</div>
+    <div><a href='{{route('logout')}}'>ログアウト</a></div>
   </header>  
 
   <main>
@@ -26,36 +26,31 @@
             <div class="items">ホーム</div>
           </a>
         </div>
-        
         <div class="members">
             <a href="{{route('showUser')}}">
               <div><img src="{{asset('images/component48.png')}}" alt="members" class="membersIcon"></div>
               <div class="items">会員登録</div>
             </a>
         </div>
-      
         <div class="contact">
           <a href="{{route('showContacts')}}">
             <div><img src="{{asset('images/component48.png')}}" alt="contact" class="membersIcon"></div>
             <div class="items">お問い合わせ一覧</div>
           </a>
         </div>
-      </div>
-      
-      
+      </div>     
       <div style="margin-top: 200px">  
         <a href="{{route('form')}}">
           (ユーザー用のお問い合わせページ=>本来不要)
         </a>
       </div>
     </aside>
- 
+
     <div class="mainContainer" id="mainContainer">   
       <div class="mainTitle">@yield('style')<h1>@yield('mainTitle')</h1>
         <div>@yield('session')</div>
         <div>@yield('newCreate')</div>
-      </div>      
-      
+      </div>        
       <div class="backImage">
         <div class="innerContainer">
           @yield('content')
@@ -65,7 +60,6 @@
   </main>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="{{asset('js/jquery.frix.min.js')}}"></script>
   <script src="{{asset('js/menu.js')}}"></script>
   <script src="{{asset('js/init.js')}}"></script>
 </body>

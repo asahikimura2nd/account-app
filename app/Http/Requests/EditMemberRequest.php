@@ -30,19 +30,19 @@ class EditMemberRequest extends FormRequest
         
         return [
         //メンバー登録フォーム
-        'member_company'=>'required|max:30',
-        'member_name_katakana'=>'required|max:30',
+        'company'=>'required|max:30',
+        'name_katakana'=>'required|max:30',
         //重複なし→自分以外のメールアドレス以外→なぜか失敗
-        'member_email'=> ['required', Rule::unique('users')->ignore($memberId, 'member_id')],
-        'member_password'=>'required|min:8',
+        'email'=> ['required', Rule::unique('users')->ignore($memberId, 'member_id')],
+        'password'=>'required|min:8',
 
-        'member_tel'=>['required', new tel_check],
-        'member_postcode'=>['required', new postcode_check],
+        'tel'=>['required', new tel_check],
+        'postcode'=>['required', new postcode_check],
         
-        'member_prefectures'=>'required',
-        'member_city'=>'required|max:30',
-        'member_address_and_building'=>'required|max:50',
-        'member_content'=> 'required|max:255',
+        'prefectures'=>'required',
+        'city'=>'required|max:30',
+        'address_and_building'=>'required|max:50',
+        'content'=> 'required|max:255',
         ];
     }
 }

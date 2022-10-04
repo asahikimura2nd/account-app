@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Contact extends Model
 {
     use HasFactory;
-         /**
+        /**
          * 
          * お問い合わせ側(user)
          * 

@@ -1,106 +1,70 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Http\Requests\LoginRequest;
+
 use App\Http\Requests\MemberRequest;
 use App\Http\Requests\EditMemberRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
 
-//ログイン画面
-    public function showLogin(){
-        
-        return view('login_form');
-
-    }
-    
-    public function login(LoginRequest $request ){
-        dd($request->all());
-        $credentials = ['member_email'=>$request->member_email,
-        'member_password'=>$request->member_password
-    ];
-    
-        // dd($credentials);
-        if (Auth::attempt(($credentials))){
-            dd($request);
-            $request->session()->regenerate();
-            //認証成功時にセッションを返す 二回以上のリダイレクト回避
-            dd($request);
-            return redirect()->route('home');
-            // ->with('login_success','ログインが成功しました');
-        }
-            //認証失敗 エラーの内容をセッションと一緒に返せる
-            return back()->withErrors(['login_error'=> 'メールアドレスかパスワード一致しません。']);
-     }
-
     //新規会員登録
     public function showFirstCreate(){
         $prefs = config('pref');
-        // dd($pref);
         return view('first_create_form',compact('prefs'));
     }
 
     //新規会員登録処理
     public function firstCreate(MemberRequest $request){
         $attributes = $request ->all();
-        // dd($attributes);
+        $attributes['password'] = Hash::make($request->password);
         $member = new User;
-        $member -> fill($attributes);
-        $member -> save();
-         return redirect()->route('showLogin')->with('member_success','登録完了しました');
-        }
-
-    
+        $member->fill($attributes);
+        $member->save();
+        return redirect()->route('showLogin')->with('success','登録完了しました');
+    }    
 
     //ホーム
-     public function home(){
+    public function home(){
         return view('home');
     } 
-        // 会員一覧画面
+    // 会員一覧画面
     public function users(){
-        $members = DB::table('users')->get();
-        
+        $members = DB::table('users')->get();    
     return view('users',["members"=> $members]);
     }
-   
+
     //会員登録
     public function showUser(){
         $prefs = config('pref');
-        // dd($pref);
         return view('user_form',compact('prefs'));
     }
 
     //会員登録処理
     public function user(MemberRequest $request){
         $attributes = $request ->all();
-        // dd($attributes);
+        $attributes['password'] = Hash::make($request->password);
         $member = new User;
         $member -> fill($attributes);
         $member -> save();
-        return redirect()->route('users')->with('member_success','登録完了しました');
+        return redirect()->route('users')->with('success','登録完了しました');
     }
 
     //会員編集画面
     public function showEdit($member_id){
-        // dd($member_id);
         $editMember = User::where('member_id',$member_id)->first();
-        // dd($editMember);
         $prefs = config('pref');
         return view('user_edit_form',['editMember'=> $editMember,'prefs'=>$prefs]);
     }
+    
     //会員登録処理(編集)
-    
-     public function editUser(EditMemberRequest $request){
-        // https://qiita.com/sola-msr/items/fac931c72e1c46ae5f0f
+    public function editUser(EditMemberRequest $request){
         $member = User::where('member_id',$request->member_id)->first();
-     
-        $member-> update($request->all());
-        return redirect()->route('users')->with('member_success','再登録完了しました');
-     }
- 
-    
+        $member->update($request->all());
+        return redirect()->route('users')->with('success','再登録完了しました');
+    } 
 }
