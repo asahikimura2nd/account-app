@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\UserController;
-// use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -35,7 +34,7 @@ Route::group(['middleware'=>['guest']],function(){
 //ログイン後
 Route::group(['middleware'=>['auth']],function(){
     //ホーム画面
-    Route::get('/',[UserController::class,'home'])->name('home');
+    Route::get('/home',[UserController::class,'home'])->name('home');
     //ログアウト
     Route::get('/logout',[LoginController::class,'logout'])->name('logout');
     //会員登録一覧
@@ -63,6 +62,4 @@ Route::post('/contact/form/confirm',[ContactController::class,'confirm'])->name(
 //送信完了ページ
 Route::post('/contact/form/send',[ContactController::class,'send'])->name('send');
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Auth::routes();

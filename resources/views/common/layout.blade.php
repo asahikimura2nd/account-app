@@ -13,7 +13,7 @@
 <body class="text-center">
   <header>
     <div class="admin">管理者</div>
-    <div><a href='{{route('logout')}}'>ログアウト</a></div>
+    <div style="margin-right: 20px"><a href='{{route('logout')}}'>ログアウト</a></div>
   </header>  
 
   <main>
@@ -40,9 +40,9 @@
         </div>
       </div>     
       <div style="margin-top: 200px">  
-        <a href="{{route('form')}}">
+        {{-- <a href="{{route('form')}}">
           (ユーザー用のお問い合わせページ=>本来不要)
-        </a>
+        </a> --}}
       </div>
     </aside>
 
