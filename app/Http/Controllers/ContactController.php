@@ -9,22 +9,26 @@ class ContactController extends Controller
 {
      //お問い合わせフォーム
     public function form(){
-        return view('contacts.form');
-    } 
+        $contact = new Contact;
+        $jobArray = $contact->jobContact();
+        return view('contacts.form',compact('jobArray'));
+    }
 
     //確認ページ
     public function confirm(TestRequest $request){
-        $attributes=$request->all();
-        $forms = new Contact;
-        $forms = $forms->fill($attributes);
-        return view('contacts.confirm',['forms'=>$forms]);
+        $attributes = $request->all();
+        $contact = new Contact;
+        $attributes['user_gender'] = $contact->gender($request->user_gender);
+        $attributes['user_job'] = $contact->job($request->user_gender);
+        $contact->fill($attributes);
+        return view('contacts.confirm',compact('contact'));
     }
     
     public function send(TestRequest $request){
         $attributes = $request->all();
-        $forms = new Contact;
-        $forms -> fill($attributes)->save();    
-    return view('contacts.send',['forms'=>$forms]);
+        $contact = new Contact;
+        $contact->fill($attributes)->save();    
+    return view('contacts.send',compact('contact'));
     }    
 
     //お問い合わせ一覧画面

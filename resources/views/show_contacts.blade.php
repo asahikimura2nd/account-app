@@ -35,7 +35,7 @@
                         <img class="pen" src="{{asset('images/pen.svg')}}" alt="contact">
                     </a>
                 </td>
-                <td> @if($contact->status===null) 未対応 @endif{{$contact->status}}</td>
+                <td> {{$contact->status}}</td>
                 <td> {{$contact->user_company}}</td>
                 <td>{{$contact->user_name}}</td>
                 <td>{{$contact->user_tel}} </td>

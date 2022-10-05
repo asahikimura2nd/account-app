@@ -27,4 +27,45 @@ class Contact extends Model
         //お問い合わせ備考            
         'remarks',    
     ];
+
+    public function jobContact()
+    {
+        $jobs = [
+            'セキュリティエンジニア'=>'engineer',
+            '電気工事士'=>'electricalWorker',
+            '建築士'=>'Architect'
+        ];
+        return $jobs;
+    }
+
+    public function gender($select)
+    {
+        if($select === 'male'){
+            $select = '男性';
+        } else {
+            $select = '女性';
+        };
+        return $select;
+    }
+
+    public function job($select)
+    {
+        if($select === 'engineer'){
+            $select = 'セキュリティエンジニア';
+        } else if($select === 'electricalWorker') {
+            $select = '電気工事士';
+        } else {
+            $select = '建築士';
+        }
+        return $select;
+    }
+
+    public function status(){
+        $status = [
+            '未対応'=>'no_response',
+            '対応中'=>'now_response',
+            '未対済み'=>'responsed',
+        ];
+        return $status;
+    }
 }

@@ -45,9 +45,10 @@
         <br>
         <label for="prefectures"><button class="inputButton">必須</button>都道府県<br>
             <select class="pref_select" name="prefectures" id="prefectures">
-                <option value="{{ old('prefectures',$editMember->prefectures) }}">{{$editMember->prefectures}}</option>
+                {{-- <option value="{{ old('prefectures',$editMember->prefectures) }}">{{$editMember->prefectures}}</option> --}}
                 @foreach ($prefs as $pref)
-                <option value="{{$pref}}">{{$pref}}</option>
+                    <option value="{{$pref}}
+                    ">{{$pref}}</option>
                 @endforeach
             </select>
         </label>

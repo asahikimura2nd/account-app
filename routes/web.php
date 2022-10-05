@@ -34,7 +34,7 @@ Route::group(['middleware'=>['guest']],function(){
 //ログイン後
 Route::group(['middleware'=>['auth']],function(){
     //ホーム画面
-    Route::get('/home',[UserController::class,'home'])->name('home');
+    Route::get('/',[UserController::class,'home'])->name('home');
     //ログアウト
     Route::get('/logout',[LoginController::class,'logout'])->name('logout');
     //会員登録一覧

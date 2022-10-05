@@ -30,10 +30,10 @@
                 <tr>             
                 <td><a href="{{ route('showEdit',['member_id' => $member->member_id]) }}"><img class="pen" src="{{asset('images/pen.svg')}}" alt="edit"></a></td> 
                 <td>{{$member->email}}</td> 
-                <td> {{$member->tel}}</td> 
-                <td> {{$member->prefectures}}</td> 
-                <td>  {{$member->city}}</td> 
-                <td>  {{$member->address_and_building}}</td> 
+                <td>{{$member->tel}}</td> 
+                <td>{{$member->prefectures}}</td> 
+                <td>{{$member->city}}</td> 
+                <td>{{$member->address_and_building}}</td> 
                 </tr>
             @endforeach
         </tbody>
