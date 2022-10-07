@@ -31,14 +31,14 @@
             @foreach ($contacts as $contact)    
                 <tr>
                     <td> 
-                        <a href="{{ route('showEditContact',['user_random_id' => $contact->user_random_id]) }}"> 
+                        <a href="{{ route('showEditContact',['random_id' => $contact->random_id]) }}"> 
                         <img class="pen" src="{{asset('images/pen.svg')}}" alt="contact">
                     </a>
                 </td>
-                <td> {{$contact->status}}</td>
-                <td> {{$contact->user_company}}</td>
-                <td>{{$contact->user_name}}</td>
-                <td>{{$contact->user_tel}} </td>
+                <td> {{ $contact->status_type}}</td>
+                <td> {{ $contact->company}}</td>
+                <td>{{ $contact->name }}</td>
+                <td>{{ $contact->tel }} </td>
                 </tr>
             @endforeach  
         </tbody>  

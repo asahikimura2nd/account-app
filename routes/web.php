@@ -45,14 +45,16 @@ Route::group(['middleware'=>['auth']],function(){
     Route::post('/user',[UserController::class,'user'])->name('user');
     //会員編集
     Route::get('/show/edit/{member_id?}',[UserController::class,'showEdit'])->name('showEdit');
+    //会員削除
+    Route::get('/show/user/delete/{member_id?}',[UserController::class,'accountDelete'])->name('accountDelete');
      //再登録処理
     Route::post('/user/edit/{member_id}',[UserController::class,'editUser'])->name('editUser');
      //お問い合わせ一覧
     Route::get('/show/contacts',[ContactController::class,'showContacts'])->name('showContacts');
     //お問い合わせ編集画面
-    Route::get('/show/contact/edit/{user_random_id?}',[ContactController::class,'showEditContact'])->name('showEditContact');
+    Route::get('/show/contact/edit/{random_id?}',[ContactController::class,'showEditContact'])->name('showEditContact');
     //お問い合わせ編集処理
-    Route::post('/contact/edit/{user_random_id?}',[ContactController::class,'contactEdit'])->name('contactEdit');
+    Route::post('/contact/edit/{random_id?}',[ContactController::class,'contactEdit'])->name('contactEdit');
 });
 
 //お問い合わせ

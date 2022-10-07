@@ -13,9 +13,9 @@
         @endforeach
     </div>
 
-    <form action="{{route('firstCreate')}}" method="POST">
+    <form action="{{ route('firstCreate') }}" method="POST">
         @csrf
-        <input type="hidden" name="member_id" value="{{Str::random(30)}}">
+        <input type="hidden" name="member_id" value="{{ Str::random(30) }}">
         <label for="company"><button class="inputButton">必須</button>会社名<br>
         <input class="input" type="text" name="company" id="company" value="{{ old('company') }}">
         </label>
@@ -45,8 +45,8 @@
         <label for="prefectures"><button class="inputButton">必須</button>都道府県<br>
         <select class="pref_select" name="prefectures" id="prefectures">
             <option value="">選択してください</option>
-            @foreach ($prefs as $pref)
-                <option value="{{$pref}}">{{$pref}}</option>
+            @foreach ($prefs as $key => $value)
+                <option value="{{ $key }}">{{ $value }}</option>
             @endforeach
         </select>
         </label>

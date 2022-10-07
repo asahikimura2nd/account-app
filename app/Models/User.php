@@ -2,14 +2,11 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use Database\Factories\Administration\MemberFactory;
-use App\Models\Contact;
-
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
@@ -21,6 +18,9 @@ class User extends Authenticatable
      * @var array<int, string>
      *
      */
+
+    use SoftDeletes;
+
 
     protected $table = 'users';
 
@@ -41,6 +41,8 @@ class User extends Authenticatable
         'password',
         'postcode',
         'content',
+        //削除
+        'is_delete'
     ];
 
     /**
@@ -53,6 +55,7 @@ class User extends Authenticatable
         // 'remember_token',
     ];
 
+    protected $date = ['deleted_at'];
     /**
      * The attributes that should be cast.
      *
@@ -65,4 +68,5 @@ class User extends Authenticatable
 {
     return $this->password;
 }
+
 }

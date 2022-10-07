@@ -16,7 +16,7 @@
         @endforeach
     </div>
 
-    <form action="{{route('editUser', $editMember->member_id)}}" method="POST">
+    <form action="{{ route('editUser', $editMember->member_id) }}" method="POST">
         @csrf
         <input type="hidden" name="member_id" value="{{$editMember->member_id}}">  
         <label for="company"><button class="inputButton">必須</button>会社名<br>
@@ -45,10 +45,8 @@
         <br>
         <label for="prefectures"><button class="inputButton">必須</button>都道府県<br>
             <select class="pref_select" name="prefectures" id="prefectures">
-                {{-- <option value="{{ old('prefectures',$editMember->prefectures) }}">{{$editMember->prefectures}}</option> --}}
-                @foreach ($prefs as $pref)
-                    <option value="{{$pref}}
-                    ">{{$pref}}</option>
+                @foreach ( $prefs as $key => $value )
+                    <option value="{{ $key }}" {{ $editMember->prefectures == $key ? 'selected':'' }}>{{ $value }}</option>
                 @endforeach
             </select>
         </label>

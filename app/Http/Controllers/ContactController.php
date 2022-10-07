@@ -15,39 +15,49 @@ class ContactController extends Controller
     }
 
     //確認ページ
-    public function confirm(TestRequest $request){
+    public function confirm(TestRequest $request)
+    {
         $attributes = $request->all();
+        // dd($attributes);
         $contact = new Contact;
-        $attributes['user_gender'] = $contact->gender($request->user_gender);
-        $attributes['user_job'] = $contact->job($request->user_gender);
+        $gender = config('const.gender');
+        $job = config('const.job');
         $contact->fill($attributes);
-        return view('contacts.confirm',compact('contact'));
+        return view('contacts.confirm',compact('contact','gender','job'));
     }
-    
-    public function send(TestRequest $request){
+    //送信ページ
+    public function send(TestRequest $request)
+    {
         $attributes = $request->all();
         $contact = new Contact;
-        $contact->fill($attributes)->save();    
-    return view('contacts.send',compact('contact'));
+        $contact->fill($attributes)->save();
+        $gender = config('const.gender');
+        $job = config('const.job');    
+    return view('contacts.send',compact('contact','gender','job'));
     }    
 
     //お問い合わせ一覧画面
-    public function showContacts(){
-        $contacts = Contact::where('user_random_id','!=',null)->paginate(10);   
+    public function showContacts()
+    {
+        $contacts = Contact::where('random_id','!=',null)->paginate(2);
         $contacts->withPath('/show/contacts/');        
-        return view('show_contacts',['contacts'=>$contacts]);
+        return view('show_contacts',compact('contacts'));
     }        
     
     //お問い合わせ編集画面
-    public function showEditContact($user_random_id){
-        $editContact = Contact::where('user_random_id',$user_random_id)->first();
-        return view('edit_contact_form',['editContact'=>$editContact]);
+    public function showEditContact($random_id)
+    {
+        $editContact = Contact::where('random_id',$random_id)->first();
+        $statuses = config('status');
+        return view('edit_contact_form',compact('editContact','statuses'));
     }
     
     //お問い合わせ編集処理
-    public function contactEdit(Request $request){
-        $contacts= Contact::where('user_random_id',$request->user_random_id)->first();
+    public function contactEdit(Request $request)
+    {
+        $contacts= Contact::where('random_id',$request->random_id)->first();
         $contacts->update($request->all());
         return redirect()->route('showContacts',['contacts'=>$contacts])->with('flash_message','変更を更新しました。');
     }
+
 }

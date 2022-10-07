@@ -66,5 +66,14 @@ class UserController extends Controller
         $member = User::where('member_id',$request->member_id)->first();
         $member->update($request->all());
         return redirect()->route('users')->with('success','再登録完了しました');
-    } 
+    }
+    
+    //削除機能
+    public function accountDelete($member_id)
+    {
+        $user = User::where('member_id',$member_id)->first();
+        // dd($user);
+        $user->delete();
+        return redirect()->route('users')->with('success','削除しました。');
+    }
 }

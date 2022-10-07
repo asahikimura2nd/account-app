@@ -23,25 +23,25 @@
     <main >
         <form action="{{route('send')}}" method="POST">
             @csrf
-            <input type="hidden" name="user_random_id" value="{{$contact->user_random_id}}">
+            <input type="hidden" name="random_id" value="{{ $contact->random_id }}">
             <input type="hidden" name="status" value="no_response">
-            <input type="hidden" name="user_company" value="{{$contact->user_company}}">
-            <div class=" mb-5 "><h3 class="font-weight-bold text-center">会社名:{{$contact->user_company}}</h3></div>
-            <input type="hidden" name="user_name" value="{{$contact->user_name}}">
+            <input type="hidden" name="company" value="{{ $contact->company }}">
+            <div class=" mb-5 "><h3 class="font-weight-bold text-center">会社名:{{ $contact->company }}</h3></div>
+            <input type="hidden" name="name" value="{{ $contact->name }}">
             <span class="border-top"></span>
-            <div class="mb-5"><h3 class="font-weight-bold text-center">氏名:{{$contact->user_name}}</h3></div>
-            <input type="hidden" name="user_tel" value="{{$contact->user_tel}}">
-            <div class="mb-5"><h3 class="font-weight-bold text-center">電話番号:{{$contact->user_tel}}</h3></div>
-            <input type="hidden" name="user_email" value="{{$contact->user_email}}">
-            <div class="mb-5"><h3 class="font-weight-bold text-center">メールアドレス:{{$contact->user_email}}</h3></div>
-            <input type="hidden" name="user_birth_date" value="{{$contact->user_birth_date}}">
-            <div class="mb-5"><h3 class="font-weight-bold text-center">生年月日:{{$contact->user_birth_date}}</h3></div>
-            <input type="hidden" name="user_gender" value="{{$contact->user_gender}}">
-            <div class="mb-5"><h3 class="font-weight-bold text-center">性別:{{$contact->user_gender}}</h3></div>
-            <input type="hidden" name="user_job" value="{{$contact->user_job}}">
-            <div class="mb-5"><h3 class="font-weight-bold text-center">職業:{{$contact->user_job}}</h3></div>
-            <input type="hidden" name="user_content" value="{{$contact->user_content}}">
-            <div class="mb-5"><h3 class="font-weight-bold text-center">お問い合わせ内容:<br>{!! nl2br(($contact->user_content)) !!}</h3></div>
+            <div class="mb-5"><h3 class="font-weight-bold text-center">氏名:{{ $contact->name }}</h3></div>
+            <input type="hidden" name="tel" value="{{ $contact->tel }}">
+            <div class="mb-5"><h3 class="font-weight-bold text-center">電話番号:{{ $contact->tel }}</h3></div>
+            <input type="hidden" name="email" value="{{ $contact->email }}">
+            <div class="mb-5"><h3 class="font-weight-bold text-center">メールアドレス:{{ $contact->email }}</h3></div>
+            <input type="hidden" name="birth_date" value="{{ $contact->birth_date }}">
+            <div class="mb-5"><h3 class="font-weight-bold text-center">生年月日:{{ $contact->birth_date }}</h3></div>
+            <input type="hidden" name="gender" value="{{ $contact->gender }}">
+            <div class="mb-5"><h3 class="font-weight-bold text-center">性別:{{ $gender[$contact->gender] }}</h3></div>
+            <input type="hidden" name="job" value="{{ $contact->job }}">
+            <div class="mb-5"><h3 class="font-weight-bold text-center">職業:{{ $job[$contact->job] }}</h3></div>
+            <input type="hidden" name="content" value="{{ $contact->content }}">
+            <div class="mb-5"><h3 class="font-weight-bold text-center">お問い合わせ内容:<br>{!! nl2br(($contact->content)) !!}</h3></div>
             <div class="container">
                 <div class="row">
                     <div class="col text-center">

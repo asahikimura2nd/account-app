@@ -14,9 +14,9 @@
         <li>{{$error}}</li>
         @endforeach
     </div>
-    <form action="{{route('user')}}" method="POST">
+    <form action="{{ route('user') }}" method="POST">
         @csrf
-        <input type="hidden" name="member_id" value="{{Str::random(30)}}">
+        <input type="hidden" name="member_id" value="{{ Str::random(30) }}">
         <label for="company"><button class="inputButton">必須</button>会社名<br>
             <input class="input" type="text" name="company" id="company" value="{{ old('company') }}">
         </label>
@@ -46,8 +46,8 @@
         <label for="prefectures"><button class="inputButton">必須</button>都道府県<br>
         <select class="pref_select" name="prefectures" id="prefectures">
             <option value="">選択してください</option>
-            @foreach ($prefs as $pref)
-            <option value="{{$pref}}">{{$pref}}</option>
+            @foreach ($prefs as $key => $value)
+            <option value="{{ $key }}">{{ $value }}</option>
             @endforeach
         </select>
         </label>
@@ -57,7 +57,7 @@
         </label>
         <br>
         <label for="address_and_building"><button class="inputButton">必須</button>番号・アパート<br>
-            <input class="input" type="text" name="address_and_building" id="address_and_building" value="{{ old('address_and_building')}}">
+            <input class="input" type="text" name="address_and_building" id="address_and_building" value="{{ old('address_and_building') }}">
         </label>
         <br>
         <label for="content"><button class="inputButton">必須</button>備考欄<br>
