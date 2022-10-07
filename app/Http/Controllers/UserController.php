@@ -49,8 +49,8 @@ class UserController extends Controller
         $attributes = $request ->all();
         $attributes['password'] = Hash::make($request->password);
         $member = new User;
-        $member -> fill($attributes);
-        $member -> save();
+        $member->fill($attributes);
+        $member->save();
         return redirect()->route('users')->with('success','登録完了しました');
     }
 
