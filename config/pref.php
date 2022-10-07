@@ -1,7 +1,4 @@
 <?php
-// コピペ
-// https://qiita.com/sakuraya/items/42fffe0f171d49ee74a0#_reference-634af529c0214d77de0b
-
 return array(
     '1' => '北海道', 
     '2' => '青森県', 

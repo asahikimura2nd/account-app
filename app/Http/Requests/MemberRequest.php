@@ -28,17 +28,17 @@ class MemberRequest extends FormRequest
     {
         return [
         //メンバー登録フォーム
-        'member_company'=>'required|max:30',
-        'member_name_katakana'=>'required|max:30',
+        'company'=>'required|max:30',
+        'name_katakana'=>'required|max:30',
         //重複なし
-        'member_email'=>'required|unique:users,member_email',
-        'member_password'=>'required|min:8',
-        'member_tel'=>['required', new tel_check],
-        'member_postcode'=>['required', new postcode_check],
-        'member_prefectures'=>'required',
-        'member_city'=>'required|max:30',
-        'member_address_and_building'=>'required|max:50',
-        'member_content'=> 'required|max:255',
+        'email'=>'required|unique:users,email',
+        'password'=>'required|min:8',
+        'tel'=>['required', new tel_check],
+        'postcode'=>['required', new postcode_check],
+        'prefectures'=>'required',
+        'city'=>'required|max:30',
+        'address_and_building'=>'required|max:50',
+        'content'=> 'required|max:255',
         ];
     }
 }

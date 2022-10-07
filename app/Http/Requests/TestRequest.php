@@ -27,14 +27,14 @@ class TestRequest extends FormRequest
         
         return 
         [
-            'user_company' =>'required|max:20',
-            'user_name'=>'required|max:20',
-            'user_tel' => ['required', new TelRule], 
-            'user_email'=> 'required|email',
-            'user_birth_date'=>'required',
-            'user_gender'=> 'required',
-            'user_job' => 'required',
-            'user_content' => 'required',
+            'company' =>'required|max:20',
+            'name'=>'required|max:20',
+            'tel' => ['required', new TelRule], 
+            'email'=> 'required|email',
+            'birth_date'=>'required',
+            'gender'=> 'required',
+            'job' => 'required',
+            'content' => 'required',
         ];
     }
 

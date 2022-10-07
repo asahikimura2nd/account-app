@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Rules\tel_check;
 use App\Rules\postcode_check;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Pagination\Paginator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -34,6 +35,7 @@ class AppServiceProvider extends ServiceProvider
         Validator::extend('user_tel', [App\Rules\TelRule::class,'passes']);
         //heroku 
         Schema::defaultStringLength(191);
+        Paginator::useBootstrap();
         
     }
 }

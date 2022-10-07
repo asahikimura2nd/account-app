@@ -1,354 +1,348 @@
 html{
-
-  height: 100%;
+    height: 100%;
 }
-
 
 body{
-
-  height: 100%;
-  margin: auto;
-  position: relative;
-  font-family: "Helvetica Neue",Arial,"Hiragino Kaku Gothic ProN","Hiragino Sans","sans-serif";
-  box-sizing: border-box;
+    height: 100%;
+    margin: auto;
+    position: relative;
+    font-family: "Helvetica Neue",Arial,"Hiragino Kaku Gothic ProN","Hiragino Sans","sans-serif";
+    box-sizing: border-box;
 }
+
 h1{
-  font-size: 48px;
+    font-size: 48px;
 }
 h2{
-  font-size: 32px; 
-  color: rgba(0, 0, 0, 1);
+    font-size: 32px; 
+    color: rgba(0, 0, 0, 1);
 }
 
 p{
-  font-size: 14px;
+    font-size: 14px;
 }
+
 span{
- font-weight: bold; 
+    font-weight: bold; 
 }
+
 a{
-  font-weight: bold;
-}
- /*
+    font-weight: bold;
+    
+}   
+
+/*
  *
  *
- ヘッダー
- 
- 
- 
+    ヘッダー    
  */
-header{
- 
-  width: 100%;
-  height: 8vh;
-  background-color: rgb(138, 161, 204);
-  box-shadow: 4px 4px 4px ;
-  display: flex;
-  justify-content: right;
-  align-items: center;
-  position: fixed;
-  z-index: 10;
+
+header{ 
+    width: 100%;
+    height: 8vh;
+    background-color: rgb(138, 161, 204);
+    box-shadow: 4px 4px 4px ;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    position: fixed;
+    z-index: 10;
 }
+
 .admin{
-  display: block;
-  padding: 10px 0 10px 0;
-  margin-right: 120px;
-  width: auto;
+    display: block;
+    padding: 10px 0 10px 0;
+    margin-right: 120px;
+    width: auto;
 }
 
-
-
- /*
+/*
  *
  *
- メイン
+メイン
  */
-
-
-
 
 main{
-  display: flex;
-  height: 100%
+    display: flex;
+    height: 100%
 }
- /*
+/*
  *
  *
 サイドバー
  */
 
 .sideBar{
-  width: 30%;
-  background-color: rgb(101, 215, 120);
-  min-height: 100vh;
-  position: absolute;
-  z-index: 9999;
-  left: 0px;
-  top: 0px;
-  transition-duration:0.4s;
-  transition-timing-function:ease-in-out;
-  box-shadow: 2px 2px 2px ;
+    width: 30%;
+    background-color: rgb(101, 215, 120);
+    min-height: 100vh;
+    position: absolute;
+    z-index: 9999;
+    left: 0px;
+    top: 0px;
+    transition-duration:0.4s;
+    transition-timing-function:ease-in-out;
+    box-shadow: 2px 2px 2px ;
 }
+
 .sideContents{
-  position: sticky;
-  top: 0px;
+    position: sticky;
+    top: 0px;
 }
+
 .sideBar.active{
-  width: 50px;
-  height: 100%;
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  z-index: 9999;
+    width: 50px;
+    height: 100%;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: 9999;
 }
+
 /*
 *
-
 サイドメニュー一覧
-
 */
+
 .home{
-  display: flex;
-  justify-content:left;
-  align-items:center;
-  border-bottom: 3px solid white;
+    display: flex;
+    justify-content:left;
+    align-items:center;
+    border-bottom: 3px solid white;
 }
+
 .members{
-  display: flex;
-  justify-content:left;
-  align-items: center;
-  border-bottom: 3px solid white;
+    display: flex;
+    justify-content:left;
+    align-items: center;
+    border-bottom: 3px solid white;
 }
+
 .menuIcon{
-  width: 40px;
-  display: block;
-  margin: 10px 10px 10px 0;
-  cursor: pointer;
+    width: 40px;
+    display: block;
+    margin: 10px 10px 10px 0;
+    cursor: pointer;
 }
+
 .homeIcon{
-width: 40px;  
-display: block;
-  margin: 10px 10px 10px 0;
+    width: 40px;  
+    display: block;
+    margin: 10px 10px 10px 0;
 }
+
 .membersIcon{
-  width: 40px;
-  display: block;
-  margin: 10px 10px 10px 0;
+    width: 40px;
+    display: block;
+    margin: 10px 10px 10px 0;
 }
 
-
-
-
- /*
+/*
  *
  *
- メインコンテンツ
+メインコンテンツ
  */
 
-
 .mainContainer{
-  display: block;
-  height: 100%;
-  width: 70%;
-  padding: 10px 0 0 40px;
-  position:absolute;
-  z-index: 0;
-  top:80px;
-  margin-right: 80px;
-  left:30%;
-  transition-duration:0.4s;
-  transition-timing-function:ease-in-out
+    display: block;
+    height: 100%;
+    width: 70%;
+    padding: 10px 0 0 40px;
+    position:absolute;
+    z-index: 0;
+    top:80px;
+    margin-right: 80px;
+    left:30%;
+    transition-duration:0.4s;
+    transition-timing-function:ease-in-out
 }
 
-.mainContainer.active{
- 
-  display: block;
-  width: 100%;
-  position:absolute;
-  top:80px;
-  left:50px;
-  height: 100%;
+.mainContainer.active{ 
+    display: block;
+    width: 100%;
+    position:absolute;
+    top:80px;
+    left:50px;
+    height: 100%;
 }
 
 .mainTitle{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 0px ;
-  background-color: white; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0px ;
+    background-color: white; 
 }
 
 .backImage{
-background-color: rgba(84, 82, 88, 0.5);
-z-index: auto;
-display: block;
-max-width: 90%;
-min-height: 50vh;
-border:3px solid;
-border-color: black;
-padding-bottom: 20px;
-}
-.backImage:hover{
-  box-shadow: 2px 2px;
+    background-color: rgba(84, 82, 88, 0.5);
+    z-index: auto;
+    display: block;
+    max-width: 90%;
+    min-height: 50vh;
+    border:3px solid;
+    border-color: black;
+    padding-bottom: 20px;
 }
 
+.backImage:hover{
+    box-shadow: 2px 2px;
+}
 
 .hambarger{
-  display: flex;
-  justify-content: flex-end;
-}
-.items.active{
-  visibility: hidden;
-}
-.active{
-  transition-duration:0.4s;
-  transition-timing-function:ease-in-out
+    display: flex;
+    justify-content: flex-end;
 }
 
+.items.active{
+    visibility: hidden;
+}
+
+.active{
+    transition-duration:0.4s;
+    transition-timing-function:ease-in-out
+}
 
 /**
 フォーム関連
 */
+
 form{
-  font-weight: bold;
-  width: 100%;
+    font-weight: bold;
+    width: 100%;
 }
+
 label{
-  cursor: pointer;
+    cursor: pointer;
 }
 
 select {
-  font-size: 16px;
-  font-weight: bold;
-  background-color: brown;
-  padding: 5px;
-  border-radius: 30%;
-  cursor: pointer;
-  color: bisque;
-  
+    font-size: 16px;
+    font-weight: bold;
+    background-color: brown;
+    padding: 5px;
+    border-radius: 30%;
+    cursor: pointer;
+    color: bisque;
 }
+
 .pref_select{
-  font-weight:initial;
-  color: black;
-  background-color: white;
-  border: 2px solid;
-  border-color: black;
-  width: 30%;
-  border-radius: 2px;
-  line-height: 1.5;
-  padding: 3px 0;
+    font-weight:initial;
+    color: black;
+    background-color: white;
+    border: 2px solid;
+    border-color: black;
+    width: 30%;
+    border-radius: 2px;
+    line-height: 1.5;
+    padding: 3px 0;
 }
+
 select:hover{
-  opacity: 0.67;
+    opacity: 0.67;
 }
 
 input{
-  background-color: white;
-  border: 2px solid;
-  border-color: black;
-  border-radius: 2px;
-  line-height: 1.5;
-  padding: 3px 0;
-  width: 30%;
+    background-color: white;
+    border: 2px solid;
+    border-color: black;
+    border-radius: 2px;
+    line-height: 1.5;
+    padding: 3px 0;
+    width: 30%;
 }
 
 .submit{
-  cursor: pointer;
-  font-size: 16px;
-  color: aliceblue;
-  background-color: blue;
-  border: 1px solid black;
-  padding: 5px;
-  border-radius: 30%;
-  width: 100px;
-  font-weight: bold;
+    cursor: pointer;
+    font-size: 16px;
+    color: aliceblue;
+    background-color: blue;
+    border: 1px solid black;
+    padding: 5px;
+    border-radius: 30%;
+    width: 100px;
+    font-weight: bold;
 }
+
 .submit:hover{
-  opacity: 0.67;
+    opacity: 0.67;
 }
+
 .inputButton{
-  background-color: aqua;
-  font-size: large;
-  margin:10px 10px 10px 0;
-  padding:  0 5px;
-  pointer-events: none;
-  border: 2px solid;
-  border-color: black;
+    background-color: aqua;
+    font-size: large;
+    margin:10px 10px 10px 0;
+    padding:  0 5px;
+    pointer-events: none;
+    border: 2px solid;
+    border-color: black;
 }
 
 textarea{
-  font-size: large;
-  background-color: white ;
-  border: 2px solid;
-  border-color: black;
-  width: 30%;
+    font-size: large;
+    background-color: white ;
+    border: 2px solid;
+    border-color: black;
+    width: 30%;
 }
+
 .editForm{
-padding:20px;
-line-height: 1.5;
-
+    padding:20px;
+    line-height: 1.5;
 }
 
-
-/**
-
+/*
+*
 テーブル
 */
+
 table {
-  width: 100%;
-  table-layout: auto;
-  line-height: 1.5;
+    width: 100%;
+    table-layout: auto;
+    line-height: 1.5;
 }
+
 table img{
-  width: 20px;
+    width: 20px;
 }
+
 th {
-  background-color: #00e2cf;  /* 背景色指定 */
-  text-align: center;
-  font-size: 16px;
+    background-color: #00e2cf;  /* 背景色指定 */
+    text-align: center;
+    font-size: 16px;
 }
 
 td {
-  /* border: solid 1px;              枠線指定 */
-  text-align: center;
-  font-size: 14px;
-  font-weight: bold;
-  border-bottom: 1px solid black;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    border-bottom: 1px solid black;
 }
+
 td a {
-  font-size: 16px;
-  font-weight: bold;
+    font-size: 16px;
+    font-weight: bold;
 }
 
 /* セッション */
 
 .sessionColor{
-  /* background-color: rgb(213, 108, 108); */
-  font-size: 24px;
-  padding: 10px;
-  color: brown;
-  font-weight: bold;
+    font-size: 24px;
+    padding: 10px;
+    color: brown;
+    font-weight: bold;
 }
+
 .session{
-  font-size: 24px;
-  padding: 10px;
-  color: brown;
-  font-weight: bold;
+    font-size: 24px;
+    padding: 10px;
+    color: brown;
+    font-weight: bold;
 }
+
 .sessionError{
-  font-size: 24px;
-  padding: 10px;
-  color: brown;
-  font-weight: bold;
-
+    font-size: 24px;
+    padding: 10px;
+    color: brown;
+    font-weight: bold;
 }
-
-/* .pagenateSize{
-  width: 15px;
-} */
-
-
-
-
-
-

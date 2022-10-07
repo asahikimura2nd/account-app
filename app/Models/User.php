@@ -2,13 +2,11 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use Database\Factories\Administration\MemberFactory;
-use App\Models\Contact;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
@@ -21,25 +19,30 @@ class User extends Authenticatable
      *
      */
 
+    use SoftDeletes;
+
+
+    protected $table = 'users';
 
     protected $fillable = [
         //管理者
         //会員一覧
         'member_id',
-        'member_name',
-        'member_email',
-        'member_password',
-        'member_tel',
-        'member_prefectures',
-        'member_city',
-        'member_address_and_building',
+        'name',
+        'email',
+        'password',
+        'tel',
+        'prefectures',
+        'city',
+        'address_and_building',
         //詳細
-        'member_company',
-        'member_name_katakana',
-        'member_password',
-        'member_postcode',
-        'member_content',
-
+        'company',
+        'name_katakana',
+        'password',
+        'postcode',
+        'content',
+        //削除
+        'is_delete'
     ];
 
     /**
@@ -48,10 +51,11 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-        'member_password',
+        'password',
         // 'remember_token',
     ];
 
+    protected $date = ['deleted_at'];
     /**
      * The attributes that should be cast.
      *
@@ -62,6 +66,7 @@ class User extends Authenticatable
     // ];
     public function getAuthPassword()
 {
-    return $this->member_password;
+    return $this->password;
 }
+
 }
