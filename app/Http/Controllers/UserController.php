@@ -13,13 +13,15 @@ class UserController extends Controller
 {
 
     //新規会員登録
-    public function showFirstCreate(){
+    public function showFirstCreate()
+    {
         $prefs = config('pref');
         return view('first_create_form',compact('prefs'));
     }
 
     //新規会員登録処理
-    public function firstCreate(MemberRequest $request){
+    public function firstCreate(MemberRequest $request)
+    {
         $attributes = $request ->all();
         $attributes['password'] = Hash::make($request->password);
         $member = new User;
@@ -29,23 +31,28 @@ class UserController extends Controller
     }    
 
     //ホーム
-    public function home(){
+    public function home()
+    {
         return view('home');
     } 
     // 会員一覧画面
-    public function users(){
-        $members = DB::table('users')->get();    
-    return view('users',["members"=> $members]);
+    public function users()
+    {
+        $members = User::all();
+        // $members = DB::table('users')->get();    
+        return view('users',["members"=> $members]);
     }
 
     //会員登録
-    public function showUser(){
+    public function showUser()
+    {
         $prefs = config('pref');
         return view('user_form',compact('prefs'));
     }
 
     //会員登録処理
-    public function user(MemberRequest $request){
+    public function user(MemberRequest $request)
+    {
         $attributes = $request ->all();
         $attributes['password'] = Hash::make($request->password);
         $member = new User;
@@ -55,14 +62,16 @@ class UserController extends Controller
     }
 
     //会員編集画面
-    public function showEdit($member_id){
+    public function showEdit($member_id)
+    {
         $editMember = User::where('member_id',$member_id)->first();
         $prefs = config('pref');
         return view('user_edit_form',['editMember'=> $editMember,'prefs'=>$prefs]);
     }
     
     //会員登録処理(編集)
-    public function editUser(EditMemberRequest $request){
+    public function editUser(EditMemberRequest $request)
+    {
         $member = User::where('member_id',$request->member_id)->first();
         $member->update($request->all());
         return redirect()->route('users')->with('success','再登録完了しました');
@@ -72,8 +81,10 @@ class UserController extends Controller
     public function accountDelete($member_id)
     {
         $user = User::where('member_id',$member_id)->first();
-        // dd($user);
-        $user->delete();
+        if ($user != null){
+            $user->delete();
+        return redirect()->route('users')->with('success','削除しました。');
+        }
         return redirect()->route('users')->with('success','削除しました。');
     }
 }

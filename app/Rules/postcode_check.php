@@ -36,6 +36,6 @@ class postcode_check implements Rule
      */
     public function message()
     {
-        return trans('validation.member_postcode');
+        return trans('validation.postcode');
     }
 }
