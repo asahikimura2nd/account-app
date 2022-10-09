@@ -18,7 +18,6 @@ class ContactController extends Controller
     public function confirm(TestRequest $request)
     {
         $attributes = $request->all();
-        // dd($attributes);
         $contact = new Contact;
         $gender = config('const.gender');
         $job = config('const.job');
@@ -60,4 +59,14 @@ class ContactController extends Controller
         return redirect()->route('showContacts',['contacts'=>$contacts])->with('flash_message','変更を更新しました。');
     }
 
+    //削除機能
+    public function contactDelete($random_id)
+    {
+        $contact = Contact::where('random_id',$random_id)->first();
+        if ($contact != null){
+            $contact->delete();
+        return redirect()->route('showContacts')->with('success','削除しました。');
+        }
+        return redirect()->route('showContacts')->with('success','削除しました。');
+    }
 }

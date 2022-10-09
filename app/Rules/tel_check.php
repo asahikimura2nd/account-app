@@ -36,6 +36,6 @@ class tel_check implements Rule
      */
     public function message()
     {
-        return trans('validation.member_tel');
+        return trans('validation.tel');
     }
 }

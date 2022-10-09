@@ -31,9 +31,9 @@ class Contact extends Model
     public function jobContact()
     {
         $jobs = [
-            'セキュリティエンジニア'=>'engineer',
-            '電気工事士'=>'electricalWorker',
-            '建築士'=>'Architect'
+            'セキュリティエンジニア' => 'engineer',
+            '電気工事士' => 'electricalWorker',
+            '建築士' => 'Architect'
         ];
         return $jobs;
     }
@@ -50,9 +50,9 @@ class Contact extends Model
     public function getJobTypeAttribute()
     {
         $job = [
-            'engineer'=>'セキュリティエンジニア',
-            'electricalWorker'=>'電気工事士',
-            'Architect'=>'建築士'
+            'engineer' => 'セキュリティエンジニア',
+            'electricalWorker' => '電気工事士',
+            'Architect' => '建築士'
         ];
         return $job[$this->job];
     }
@@ -60,7 +60,7 @@ class Contact extends Model
     public function getStatusTypeAttribute()
     {
         $status = [
-            'no_response' => '未対応',
+        'no_response' => '未対応',
         'now_response' => '対応中',
         'responsed' => '対済み',
         ];

@@ -10,7 +10,6 @@
             {{session('success')}}
         @endif
     </div>
-
 @endsection
 
 @section('content') 
