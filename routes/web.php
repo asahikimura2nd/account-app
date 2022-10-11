@@ -53,6 +53,8 @@ Route::group(['middleware'=>['auth']],function(){
     Route::get('/show/contacts',[ContactController::class,'showContacts'])->name('showContacts');
     //お問い合わせ編集画面
     Route::get('/show/contact/edit/{random_id?}',[ContactController::class,'showEditContact'])->name('showEditContact');
+    //お問い合わせ削除
+    Route::get('/contact/delete/{random_id?}',[ContactController::class,'contactDelete'])->name('contactDelete');
     //お問い合わせ編集処理
     Route::post('/contact/edit/{random_id?}',[ContactController::class,'contactEdit'])->name('contactEdit');
 });

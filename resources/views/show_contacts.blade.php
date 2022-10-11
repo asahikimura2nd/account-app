@@ -1,7 +1,11 @@
 @extends('common.layout')
 
-@section('style')
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+@section('session')
+    <div class="session">
+        @if (session('success'))
+            {{session('success')}}
+        @endif
+    </div>
 @endsection
 
 @section('title','お問い合わせ一覧')
@@ -21,6 +25,7 @@
         <thead>
             <tr>
             <th>編集</th>
+            <th>削除</th>
             <th>ステータス</th>
             <th>会社名</th>
             <th>氏名</th>
@@ -35,8 +40,13 @@
                         <img class="pen" src="{{asset('images/pen.svg')}}" alt="contact">
                     </a>
                 </td>
-                <td> {{ $contact->status_type}}</td>
-                <td> {{ $contact->company}}</td>
+                <td>
+                    <a href="{{ route('contactDelete',['random_id' => $contact->random_id]) }}">
+                        <img class="" src="{{ asset('images/delete.svg') }}" alt="delete">
+                    </a>
+                </td>
+                <td> {{ $contact->status_type }}</td>
+                <td> {{ $contact->company }}</td>
                 <td>{{ $contact->name }}</td>
                 <td>{{ $contact->tel }} </td>
                 </tr>

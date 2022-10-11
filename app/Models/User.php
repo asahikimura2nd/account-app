@@ -41,8 +41,6 @@ class User extends Authenticatable
         'password',
         'postcode',
         'content',
-        //削除
-        'is_delete'
     ];
 
     /**
@@ -55,7 +53,7 @@ class User extends Authenticatable
         // 'remember_token',
     ];
 
-    protected $date = ['deleted_at'];
+    // protected $date = ['deleted_at'];
     /**
      * The attributes that should be cast.
      *

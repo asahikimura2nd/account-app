@@ -95,11 +95,11 @@
                 <select name="job" class="form-group row form-select col-sm-1 col-form-label" aria-label="職業を選択してください" id="job" >
                     <option id="job" value="">職業を選択してください</option>
                     @foreach($jobArray as $key=>$job)
-                        <option value="{{$job}}">{{$key}}</option>
+                        <option value="{{ $job }}">{{ $key }}</option>
                     @endforeach
                 </select>
                 @if($errors->has('job'))
-                    <div class="text-danger">{{$errors->first('job')}}</div>
+                    <div class="text-danger">{{ $errors->first('job') }}</div>
                 @endif
                 <div class="col-sm-2 col-form-label" ></div>
                 <div class="mb-5 "></div>              
@@ -110,7 +110,7 @@
                     </div>
                 </div>
                 @if($errors->has('content'))
-                    <div class="text-danger">{{$errors->first('content')}}</div>
+                    <div class="text-danger">{{ $errors->first('content') }}</div>
                 @endif
                     
                 <div class="mb-5 "></div>         
