@@ -14,7 +14,6 @@ class ChangeColumnContactsTable extends Migration
     public function up()
     {
         Schema::table('contacts', function (Blueprint $table) {
-            $table->renameColumn('user_random_id','random_id');
             $table->renameColumn('user_company','company');
             $table->renameColumn('user_name','name');
             $table->renameColumn('user_tel','tel');

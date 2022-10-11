@@ -15,31 +15,33 @@
             <div style="margin-right: 20px"><a href='{{route('logout')}}'>ログアウト</a></div>
         </header>  
         <main>
+
             <aside class="sideBar" id="sideBar">
                 <div class="sideContents">
-                    <div class="hambarger"><img src="{{asset('images/menu50.png')}}" alt="hambarger" class="menuIcon" id="hambarger"></div>
+                    <div class="hambarger"><img src="{{ asset('images/menu50.png') }}" alt="hambarger" class="menuIcon" id="hambarger"></div>
                     <div class="home">
-                        <a href="{{route('home')}}">
-                        <div><img src="{{asset('images/home50.png')}}" alt="home" class="homeIcon"></div>
-                        <div class="items">ホーム</div>
+                        <a href="{{ route('home') }}">
+                            <div><img src="{{ asset('images/home50.png') }}" alt="home" class="homeIcon"></div>
+                            <div class="items">ホーム</div>
                         </a>
                     </div>
                     <div class="members">
-                        <a href="{{route('showUser')}}">
-                            <div><img src="{{asset('images/component48.png')}}" alt="members" class="membersIcon"></div>
+                        <a href="{{ route('showUser') }}">
+                            <div><img src="{{ asset('images/component48.png') }}" alt="members" class="membersIcon"></div>
                             <div class="items">会員登録</div>
                         </a>
                     </div>
                     <div class="contact">
                         <a href="{{route('showContacts')}}">
-                        <div><img src="{{asset('images/component48.png')}}" alt="contact" class="membersIcon"></div>
-                        <div class="items">お問い合わせ一覧</div>
+                            <div><img src="{{asset('images/component48.png')}}" alt="contact" class="membersIcon"></div>
+                            <div class="items">お問い合わせ一覧</div>
                         </a>
                     </div>
                 </div>     
                 <div style="margin-top: 200px"></div>
             </aside>
-            <div class="mainContainer" id="mainContainer">   
+            <div class="@yield('mainContainer')" id="mainContainer">
+                @yield('search')   
                 <div class="mainTitle">@yield('style')<h1>@yield('mainTitle')</h1>
                 <div>@yield('session')</div>
                 <div>@yield('newCreate')</div>

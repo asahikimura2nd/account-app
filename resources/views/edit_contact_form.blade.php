@@ -4,11 +4,13 @@
 
 @section('mainTitle','お問い合わせ編集')
 
+@section('mainContainer','mainContainer')
+
 @section('content')
-    <form class="editForm" action="{{ route('contactEdit',['random_id',$editContact->random_id])}}" method="POST">
+    <form class="editForm" action="{{ route('contactEdit',['id',$editContact->id])}}" method="POST">
         @csrf
-        <input type="hidden" name= 'random_id' value = "{{$editContact->random_id}}">
         ステータス : 
+        <input type="hidden" name="id" value='{{ $editContact->id }}'>
         <select class='status' name="status">
 					@foreach($statuses as $key => $value)
 						<option value="{{ $key }}" {{ $editContact->status == $key ? 'selected' : '' }}>{{ $value }}</option>

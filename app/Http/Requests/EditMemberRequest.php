@@ -26,14 +26,14 @@ class EditMemberRequest extends FormRequest
      */
     public function rules()
     {
-        $memberId = request()->route()->parameter('member_id');
+        $id = request()->route()->parameter('id');
         
         return [
         //メンバー登録フォーム
         'company'=>'required|max:30',
         'name_katakana'=>'required|max:30',
         //重複なし→自分以外のメールアドレス以外→なぜか失敗
-        'email'=> ['required', Rule::unique('users')->ignore($memberId, 'member_id')],
+        'email'=> ['required', Rule::unique('users')->ignore($id, 'id')],
         'password'=>'required|min:8',
 
         'tel'=>['required', new tel_check],

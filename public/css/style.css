@@ -56,6 +56,7 @@ header{
     width: auto;
 }
 
+
 /*
  *
  *
@@ -143,6 +144,17 @@ main{
 メインコンテンツ
  */
 
+
+.searchBar{
+    width: 70%;
+    background-color: #00e2cf;
+    margin-bottom: 100px;
+}
+.searchName{
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+}
 .mainContainer{
     display: block;
     height: 100%;
@@ -156,6 +168,34 @@ main{
     transition-duration:0.4s;
     transition-timing-function:ease-in-out
 }
+
+.mainMemberContainer{
+    display: block;
+    height: 100%;
+    width: 70%;
+    padding: 10px 0 0 40px;
+    position:absolute;
+    z-index: 0;
+    top:160px;
+    margin-right: 80px;
+    left:30%;
+    transition-duration:0.4s;
+    transition-timing-function:ease-in-out
+}
+.mainContactContainer{
+    display: block;
+    height: 100%;
+    width: 70%;
+    padding: 10px 0 0 40px;
+    position:absolute;
+    z-index: 0;
+    top:160px;
+    margin-right: 80px;
+    left:30%;
+    transition-duration:0.4s;
+    transition-timing-function:ease-in-out
+}
+
 
 .mainContainer.active{ 
     display: block;

@@ -23,7 +23,6 @@
     <main >
         <form action="{{route('send')}}" method="POST">
             @csrf
-            <input type="hidden" name="random_id" value="{{ $contact->random_id }}">
             <input type="hidden" name="status" value="no_response">
             <input type="hidden" name="company" value="{{ $contact->company }}">
             <div class=" mb-5 "><h3 class="font-weight-bold text-center">会社名:{{ $contact->company }}</h3></div>

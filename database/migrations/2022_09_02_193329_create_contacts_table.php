@@ -21,7 +21,6 @@ class CreateContactsTable extends Migration
              * 
              */
             $table->id();
-            $table->string('user_random_id')->nullable();
             $table->string('user_company',20)->nullable();
             $table->string('user_name',20)->nullable();
             $table->string('user_tel')->nullable(); //https://webukatu.com/questions/detail/ec2c60b8195ea2b4ac9901a24777d1cf/

@@ -27,11 +27,7 @@
         <button class="btn btn-info"><a class="text-decoration-none" href="{{route('form')}}">お問い合わせ</a></button>
         @if ($errors->any())
             <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
+                <p>認証できません</p>
             </div>
         @endif
     </form>

@@ -21,7 +21,6 @@
         <div class="container-fluid justify-content-center" >
         <form action="{{ route('confirm') }}" method="POST">
             @csrf          
-            <input type="hidden" name="random_id" value="{{ Str::random(30); }}">
             <input type="hidden" name="status" value="no_response">
             <div class="form-group row">
                 <label for="company" class="col-sm-4 col-form-label"><div type="button" class="btn btn-success" >必須</div>会社名</label>

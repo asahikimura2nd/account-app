@@ -44,19 +44,21 @@ Route::group(['middleware'=>['auth']],function(){
     //登録処理
     Route::post('/user',[UserController::class,'user'])->name('user');
     //会員編集
-    Route::get('/show/edit/{member_id?}',[UserController::class,'showEdit'])->name('showEdit');
+    Route::get('/show/edit/{id?}',[UserController::class,'showEdit'])->name('showEdit');
     //会員削除
-    Route::get('/show/user/delete/{member_id?}',[UserController::class,'accountDelete'])->name('accountDelete');
+    Route::get('/show/user/delete/{id?}',[UserController::class,'accountDelete'])->name('accountDelete');
      //再登録処理
-    Route::post('/user/edit/{member_id}',[UserController::class,'editUser'])->name('editUser');
+    Route::post('/user/edit/{id}',[UserController::class,'editUser'])->name('editUser');
      //お問い合わせ一覧
     Route::get('/show/contacts',[ContactController::class,'showContacts'])->name('showContacts');
     //お問い合わせ編集画面
-    Route::get('/show/contact/edit/{random_id?}',[ContactController::class,'showEditContact'])->name('showEditContact');
+    Route::get('/show/contact/edit/{id?}',[ContactController::class,'showEditContact'])->name('showEditContact');
     //お問い合わせ削除
-    Route::get('/contact/delete/{random_id?}',[ContactController::class,'contactDelete'])->name('contactDelete');
+    Route::get('/contact/delete/{id?}',[ContactController::class,'contactDelete'])->name('contactDelete');
     //お問い合わせ編集処理
-    Route::post('/contact/edit/{random_id?}',[ContactController::class,'contactEdit'])->name('contactEdit');
+    Route::post('/contact/edit/{id?}',[ContactController::class,'contactEdit'])->name('contactEdit');
+    //お問い合わせ検索
+    Route::get('/contact/search/',[ContactController::class,'contactSearch'])->name('contactSearch');
 });
 
 //お問い合わせ

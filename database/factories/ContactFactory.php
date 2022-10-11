@@ -19,13 +19,12 @@ class ContactFactory extends Factory
         
     {
         return [
-            'random_id' => $this->faker->password(10),
             'company' => $this->faker->jobTitle(),
             'name' => $this->faker->userName(),
             'tel' => $this->faker->phoneNumber(),
             'email'  => $this->faker->unique()->safeEmail(),
             'birth_date' => $this->faker->date(),
-            'gender' => $this->faker->randomElement( ['man','female'] ),
+            'gender' => $this->faker->randomElement( ['male','female'] ),
             'job' => $this->faker->randomElement( ['engineer','electricalWorker','Architect'] ),
             'content' => $this->faker->text(100),
             //対応状況

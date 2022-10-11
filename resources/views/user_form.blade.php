@@ -4,6 +4,8 @@
 
 @section('mainTitle','会員登録')
 
+@section('mainContainer','mainContainer')
+
 @section('style')
     <link rel="stylesheet" href="{{ asset('css/home/home.css') }}">
 @endsection
@@ -16,7 +18,6 @@
     </div>
     <form action="{{ route('user') }}" method="POST">
         @csrf
-        <input type="hidden" name="member_id" value="{{ Str::random(30) }}">
         <label for="company"><button class="inputButton">必須</button>会社名<br>
             <input class="input" type="text" name="company" id="company" value="{{ old('company') }}">
         </label>

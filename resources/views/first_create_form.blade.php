@@ -15,7 +15,6 @@
 
     <form action="{{ route('firstCreate') }}" method="POST">
         @csrf
-        <input type="hidden" name="member_id" value="{{ Str::random(30) }}">
         <label for="company"><button class="inputButton">必須</button>会社名<br>
         <input class="input" type="text" name="company" id="company" value="{{ old('company') }}">
         </label>

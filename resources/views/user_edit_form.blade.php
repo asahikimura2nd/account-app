@@ -4,6 +4,8 @@
 
 @section('mainTitle','会員編集')
 
+@section('mainContainer','mainContainer')
+
 @section('style')
     <link rel="stylesheet" href="{{ asset('css/home/home.css') }}">
 @endsection
@@ -16,9 +18,8 @@
         @endforeach
     </div>
 
-    <form action="{{ route('editUser', $editMember->member_id) }}" method="POST">
+    <form action="{{ route('editUser', $editMember->id) }}" method="POST">
         @csrf
-        <input type="hidden" name="member_id" value="{{$editMember->member_id}}">  
         <label for="company"><button class="inputButton">必須</button>会社名<br>
             <input type="text" name="company" id="company" value="{{ old('company',$editMember->company) }}">
         </label>

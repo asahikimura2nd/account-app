@@ -9,6 +9,11 @@ return [
         'engineer' => 'セキュリティエンジニア',
         'electricalWorker' => '電気工事士',
         'Architect' => '建築士'
+    ],
+    'status' => [
+        'no_response' => '未対応',
+            'now_response' => '対応中',
+            'responsed' => '対済み',
     ]
     
 ];

@@ -4,6 +4,13 @@
 
 @section('mainTitle','会員一覧')
 
+@section('mainContainer','mainMemberContainer')
+
+@section('newCreate')
+	<div class="newCreate"><a href="{{route('showUser')}}">新規作成</a></div>
+    <link rel="stylesheet" href="{{ asset('css/home/newCreate.css') }}">
+@endsection
+
 @section('session')
     <div class="session">
         @if (session('success'))
@@ -14,6 +21,7 @@
 
 @section('content') 
     <table>
+        {{-- {{ dd($prefNameArray) }} --}}
         <thead>
             <tr >
             <th>編集</th>
@@ -28,15 +36,19 @@
         <tbody>
             @foreach ($members as $member)
                 <tr>             
-                <td><a href="{{ route('showEdit',['member_id' => $member->member_id]) }}"><img class="pen" src="{{ asset('images/pen.svg') }}" alt="edit"></a></td> 
                 <td>
-                    <a href="{{ route('accountDelete',['member_id' => $member->member_id]) }}">
+                    <a href="{{ route('showEdit',['id' => $member->id]) }}">
+                        <img class="pen" src="{{ asset('images/pen.svg') }}" alt="edit">
+                    </a>
+                </td> 
+                <td>
+                    <a href="{{ route('accountDelete',['id' => $member->id]) }}">
                         <img class="" src="{{ asset('images/delete.svg') }}" alt="delete">
                     </a>
                 </td>
                 <td>{{ $member->email }}</td> 
                 <td>{{ $member->tel }}</td> 
-                <td>{{ $member->prefectures }}</td> 
+                <td>{{ $member->prefectures_type }}</td> 
                 <td>{{ $member->city }}</td> 
                 <td>{{ $member->address_and_building }}</td> 
                 </tr>
