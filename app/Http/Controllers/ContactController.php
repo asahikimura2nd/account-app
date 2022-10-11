@@ -77,8 +77,21 @@ class ContactController extends Controller
     //検索機能
     public function contactSearch(Request $request)
     {
-        dd($request);
+        // dd($request);
         // https://qiita.com/hinako_n/items/7729aa9fec522c517f2a
-        $keyWord_name = $request->input(); 
+        // https://qiita.com/JUM22676603/items/ea1f53579acad1da29d3
+        
+        $keyWord_name = $request->input('keyword_name');
+        $keyWord_company = $request->input('keyWord_company');
+        $keyWord_status = $request->input('keyword_status');
+        $keyWord_job = $request->input('keyword_job');
+        $query = Contact::query();
+
+        if(!empty($keyWord_name) && !empty($keyWord_company) && !empty($keyWord_status) && !empty($keyWord_job)){
+            $result = $query->where('name','LIKE','%{$keyword_name}%')->get();
+            // dd($result);
+        };
+        
+
     }
 }
