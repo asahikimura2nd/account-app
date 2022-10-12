@@ -8,47 +8,46 @@
     </div>
 @endsection
 
-{{-- @foreach ($contacts as $user)
-        {{ $user->status }}
-    @endforeach --}}
 @section('search')
-    <form action=" {{ route('contactSearch') }}" method="get">
+    <form action="{{ route('showContacts') }}" method="get">
         <div class="searchBar">
             <div><h2>検索</h2></div>
             <div class="searchName">
                 <div>氏名
                     <div>
                         <label for="name">
-                            <input type="text" name="name" id="name" value="">
+                            <input type="text" name="keyword_name" id="name" value="{{ $keyword_name }}">
                         </label>
                     </div>
                 </div>
                 <div>会社名
                     <div>
                         <label for="company">
-                            <input type="text" name="company" id="company" value="">
+                            <input type="text" name="keyword_company" id="company" value="{{ $keyword_company }}">
                         </label>
                     </div>
                 </div>
                 <div>ステータス
                     <div>
-                        <select name="status">
-                            @foreach ($statues as $key => $value)
-                                <option value="{{ $key }}">{{ $value }}</option>
+                        <select name="keyword_status">
+                            @foreach ($statuses as $key => $value)
+                                <option value="{{ $key }}" >{{ $value }} </option>
+                                {{-- {{ $edit->status == $key ? 'selected' : '' }} --}}
                             @endforeach
                         </select>
                     </div>
                 </div>
                 <div>職業
                     <div>
-                        <select name="job">
+                        <select name="keyword_job">
                             @foreach ($jobs as $key => $value)
-                            <option value="{{ $key }}">{{ $value }}</option>
+                            <option value="{{ $key }}" >{{ $value }}</option>
+                            {{-- {{ $contacts->job == $key ? 'selected' : '' }} --}}
                         @endforeach    
                         </select>
                     </div>
                 </div>
-                <input type="submit" value="検索する">
+                <input type="submit" value="検索する" name='on'>
             </div>
         </div>
     </form>

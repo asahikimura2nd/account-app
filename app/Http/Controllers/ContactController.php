@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\TestRequest;
 use App\Models\Contact;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Route;
 
 class ContactController extends Controller
 {
@@ -36,16 +37,50 @@ class ContactController extends Controller
     }    
 
     //お問い合わせ一覧画面
-    public function showContacts()
+    public function showContacts(Request $request)
     {
-        $contacts = Contact::where('id','!=',null)->paginate(10);
-        $contacts->withPath('/show/contacts/');
-        // dd($contacts);
-        $statues = config('const.status');
-        $jobs = config('const.job');
+        
+        //一覧ページ
+        $contacts = Contact::paginate(10);
+        $edit = $contacts;
+        $contacts->withPath('/show/contacts/');         
 
-        return view('show_contacts',compact('contacts','statues','jobs'));
-    }        
+        //検索ページ
+        $query = $request->query;
+        $array = $request->query();
+        $keyword_name = $query->get('keyword_name');
+        $keyword_company = $query->get('keyword_company');
+        $keyword_status = $query->get('keyword_status');
+        $keyword_job = $request->get('keyword_job');
+        $search = $request->get('on');
+
+        // dump(request());
+        if ($search == '検索する') {
+            dd($request);
+            $qb = Contact::query();
+            $qb->where('status', $keyword_status);
+            if ($keyword_job) {
+                $qb->where('job', $keyword_job);
+            }
+            if($keyword_name){
+                $qb->where('name','like',"%{$keyword_name}%");
+            }
+            if(!empty($keyWord_company)){
+                $qb->where('company','like',"%{$keyword_company}%");
+            }
+            $contacts = $qb->paginate(10);
+            
+        }
+        $statuses = config('const.statusSearch');
+        $jobs = config('const.jobSearch');
+        // if( $keyword_name = && empty($keyword_company) && empty($keyword_status) && empty($keyword_job) ){
+        //     $contacts = Contact::paginate(10);
+        //     $contacts->withPath('/show/contacts/');  
+        //     return  route('contacts','statuses','jobs','keyword_name','keyword_company');
+        // };
+        return view('show_contacts',compact('contacts','statuses','jobs','keyword_name','keyword_company','edit'));
+
+    }            
     
     //お問い合わせ編集画面
     public function showEditContact($id)
@@ -75,23 +110,32 @@ class ContactController extends Controller
     }
 
     //検索機能
-    public function contactSearch(Request $request)
-    {
-        // dd($request);
-        // https://qiita.com/hinako_n/items/7729aa9fec522c517f2a
-        // https://qiita.com/JUM22676603/items/ea1f53579acad1da29d3
-        
-        $keyWord_name = $request->input('keyword_name');
-        $keyWord_company = $request->input('keyWord_company');
-        $keyWord_status = $request->input('keyword_status');
-        $keyWord_job = $request->input('keyword_job');
-        $query = Contact::query();
+    // public function contactSearch(Request $request)
+    // {
+    //     $query = $request->query;
+    //     $keyword_name = $query->get('keyword_name');
+    //     $keyword_company = $query->get('keyword_company');
+    //     $keyword_status = $query->get('keyword_status');
+    //     $keyword_job = $request->get('keyword_job');
+    //     $contacts = Contact::query();
+    
+    //     if($keyword_name){
+    //         $contacts->where('name','like',"%{$keyword_name}%");
+    //     }
 
-        if(!empty($keyWord_name) && !empty($keyWord_company) && !empty($keyWord_status) && !empty($keyWord_job)){
-            $result = $query->where('name','LIKE','%{$keyword_name}%')->get();
-            // dd($result);
-        };
-        
+    //     if(!empty($keyWord_company)){
+    //         $contacts->where('company','like',"%{$keyword_company}%");
+    //     }
+    //     if(!empty($keyWord_status)){
+    //         $contacts->where('status','like',"%{ $keyword_status }%");
+    //     }
+    //     if(!empty($keyWord_job)){
+    //         $contacts->where('job','like',"%{ $keyword_job }%");
+    //     }
 
-    }
+    //     $contacts = $contacts->paginate(10);
+    //     $statuses = config('const.status');
+    //     $jobs = config('const.job');
+    //     return view('show_contacts',compact('contacts','statuses','jobs'));
+    // }
 }

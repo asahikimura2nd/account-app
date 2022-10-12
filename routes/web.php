@@ -49,7 +49,7 @@ Route::group(['middleware'=>['auth']],function(){
     Route::get('/show/user/delete/{id?}',[UserController::class,'accountDelete'])->name('accountDelete');
      //再登録処理
     Route::post('/user/edit/{id}',[UserController::class,'editUser'])->name('editUser');
-     //お問い合わせ一覧
+    //お問い合わせ一覧
     Route::get('/show/contacts',[ContactController::class,'showContacts'])->name('showContacts');
     //お問い合わせ編集画面
     Route::get('/show/contact/edit/{id?}',[ContactController::class,'showEditContact'])->name('showEditContact');
@@ -57,8 +57,6 @@ Route::group(['middleware'=>['auth']],function(){
     Route::get('/contact/delete/{id?}',[ContactController::class,'contactDelete'])->name('contactDelete');
     //お問い合わせ編集処理
     Route::post('/contact/edit/{id?}',[ContactController::class,'contactEdit'])->name('contactEdit');
-    //お問い合わせ検索
-    Route::get('/contact/search/',[ContactController::class,'contactSearch'])->name('contactSearch');
 });
 
 //お問い合わせ
