@@ -13,10 +13,8 @@ class ContactFactory extends Factory
      * @return array
      * 
      */
-
     protected $model = Contact::class;
-    public function definition()
-        
+    public function definition()     
     {
         return [
             'company' => $this->faker->jobTitle(),
@@ -30,7 +28,7 @@ class ContactFactory extends Factory
             //対応状況
             'status' => $this->faker->randomElement( ['no_response','now_response','responsed'] ),
             //お問い合わせ備考            
-            'remarks'=>$this->faker->text(100) 
+            'remarks'=> $this->faker->text(100) 
         ];
     }
 }

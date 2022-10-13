@@ -146,15 +146,28 @@ main{
 
 
 .searchBar{
+
+    display: flex;
     width: 70%;
     background-color: #00e2cf;
-    margin-bottom: 100px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    border: 1px solid black;
 }
 .searchName{
     display:flex;
-    align-items: center;
-    justify-content: space-between;
+    align-items:flex-end;
+    margin-right: 40px;
+    padding-right:100px;
 }
+.gap{
+    margin-bottom: 10px;
+    width: 100px;
+}
+.gap-ml{
+    margin-left: 20px;
+}
+
 .mainContainer{
     display: block;
     height: 100%;
@@ -259,11 +272,12 @@ label{
 select {
     font-size: 16px;
     font-weight: bold;
-    background-color: brown;
+    background-color: white;
     padding: 5px;
-    border-radius: 30%;
+    border-radius: 10%;
     cursor: pointer;
-    color: bisque;
+    color:black;
+    border:2px solid black;
 }
 
 .pref_select{

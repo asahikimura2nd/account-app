@@ -27,18 +27,15 @@ class User extends Authenticatable
     protected $fillable = [
         //管理者
         //会員一覧
-        'name',
+        'company',
+        'name_katakana',
         'email',
         'password',
         'tel',
+        'postcode',
         'prefectures',
         'city',
         'address_and_building',
-        //詳細
-        'company',
-        'name_katakana',
-        'password',
-        'postcode',
         'content',
     ];
 

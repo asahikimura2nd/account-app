@@ -4,7 +4,44 @@
 
 @section('mainTitle','会員一覧')
 
-@section('mainContainer','mainMemberContainer')
+@section('mainContainer','mainContactContainer')
+
+
+@section('search')
+    <div><h2>検索</h2></div>
+    <form action="{{ route('users') }}" method="get">
+        
+        <div class="searchBar">
+            <div class="searchName">
+                <div><p class="gap">名前</p>
+                    <div>
+                        <label for="keyword_company">
+                            <input type="text" name="keyword_company" id="keyword_company" value="{{ $keyword_company }}">
+                        </label>
+                    </div>
+                </div>
+                
+                <div><p class="gap">email</p>
+                    <div>
+                        <label for="keyword_email">
+                            <input type="text" name="keyword_email" id="company" value="{{ $keyword_email }}">
+                        </label>
+                    </div>
+                </div>
+                <div ><p class="gap">都道府県</p>
+                    <div>
+                        <select name="keyword_prefectures" class="selectWidth">
+                            @foreach ($pref as $key => $value)
+                                <option value="{{ $key }}" {{ $keyword_prefectures == $key ? 'selected' : '' }}>{{ $value }} </option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <input class="gap-ml" type="submit" value="検索する" name='on'>
+            </div> 
+        </div>
+    </form>
+@endsection
 
 @section('newCreate')
 	<div class="newCreate"><a href="{{route('showUser')}}">新規作成</a></div>
@@ -55,4 +92,5 @@
             @endforeach
         </tbody>
     </table>
+    {{ $members->links('vendor.pagination.custom') }}
 @endsection

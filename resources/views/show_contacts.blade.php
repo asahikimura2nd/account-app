@@ -9,46 +9,47 @@
 @endsection
 
 @section('search')
+    <div><h2>検索</h2></div>
     <form action="{{ route('showContacts') }}" method="get">
+        
         <div class="searchBar">
-            <div><h2>検索</h2></div>
             <div class="searchName">
-                <div>氏名
+                <div><p class="gap">氏名</p>
                     <div>
                         <label for="name">
                             <input type="text" name="keyword_name" id="name" value="{{ $keyword_name }}">
                         </label>
                     </div>
                 </div>
-                <div>会社名
+                
+                <div><p class="gap">会社名</p>
                     <div>
                         <label for="company">
                             <input type="text" name="keyword_company" id="company" value="{{ $keyword_company }}">
                         </label>
                     </div>
                 </div>
-                <div>ステータス
+                <div ><p class="gap">ステータス</p>
                     <div>
-                        <select name="keyword_status">
+                        <select name="keyword_status" class=".selectWidth">
                             @foreach ($statuses as $key => $value)
-                                <option value="{{ $key }}" >{{ $value }} </option>
-                                {{-- {{ $edit->status == $key ? 'selected' : '' }} --}}
+                                <option value="{{ $key }}" {{ $keyword_status == $key ? 'selected' : '' }}>{{ $value }} </option>
                             @endforeach
                         </select>
                     </div>
                 </div>
-                <div>職業
+                <div><p class="gap">職業</p>
                     <div>
                         <select name="keyword_job">
                             @foreach ($jobs as $key => $value)
-                            <option value="{{ $key }}" >{{ $value }}</option>
-                            {{-- {{ $contacts->job == $key ? 'selected' : '' }} --}}
+                            <option value="{{ $key }}" {{ $keyword_job == $key ? 'selected' : '' }}>{{ $value }}</option>
+                            
                         @endforeach    
                         </select>
                     </div>
                 </div>
-                <input type="submit" value="検索する" name='on'>
-            </div>
+                <input class="gap-ml" type="submit" value="検索する" name='on'>
+            </div> 
         </div>
     </form>
 @endsection
@@ -77,6 +78,7 @@
             <th>会社名</th>
             <th>氏名</th>
             <th>電話番号</th>
+            <th>職業</th>
             </tr>
         </thead>
         <tbody>
@@ -96,6 +98,7 @@
                 <td> {{ $contact->company }}</td>
                 <td>{{ $contact->name }}</td>
                 <td>{{ $contact->tel }} </td>
+                <td>{{ $contact->job_type }} </td>
                 </tr>
             @endforeach  
         </tbody>  

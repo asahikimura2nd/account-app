@@ -38,48 +38,40 @@ class ContactController extends Controller
 
     //お問い合わせ一覧画面
     public function showContacts(Request $request)
-    {
-        
+    {   
         //一覧ページ
         $contacts = Contact::paginate(10);
-        $edit = $contacts;
         $contacts->withPath('/show/contacts/');         
-
         //検索ページ
         $query = $request->query;
-        $array = $request->query();
+        // $array = $request->query();
         $keyword_name = $query->get('keyword_name');
         $keyword_company = $query->get('keyword_company');
         $keyword_status = $query->get('keyword_status');
-        $keyword_job = $request->get('keyword_job');
-        $search = $request->get('on');
+        $keyword_job = $query->get('keyword_job');
+        $search = $query->get('on');
 
-        // dump(request());
         if ($search == '検索する') {
-            dd($request);
             $qb = Contact::query();
-            $qb->where('status', $keyword_status);
-            if ($keyword_job) {
-                $qb->where('job', $keyword_job);
-            }
             if($keyword_name){
                 $qb->where('name','like',"%{$keyword_name}%");
             }
-            if(!empty($keyWord_company)){
+            if(!empty($keyword_company)){
                 $qb->where('company','like',"%{$keyword_company}%");
+            } 
+            if($keyword_status){
+                $qb->where('status', $keyword_status);
             }
+            else {}
+            if ($keyword_job) {
+                $qb->where('job', $keyword_job);
+            }
+            else {}
             $contacts = $qb->paginate(10);
-            
         }
         $statuses = config('const.statusSearch');
         $jobs = config('const.jobSearch');
-        // if( $keyword_name = && empty($keyword_company) && empty($keyword_status) && empty($keyword_job) ){
-        //     $contacts = Contact::paginate(10);
-        //     $contacts->withPath('/show/contacts/');  
-        //     return  route('contacts','statuses','jobs','keyword_name','keyword_company');
-        // };
-        return view('show_contacts',compact('contacts','statuses','jobs','keyword_name','keyword_company','edit'));
-
+        return view('show_contacts',compact('contacts','statuses','jobs','keyword_name','keyword_company','keyword_job','keyword_status'));
     }            
     
     //お問い合わせ編集画面
