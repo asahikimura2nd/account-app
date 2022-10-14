@@ -33,7 +33,7 @@ Route::group(['middleware'=>['guest']],function(){
 });
 
 //ログイン後
-// Route::group(['middleware'=>['auth']],function(){
+Route::group(['middleware'=>['auth']],function(){
     //ホーム画面
     Route::get('/',[HomeController::class,'home'])->name('home');
     //ログアウト
@@ -58,7 +58,7 @@ Route::group(['middleware'=>['guest']],function(){
     Route::get('/contact/delete/{id?}',[ContactController::class,'contactDelete'])->name('contactDelete');
     //お問い合わせ編集処理
     Route::post('/contact/edit/{id?}',[ContactController::class,'contactEdit'])->name('contactEdit');
-// });
+});
 
 //お問い合わせ
 Route::get('/contact',[ContactController::class,'form'])->name('form');

@@ -24,6 +24,7 @@ class UserController extends Controller
     //新規会員登録処理
     public function firstCreate(MemberRequest $request)
     {
+        
         $attributes = $request ->all();
         $attributes['password'] = Hash::make($request->password);
         $member = new User;
@@ -31,8 +32,6 @@ class UserController extends Controller
         $member->save();
         return redirect()->route('showLogin')->with('success','登録完了しました');
     }    
-
-
 
     // 会員一覧画面
     public function users(Request $request)
@@ -62,13 +61,20 @@ class UserController extends Controller
     }
 
     //会員登録
-    public function showUser()
+    public function showUser(  )
     {
         $prefs = config('pref');
         return view('user_form', compact('prefs'));
     }
+    //会員編集画面
+    public function showEdit($id = null)
+    {
+        $editMember = User::where('id',$id)->first();
+        $prefs = config('pref');
+        return view('user_edit_form', compact('editMember','prefs'));
+    }
 
-    //会員登録処理
+    //会員登録処理、編集処理
     public function user(MemberRequest $request)
     {
         $attributes = $request->all();
@@ -79,13 +85,7 @@ class UserController extends Controller
         return redirect()->route('users')->with('success','登録完了しました');
     }
 
-    //会員編集画面
-    public function showEdit($id)
-    {
-        $editMember = User::where('id',$id)->first();
-        $prefs = config('pref');
-        return view('user_edit_form', compact('editMember','prefs'));
-    }
+
 
     //会員登録処理(編集)
     public function editUser(EditMemberRequest $request)
@@ -124,3 +124,17 @@ class UserController extends Controller
         return redirect()->route('users')->with('success','削除しました。');
     }
 }
+
+
+
+//メモ　上本さん
+// <label for="user_password"><button class="inputButton">必須</button>パスワード<br>
+//             <input type="password" name="password" id="password" value="" autocomplete="new-password" placeholder="8桁以上" >
+// //controller
+// $password = $request->password;
+//         // dump($password);
+//         //パスワードの場合除外
+//         if ($request->filled('password')){
+//             $password = Hash::make($password);
+//             User::where('id',$request->id)->update(['password' => $password]);
+//         }

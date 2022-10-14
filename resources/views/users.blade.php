@@ -83,6 +83,10 @@
                         <img class="" src="{{ asset('images/delete.svg') }}" alt="delete">
                     </a>
                 </td>
+                @if(！$member->password)
+                    必須
+                @endif
+
                 <td>{{ $member->company }}</td> 
                 <td>{{ $member->email }}</td> 
                 <td>{{ $member->tel }}</td> 
