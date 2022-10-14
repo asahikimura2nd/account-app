@@ -32,39 +32,31 @@ class UserController extends Controller
         return redirect()->route('showLogin')->with('success','登録完了しました');
     }    
 
-    //ホーム
-    public function home()
-    {
 
-        return view('home');
-    } 
+
     // 会員一覧画面
     public function users(Request $request)
     {
         $pref = config('const.prefSearch');
-        $members = User::paginate(10);
-        $members->withPath('/users/');    
-
+        $members = User::all(); 
         $query = $request->query;
-        
         $keyword_company = $query->get('keyword_company');
         $keyword_email = $query->get('keyword_email');
         $keyword_prefectures = $query->get('keyword_prefectures');
         $search = $query->get('on');
-
-        if($search == '検索する'){
+        
+        if($search == 'click'){
             $qb = User::query();   
-
             if( $keyword_company ){
                 $qb->where('company','like',"%{$keyword_company}%");
-            } else {}
+            }
             if( $keyword_email ){
                 $qb->where('company','like',"%{$keyword_email}%");
-            } else {}
+            }
             if($keyword_prefectures){
                 $qb->where('prefectures',$keyword_prefectures);     
-            } else {}
-            $members = $qb->paginate(10);
+            }
+            $members = $qb->get();
         } 
         return view('users', compact('members','pref','keyword_company','keyword_email','keyword_prefectures'));
     }
@@ -94,23 +86,41 @@ class UserController extends Controller
         $prefs = config('pref');
         return view('user_edit_form', compact('editMember','prefs'));
     }
-    
+
     //会員登録処理(編集)
     public function editUser(EditMemberRequest $request)
     {
+        $password = $request->password;
+        // dd($password);
+
         $member = User::where('id',$request->id)->first();
-        $member->update($request->all());
+        $hashPassword = $member->password;
+        if(password_verify($password,$hashPassword)){
+            // dump($password);
+            // dump($hashPassword);
+            // dd('一致');
+        } else {
+            // dump($password);
+            // dump($hashPassword);
+            // dd('不一致');
+        }
+        // if( Hash::check($request->password, $member->password) ){
+        //     $request->password = $member->password;
+        //     dd($request->password);    
+        // } else {
+        //     $request->password = Hash::make($request->password);
+        //     dump($request->password);
+        // }
+        // dd($request->all());
+        $member->update();
         return redirect()->route('users')->with('success','再登録完了しました');
     }
-    
+
     //削除機能
     public function accountDelete($id)
     {
         $user = User::where('id',$id)->first();
-        if ($user != null){
-            $user->delete();
-        return redirect()->route('users')->with('success','削除しました。');
-        }
+        $user->delete();
         return redirect()->route('users')->with('success','削除しました。');
     }
 }

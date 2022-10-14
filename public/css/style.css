@@ -144,7 +144,10 @@ main{
 メインコンテンツ
  */
 
+.submitButton{
+    background-color: brown;
 
+}
 .searchBar{
 
     display: flex;

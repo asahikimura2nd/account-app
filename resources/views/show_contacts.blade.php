@@ -42,13 +42,12 @@
                     <div>
                         <select name="keyword_job">
                             @foreach ($jobs as $key => $value)
-                            <option value="{{ $key }}" {{ $keyword_job == $key ? 'selected' : '' }}>{{ $value }}</option>
-                            
-                        @endforeach    
+                                <option value="{{ $key }}" {{ $keyword_job == $key ? 'selected' : '' }}>{{ $value }}</option>
+                            @endforeach    
                         </select>
                     </div>
                 </div>
-                <input class="gap-ml" type="submit" value="検索する" name='on'>
+                <button class="submitButton" type="submit" value="click" name="on" >検索する</button>
             </div> 
         </div>
     </form>
@@ -103,5 +102,4 @@
             @endforeach  
         </tbody>  
     </table>
-    {{ $contacts->links('vendor.pagination.custom') }}
 @endsection

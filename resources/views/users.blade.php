@@ -13,7 +13,7 @@
         
         <div class="searchBar">
             <div class="searchName">
-                <div><p class="gap">名前</p>
+                <div><p class="gap">会社名</p>
                     <div>
                         <label for="keyword_company">
                             <input type="text" name="keyword_company" id="keyword_company" value="{{ $keyword_company }}">
@@ -37,7 +37,7 @@
                         </select>
                     </div>
                 </div>
-                <input class="gap-ml" type="submit" value="検索する" name='on'>
+                <button class="submitButton" type="submit" value="click" name="on" >検索する</button>
             </div> 
         </div>
     </form>
@@ -58,11 +58,11 @@
 
 @section('content') 
     <table>
-        {{-- {{ dd($prefNameArray) }} --}}
         <thead>
             <tr >
             <th>編集</th>
             <th>削除</th>
+            <th>会社名</th>
             <th>メールアドレス</th>
             <th>電話番号</th>
             <th>都道府県</th>
@@ -83,6 +83,7 @@
                         <img class="" src="{{ asset('images/delete.svg') }}" alt="delete">
                     </a>
                 </td>
+                <td>{{ $member->company }}</td> 
                 <td>{{ $member->email }}</td> 
                 <td>{{ $member->tel }}</td> 
                 <td>{{ $member->prefectures_type }}</td> 
@@ -92,5 +93,4 @@
             @endforeach
         </tbody>
     </table>
-    {{ $members->links('vendor.pagination.custom') }}
 @endsection

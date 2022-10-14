@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\LoginController;
@@ -32,9 +33,9 @@ Route::group(['middleware'=>['guest']],function(){
 });
 
 //ログイン後
-Route::group(['middleware'=>['auth']],function(){
+// Route::group(['middleware'=>['auth']],function(){
     //ホーム画面
-    Route::get('/',[UserController::class,'home'])->name('home');
+    Route::get('/',[HomeController::class,'home'])->name('home');
     //ログアウト
     Route::get('/logout',[LoginController::class,'logout'])->name('logout');
     //会員登録一覧
@@ -57,7 +58,7 @@ Route::group(['middleware'=>['auth']],function(){
     Route::get('/contact/delete/{id?}',[ContactController::class,'contactDelete'])->name('contactDelete');
     //お問い合わせ編集処理
     Route::post('/contact/edit/{id?}',[ContactController::class,'contactEdit'])->name('contactEdit');
-});
+// });
 
 //お問い合わせ
 Route::get('/contact',[ContactController::class,'form'])->name('form');
