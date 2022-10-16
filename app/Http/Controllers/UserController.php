@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\MemberRequest;
 use App\Http\Requests\EditMemberRequest;
 use App\Models\User;
+use Attribute;
 // use GuzzleHttp\Psr7\Request;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -61,59 +62,39 @@ class UserController extends Controller
     }
 
     //会員登録
-    public function showUser(  )
+    public function showUser($id = null)
     {
-        $prefs = config('pref');
-        return view('user_form', compact('prefs'));
-    }
-    //会員編集画面
-    public function showEdit($id = null)
-    {
-        $editMember = User::where('id',$id)->first();
-        $prefs = config('pref');
-        return view('user_edit_form', compact('editMember','prefs'));
+        if($id == null){
+            $prefs = config('pref');
+            return view('user_form', compact('prefs'));
+        } else {
+            $editMember = User::where('id',$id)->first();
+            $prefs = config('pref');
+            return view('user_edit_form', compact('editMember','prefs','id'));
+        }
     }
 
     //会員登録処理、編集処理
-    public function user(MemberRequest $request)
+    public function EditUser(EditMemberRequest $request, $id = null)
     {
-        $attributes = $request->all();
-        $attributes['password'] = Hash::make($request->password);
-        $member = new User;
-        $member->fill($attributes);
-        $member->save();
-        return redirect()->route('users')->with('success','登録完了しました');
-    }
-
-
-
-    //会員登録処理(編集)
-    public function editUser(EditMemberRequest $request)
-    {
-        $password = $request->password;
-        // dd($password);
-
-        $member = User::where('id',$request->id)->first();
-        $hashPassword = $member->password;
-        if(password_verify($password,$hashPassword)){
-            // dump($password);
-            // dump($hashPassword);
-            // dd('一致');
+        if($id == null){
+            $attributes = $request->all();
+            $attributes['password'] = Hash::make($request->password);
+            $member = new User;
+            $member->fill($attributes);
+            $member->save();      
+            return redirect()->route('users')->with('success','登録完了しました');   
         } else {
-            // dump($password);
-            // dump($hashPassword);
-            // dd('不一致');
+            $attribute = $request->all();
+            $password = $request->password;
+            
+            if($request->filled('password')){
+                $attribute['password'] = Hash::make($password);
+            }
+            $member = User::where('id',$request->id)->first();
+            $member->update($attribute);
+            return redirect()->route('users')->with('success','再登録完了しました');
         }
-        // if( Hash::check($request->password, $member->password) ){
-        //     $request->password = $member->password;
-        //     dd($request->password);    
-        // } else {
-        //     $request->password = Hash::make($request->password);
-        //     dump($request->password);
-        // }
-        // dd($request->all());
-        $member->update();
-        return redirect()->route('users')->with('success','再登録完了しました');
     }
 
     //削除機能
@@ -127,14 +108,3 @@ class UserController extends Controller
 
 
 
-//メモ　上本さん
-// <label for="user_password"><button class="inputButton">必須</button>パスワード<br>
-//             <input type="password" name="password" id="password" value="" autocomplete="new-password" placeholder="8桁以上" >
-// //controller
-// $password = $request->password;
-//         // dump($password);
-//         //パスワードの場合除外
-//         if ($request->filled('password')){
-//             $password = Hash::make($password);
-//             User::where('id',$request->id)->update(['password' => $password]);
-//         }

@@ -74,7 +74,7 @@
             @foreach ($members as $member)
                 <tr>             
                 <td>
-                    <a href="{{ route('showEdit',['id' => $member->id]) }}">
+                    <a href="{{ route('showUser',['id' => $member->id]) }}">
                         <img class="pen" src="{{ asset('images/pen.svg') }}" alt="edit">
                     </a>
                 </td> 
@@ -83,10 +83,6 @@
                         <img class="" src="{{ asset('images/delete.svg') }}" alt="delete">
                     </a>
                 </td>
-                @if(！$member->password)
-                    必須
-                @endif
-
                 <td>{{ $member->company }}</td> 
                 <td>{{ $member->email }}</td> 
                 <td>{{ $member->tel }}</td> 

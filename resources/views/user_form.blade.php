@@ -16,7 +16,7 @@
         <li>{{$error}}</li>
         @endforeach
     </div>
-    <form action="{{ route('user') }}" method="POST">
+    <form action="{{ route('editUser') }}" method="POST">
         @csrf
         <label for="company"><button class="inputButton">必須</button>会社名<br>
             <input class="input" type="text" name="company" id="company" value="{{ old('company') }}">
