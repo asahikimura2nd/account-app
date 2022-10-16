@@ -18,7 +18,7 @@
         @endforeach
     </div>
 
-    <form action="{{ route('editUser', $editMember->id) }}" method="POST">
+    <form action="{{ $id == null ? route('editUser') : route('editUser', $editMember->id) }}" method="POST">
         @csrf
         <label for="company"><button class="inputButton">必須</button>会社名<br>
             <input type="text" name="company" id="company" value="{{ old('company',$editMember->company) }}">
@@ -32,8 +32,8 @@
             <input type="email" name="email" id="email" value="{{ old('email',$editMember->email) }}">
         </label>
         <br>
-        <label for="user_password"><button class="inputButton">必須</button>パスワード<br>
-            <input type="password" name="password" id="password" value="{{ old('password',$editMember->password) }} " placeholder="8桁以上" >
+        <label for="user_password"><button class="inputButton">必須</button>パスワード:再入力してください<br>
+            <input type="password" name="password" id="password" value="" autocomplete="new-password"  placeholder="8桁以上" >
         </label>
         <br>
         <label for="tel"><button class="inputButton">必須</button>電話番号<br>
@@ -45,19 +45,27 @@
         </label>
         <br>
         <label for="prefectures"><button class="inputButton">必須</button>都道府県<br>
-            <select class="pref_select" name="prefectures" id="prefectures">
-                @foreach ( $prefs as $key => $value )
-                    <option value="{{ $key }}" {{ $editMember->prefectures == $key ? 'selected':'' }}>{{ $value }}</option>
-                @endforeach
-            </select>
-        </label>
+            @if($id = null)
+                <select class="pref_select" name="prefectures" id="prefectures">
+                    @foreach ( $prefs as $key => $value )
+                        <option value="{{ $key }}">{{ $value }}</option>
+                    @endforeach
+                </select>
+            @else
+                <select class="pref_select" name="prefectures" id="prefectures">
+                    @foreach ( $prefs as $key => $value )
+                        <option value="{{ $key }}" {{ $editMember->prefectures == $key ? 'selected':'' }}>{{ $value }}</option>
+                    @endforeach
+                </select>
+            @endif
+        </label>        
         <br>
         <label for="city"><button class="inputButton">必須</button>市区町村<br>
             <input type="text" name="city" id="city" value="{{ old('city',$editMember->city) }}">
         </label>
         <br>
         <label for="address_and_building"><button class="inputButton">必須</button>番号・アパート名<br>
-            <input type="text" name="address_and_building" id="address_and_building" value="{{ old('address_and_building',$editMember->address_and_building)}}">
+            <input type="text" name="address_and_building" id="address_and_building" value="{{ old('address_and_building',$editMember->address_and_building) }}">
         </label>
         <br>
         <label for="content"><button class="inputButton">必須</button>備考欄<br>
