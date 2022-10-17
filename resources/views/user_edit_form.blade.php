@@ -21,15 +21,15 @@
     <form action="{{ $id == null ? route('editUser') : route('editUser', $editMember->id) }}" method="POST">
         @csrf
         <label for="company"><button class="inputButton">必須</button>会社名<br>
-            <input type="text" name="company" id="company" value="{{ old('company',$editMember->company) }}">
+            <input type="text" name="company" id="company" value="{{ $id == null ? old('company') :old('company',$editMember->company) }}">
         </label>
         <br>
         <label for="name_katakana"><button class="inputButton">必須</button>フリガナ<br>
-            <input type="text" name="name_katakana" id="name_katakana" value="{{ old('name_katakana',$editMember->name_katakana) }}">
+            <input type="text" name="name_katakana" id="name_katakana" value="{{ $id == null ? old('name_katakana'): old('name_katakana',$editMember->name_katakana) }}">
         </label>
         <br>
         <label for="email"><button class="inputButton">必須</button>メールアドレス<br>
-            <input type="email" name="email" id="email" value="{{ old('email',$editMember->email) }}">
+            <input type="email" name="email" id="email" value="{{ $id == null ? old('email') : old('email',$editMember->email) }}">
         </label>
         <br>
         <label for="user_password"><button class="inputButton">必須</button>パスワード:再入力してください<br>
@@ -37,39 +37,41 @@
         </label>
         <br>
         <label for="tel"><button class="inputButton">必須</button>電話番号<br>
-            <input type="text" name="tel" id="tel" value="{{ old('tel',$editMember->tel)}}" placeholder="000-0000-0000">
+            <input type="text" name="tel" id="tel" value="{{ $id == null ? old('tel') : old('tel',$editMember->tel)}}" placeholder="000-0000-0000">
         </label>
         <br>
         <label for="postcode"><button class="inputButton">必須</button>郵便番号<br>
-            <input type="text" name="postcode" id="postcode" value="{{ old('postcode',$editMember->postcode) }}" placeholder="000-0000">
+            <input type="text" name="postcode" id="postcode" value="{{ $id == null ? old('postcode') : old('postcode',$editMember->postcode) }}" placeholder="000-0000">
         </label>
         <br>
-        <label for="prefectures"><button class="inputButton">必須</button>都道府県<br>
-            @if($id = null)
+        @if($id == null)
+            <label for="prefectures"><button class="inputButton">必須</button>都道府県<br>
                 <select class="pref_select" name="prefectures" id="prefectures">
                     @foreach ( $prefs as $key => $value )
                         <option value="{{ $key }}">{{ $value }}</option>
                     @endforeach
                 </select>
-            @else
+            </label>
+        @else
+            <label for="prefectures"><button class="inputButton">必須</button>都道府県<br>        
                 <select class="pref_select" name="prefectures" id="prefectures">
                     @foreach ( $prefs as $key => $value )
                         <option value="{{ $key }}" {{ $editMember->prefectures == $key ? 'selected':'' }}>{{ $value }}</option>
                     @endforeach
                 </select>
-            @endif
-        </label>        
+            </label>
+        @endif        
         <br>
         <label for="city"><button class="inputButton">必須</button>市区町村<br>
-            <input type="text" name="city" id="city" value="{{ old('city',$editMember->city) }}">
+            <input type="text" name="city" id="city" value="{{ $id == null ? old('city') : old('city',$editMember->city) }}">
         </label>
         <br>
         <label for="address_and_building"><button class="inputButton">必須</button>番号・アパート名<br>
-            <input type="text" name="address_and_building" id="address_and_building" value="{{ old('address_and_building',$editMember->address_and_building) }}">
+            <input type="text" name="address_and_building" id="address_and_building" value="{{ $id == null ? old('address_and_building') : old('address_and_building',$editMember->address_and_building) }}">
         </label>
         <br>
         <label for="content"><button class="inputButton">必須</button>備考欄<br>
-            <textarea name="content" id="content" cols="30" rows="10">{{ old('content',$editMember->content) }}</textarea>
+            <textarea name="content" id="content" cols="30" rows="10">{{ $id == null ? old('content') : old('content',$editMember->content) }}</textarea>
         </label>
         <br>
         <input class="submit" type="submit" value="再登録する。">

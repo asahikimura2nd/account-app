@@ -36,7 +36,6 @@ class EditMemberRequest extends FormRequest
         'password'=>'required|min:8',
         'tel'=>['required', new tel_check],
         'postcode'=>['required', new postcode_check],
-        
         'prefectures'=>'required',
         'city'=>'required|max:30',
         'address_and_building'=>'required|max:50',

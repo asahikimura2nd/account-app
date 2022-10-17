@@ -5,11 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\MemberRequest;
 use App\Http\Requests\EditMemberRequest;
 use App\Models\User;
-use Attribute;
-// use GuzzleHttp\Psr7\Request;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -24,8 +21,7 @@ class UserController extends Controller
 
     //新規会員登録処理
     public function firstCreate(MemberRequest $request)
-    {
-        
+    { 
         $attributes = $request ->all();
         $attributes['password'] = Hash::make($request->password);
         $member = new User;
@@ -64,47 +60,41 @@ class UserController extends Controller
     //会員登録
     public function showUser($id = null)
     {
+        $prefs = config('pref');
         if($id == null){
-            $prefs = config('pref');
-            return view('user_form', compact('prefs'));
+            return view('user_edit_form', compact('prefs','id'));
         } else {
             $editMember = User::where('id',$id)->first();
-            $prefs = config('pref');
             return view('user_edit_form', compact('editMember','prefs','id'));
         }
     }
 
     //会員登録処理、編集処理
-    public function EditUser(EditMemberRequest $request, $id = null)
+    public function editUser(EditMemberRequest $request, $id = null)
     {
+        $attributes = $request->all();
         if($id == null){
-            $attributes = $request->all();
-            $attributes['password'] = Hash::make($request->password);
             $member = new User;
+            $attributes['password'] = Hash::make('password'); 
+            // dd($attributes);
             $member->fill($attributes);
-            $member->save();      
-            return redirect()->route('users')->with('success','登録完了しました');   
+            $member->save();   
         } else {
-            $attribute = $request->all();
             $password = $request->password;
-            
             if($request->filled('password')){
                 $attribute['password'] = Hash::make($password);
             }
-            $member = User::where('id',$request->id)->first();
+            $member = User::find($id);
             $member->update($attribute);
-            return redirect()->route('users')->with('success','再登録完了しました');
         }
+        return redirect()->route('users')->with('success','登録完了しました');
     }
 
     //削除機能
     public function accountDelete($id)
     {
-        $user = User::where('id',$id)->first();
+        $user = User::find($id);
         $user->delete();
         return redirect()->route('users')->with('success','削除しました。');
     }
 }
-
-
-

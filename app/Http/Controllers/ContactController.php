@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\TestRequest;
 use App\Models\Contact;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Route;
 
 class ContactController extends Controller
 {
