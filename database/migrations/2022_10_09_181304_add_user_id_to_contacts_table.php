@@ -26,7 +26,7 @@ class AddUserIdToContactsTable extends Migration
     public function down()
     {
         Schema::table('contacts', function (Blueprint $table) {
-            //
+            
         });
     }
 }

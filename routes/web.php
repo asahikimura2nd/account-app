@@ -41,11 +41,11 @@ Route::group(['middleware'=>['auth']],function(){
     //会員登録一覧
     Route::get('/users',[UserController::class,'users'])->name('users');
     //新規会員作成
-    Route::get('/show/user/{id?}',[UserController::class,'showUser'])->name('showUser');
+    Route::get('/show/user/{user?}',[UserController::class,'showUser'])->name('showUser');
     //会員削除
     Route::get('/show/user/delete/{id?}',[UserController::class,'accountDelete'])->name('accountDelete');
      //登録処理
-    Route::post('/user/edit/{id?}',[UserController::class,'editUser'])->name('editUser');
+    Route::post('/user/edit/{user?}',[UserController::class,'editUser'])->name('editUser');
     //お問い合わせ一覧
     Route::get('/show/contacts',[ContactController::class,'showContacts'])->name('showContacts');
     //お問い合わせ編集画面

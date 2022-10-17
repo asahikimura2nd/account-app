@@ -6,7 +6,6 @@ use App\Http\Requests\MemberRequest;
 use App\Http\Requests\EditMemberRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
-
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -23,7 +22,7 @@ class UserController extends Controller
     public function firstCreate(MemberRequest $request)
     { 
         $attributes = $request ->all();
-        $attributes['password'] = Hash::make($request->password);
+        $attributes['password'] = Hash::make('password');
         $member = new User;
         $member->fill($attributes);
         $member->save();
@@ -58,15 +57,10 @@ class UserController extends Controller
     }
 
     //会員登録
-    public function showUser($id = null)
+    public function showUser(User $user)
     {
         $prefs = config('pref');
-        if($id == null){
-            return view('user_edit_form', compact('prefs','id'));
-        } else {
-            $editMember = User::where('id',$id)->first();
-            return view('user_edit_form', compact('editMember','prefs','id'));
-        }
+        return view('user_edit_form', compact('user','prefs'));
     }
 
     //会員登録処理、編集処理
@@ -76,18 +70,32 @@ class UserController extends Controller
         if($id == null){
             $member = new User;
             $attributes['password'] = Hash::make('password'); 
-            // dd($attributes);
             $member->fill($attributes);
             $member->save();   
         } else {
-            $password = $request->password;
-            if($request->filled('password')){
-                $attribute['password'] = Hash::make($password);
+            $member = User::where('id',$id)->first();
+            if($request->password == null)
+            {
+                
+                $member->update( [$request->id,
+                    $request->name_katakana,
+                    $request->email,
+                    $request->company,
+                    $request->tel,
+                    $request->postcode,
+                    $request->prefectures,
+                    $request->city,
+                    $request->address_and_building,
+                    $request->content] );
+            } else {
+                // dump($request->password);
+                $attributes['password'] = Hash::make($request->password); 
+                // dump($request->password);
+                // dd($attributes);
+                $member->update( $attributes );
             }
-            $member = User::find($id);
-            $member->update($attribute);
         }
-        return redirect()->route('users')->with('success','登録完了しました');
+        return redirect()->route('users')->with('success','登録完了しました');     
     }
 
     //削除機能

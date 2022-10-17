@@ -74,7 +74,7 @@
             @foreach ($members as $member)
                 <tr>             
                 <td>
-                    <a href="{{ route('showUser',['id' => $member->id]) }}">
+                    <a href="{{ route('showUser', $member->id) }}">
                         <img class="pen" src="{{ asset('images/pen.svg') }}" alt="edit">
                     </a>
                 </td> 
