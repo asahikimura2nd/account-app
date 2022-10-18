@@ -32,7 +32,7 @@ class EditMemberRequest extends FormRequest
         return [
             //メンバー登録フォーム
             'company' => 'required|max:30',
-            'name_katakana' => 'required|max:30',
+            'name_katakana' => 'required|max:30|regex:/^[ア-ン゛゜ァ-ォャ-ョー]+$/u',
             'email' => ['required', Rule::unique('users')->ignore($id, 'id')],
             'password' => ['required_if:id,null', 'nullable', 'min:8'],
             'tel'=>['required', new tel_check],

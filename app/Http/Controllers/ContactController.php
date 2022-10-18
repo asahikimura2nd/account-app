@@ -5,10 +5,12 @@ use App\Http\Requests\TestRequest;
 use App\Models\Contact;
 use Illuminate\Http\Request;
 
+
 class ContactController extends Controller
 {
      //お問い合わせフォーム
-    public function form(){
+    public function form()
+    {
         $contact = new Contact;
         $jobArray = $contact->jobContact();
         return view('contacts.form',compact('jobArray'));
@@ -24,21 +26,22 @@ class ContactController extends Controller
         $contact->fill($attributes);
         return view('contacts.confirm',compact('contact','gender','job'));
     }
+
     //送信ページ
     public function send(TestRequest $request)
     {
         $attributes = $request->all();
         $contact = new Contact;
         $contact->fill($attributes)->save();
+        $request->session()->regenerateToken();
         $gender = config('const.gender');
         $job = config('const.job');    
-    return view('contacts.send',compact('contact','gender','job'));
+        return view('contacts.send',compact('contact','gender','job'));
     }    
 
     //お問い合わせ一覧画面
     public function showContacts(Request $request)
     {   
-        
         //一覧ページ      
         $contacts = Contact::all();
         //検索ページ
@@ -63,7 +66,6 @@ class ContactController extends Controller
             if ($keyword_job) {
                 $qb->where('job', $keyword_job);
             }
-            // $contacts = $qb->paginate(10);
             $contacts = $qb->get();
         }
         $statuses = config('const.statusSearch');
@@ -72,26 +74,23 @@ class ContactController extends Controller
     }            
     
     //お問い合わせ編集画面
-    public function showEditContact($id)
+    public function showEditContact(Contact $contact)
     {
-        $editContact = Contact::where('id',$id)->first();
         $statuses = config('status');
-        return view('edit_contact_form',compact('editContact','statuses'));
+        return view('edit_contact_form',compact('contact','statuses'));
     }
     
     //お問い合わせ編集処理
-    public function contactEdit(Request $request)
+    public function contactEdit(Request $request, Contact $contact)
     {
-        $contacts= Contact::where('id',$request->id)->first();
-        $contacts->update($request->all());
-        return redirect()->route('showContacts',['contacts'=>$contacts])->with('flash_message','変更を更新しました。');
+        $contact->update($request->all());
+        return redirect()->route('showContacts')->with('flash_message','変更を更新しました。');
     }
 
     //削除機能
-    public function contactDelete($id)
+    public function contactDelete(Contact $contact)
     {
-        $contact = Contact::where('id',$id)->first();
-            $contact->delete();
+        $contact->delete();
         return redirect()->route('showContacts')->with('success','削除しました。');
     }
 }

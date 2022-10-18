@@ -4,29 +4,22 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 class Contact extends Model
 {
     use HasFactory;
-        /**
-         * 
-         * お問い合わせ側(user)
-         * 
-         */
-    protected $fillable =[
-        'company',
-        'name',
-        'tel',
-        'email',
-        'birth_date',
-        'gender',
-        'job',
-        'content',
-        //対応状況
-        'status',
-        //お問い合わせ備考            
-        'remarks',    
-    ];
+    use SoftDeletes;
+    /**
+     * 
+     * お問い合わせ側(user)
+     * 
+     */
 
+    protected $guarded = [
+        'id'
+    ];
+    
     public function jobContact()
     {
         $jobs = [
@@ -59,9 +52,9 @@ class Contact extends Model
     public function getStatusTypeAttribute()
     {
         $status = [
-        'no_response' => '未対応',
-        'now_response' => '対応中',
-        'responsed' => '対済み',
+            'no_response' => '未対応',
+            'now_response' => '対応中',
+            'responsed' => '対応済み',
         ];
         return $status[$this->status];
     }

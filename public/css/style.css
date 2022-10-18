@@ -335,6 +335,18 @@ input{
     border-color: black;
 }
 
+.required-label {
+    width: 50px;
+    height: 30px;
+    text-align: center;
+    background-color: aqua;
+    font-size: large;
+    margin:10px 10px 10px 0;
+    padding:  10px 5px 0 0;
+    border: 2px solid;
+}
+
+
 textarea{
     font-size: large;
     background-color: white ;

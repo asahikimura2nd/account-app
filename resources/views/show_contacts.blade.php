@@ -84,12 +84,12 @@
             @foreach ($contacts as $contact)    
                 <tr>
                     <td> 
-                        <a href="{{ route('showEditContact',['id' => $contact->id]) }}"> 
+                        <a href="{{ route('showEditContact', $contact->id) }}"> 
                         <img class="pen" src="{{asset('images/pen.svg')}}" alt="contact">
                     </a>
                 </td>
                 <td>
-                    <a href="{{ route('contactDelete',['id' => $contact->id]) }}">
+                    <a href="{{ route('contactDelete', $contact->id) }}">
                         <img class="" src="{{ asset('images/delete.svg') }}" alt="delete">
                     </a>
                 </td>

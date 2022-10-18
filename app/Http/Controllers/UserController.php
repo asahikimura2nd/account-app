@@ -1,10 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Http\Requests\MemberRequest;
 use App\Http\Requests\EditMemberRequest;
 use App\Models\User;
+use Attribute;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -19,21 +18,25 @@ class UserController extends Controller
     }
 
     //新規会員登録処理
-    public function firstCreate(MemberRequest $request)
+    public function firstCreate(EditMemberRequest $request)
     { 
         $attributes = $request ->all();
         $attributes['password'] = Hash::make('password');
-        $member = new User;
-        $member->fill($attributes);
-        $member->save();
+        $user = new User;
+        $user->fill($attributes);
+        $user->save();
         return redirect()->route('showLogin')->with('success','登録完了しました');
     }    
+
+
+
+
 
     // 会員一覧画面
     public function users(Request $request)
     {
         $pref = config('const.prefSearch');
-        $members = User::all(); 
+        $users = User::all(); 
         $query = $request->query;
         $keyword_company = $query->get('keyword_company');
         $keyword_email = $query->get('keyword_email');
@@ -51,9 +54,9 @@ class UserController extends Controller
             if($keyword_prefectures){
                 $qb->where('prefectures',$keyword_prefectures);     
             }
-            $members = $qb->get();
+            $users = $qb->get();
         } 
-        return view('users', compact('members','pref','keyword_company','keyword_email','keyword_prefectures'));
+        return view('users', compact('users','pref','keyword_company','keyword_email','keyword_prefectures'));
     }
 
     //会員登録
@@ -63,45 +66,21 @@ class UserController extends Controller
         return view('user_edit_form', compact('user','prefs'));
     }
 
-    //会員登録処理、編集処理
-    public function editUser(EditMemberRequest $request, $id = null)
+    public function editUser(EditMemberRequest $request, User $user)
     {
         $attributes = $request->all();
-        if($id == null){
-            $member = new User;
-            $attributes['password'] = Hash::make('password'); 
-            $member->fill($attributes);
-            $member->save();   
+        if($attributes['password'] == null){
+            unset($attributes['password']);
         } else {
-            $member = User::where('id',$id)->first();
-            if($request->password == null)
-            {
-                
-                $member->update( [$request->id,
-                    $request->name_katakana,
-                    $request->email,
-                    $request->company,
-                    $request->tel,
-                    $request->postcode,
-                    $request->prefectures,
-                    $request->city,
-                    $request->address_and_building,
-                    $request->content] );
-            } else {
-                // dump($request->password);
-                $attributes['password'] = Hash::make($request->password); 
-                // dump($request->password);
-                // dd($attributes);
-                $member->update( $attributes );
-            }
+            $attributes['password'] = Hash::make($attributes['password']); 
         }
+        $user->fill($attributes)->save(); 
         return redirect()->route('users')->with('success','登録完了しました');     
     }
 
     //削除機能
-    public function accountDelete($id)
+    public function accountDelete(User $user)
     {
-        $user = User::find($id);
         $user->delete();
         return redirect()->route('users')->with('success','削除しました。');
     }

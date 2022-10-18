@@ -71,24 +71,24 @@
             </tr>
         <thead>
         <tbody>
-            @foreach ($members as $member)
+            @foreach ($users as $user)
                 <tr>             
                 <td>
-                    <a href="{{ route('showUser', $member->id) }}">
+                    <a href="{{ route('showUser', $user->id) }}">
                         <img class="pen" src="{{ asset('images/pen.svg') }}" alt="edit">
                     </a>
                 </td> 
                 <td>
-                    <a href="{{ route('accountDelete',['id' => $member->id]) }}">
+                    <a href="{{ route('accountDelete',$user->id) }}">
                         <img class="" src="{{ asset('images/delete.svg') }}" alt="delete">
                     </a>
                 </td>
-                <td>{{ $member->company }}</td> 
-                <td>{{ $member->email }}</td> 
-                <td>{{ $member->tel }}</td> 
-                <td>{{ $member->prefectures_type }}</td> 
-                <td>{{ $member->city }}</td> 
-                <td>{{ $member->address_and_building }}</td> 
+                <td>{{ $user->company }}</td> 
+                <td>{{ $user->email }}</td> 
+                <td>{{ $user->tel }}</td> 
+                <td>{{ $user->prefectures_type }}</td> 
+                <td>{{ $user->city }}</td> 
+                <td>{{ $user->address_and_building }}</td> 
                 </tr>
             @endforeach
         </tbody>

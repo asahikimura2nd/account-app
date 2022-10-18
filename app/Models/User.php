@@ -24,20 +24,21 @@ class User extends Authenticatable
 
     protected $table = 'users';
 
-    protected $fillable = [
-        //管理者
-        //会員一覧
-        'company',
-        'name_katakana',
-        'email',
-        'password',
-        'tel',
-        'postcode',
-        'prefectures',
-        'city',
-        'address_and_building',
-        'content',
+    protected $guarded = [
+        'id'
     ];
+    // protected $fillable = [
+    //     'company',
+    //     'name_katakana',
+    //     'email',
+    //     'password',
+    //     'tel',
+    //     'postcode',
+    //     'prefectures',
+    //     'city',
+    //     'address_and_building',
+    //     'content',
+    // ];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -116,5 +117,21 @@ class User extends Authenticatable
         ];
         return $pref[$this->prefectures];
     }
+    public function updateColumn()
+    {
+            
+        return [
+                'company',
+                'name_katakana',
+                'email',
+                'tel',
+                'postcode',
+                'prefectures',
+                'city',
+                'address_and_building',
+                'content',
+            ];
+        }
+        
+    }
 
-}

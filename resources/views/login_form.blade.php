@@ -25,6 +25,10 @@
         <a class="text-decoration-none" href="{{route('showFirstCreate')}}">新規会員登録</a>
         <div class="mt-5"></div>
         <button class="btn btn-info"><a class="text-decoration-none" href="{{route('form')}}">お問い合わせ</a></button>
+        <br>
+        @if(session('success'))
+            <div class="alert alert-danger">{{session('success')}}</div>
+        @endif
         @if ($errors->any())
             <div class="alert alert-danger">
                 <p>認証できません</p>
