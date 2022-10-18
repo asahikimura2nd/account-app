@@ -117,21 +117,6 @@ class User extends Authenticatable
         ];
         return $pref[$this->prefectures];
     }
-    public function updateColumn()
-    {
-            
-        return [
-                'company',
-                'name_katakana',
-                'email',
-                'tel',
-                'postcode',
-                'prefectures',
-                'city',
-                'address_and_building',
-                'content',
-            ];
-        }
-        
+
     }
 

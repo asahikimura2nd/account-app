@@ -15,7 +15,6 @@ class Contact extends Model
      * お問い合わせ側(user)
      * 
      */
-
     protected $guarded = [
         'id'
     ];

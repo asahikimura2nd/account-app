@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\NewCreateUserController;
+use App\Http\Controllers\UserStatusContactController;
+
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -22,13 +25,20 @@ use App\Http\Controllers\Auth\LoginController;
  * @param App\Http\Kernel
  */
 
+    //お問い合わせ
+    Route::get('/contact',[ContactController::class,'form'])->name('form');
+    //確認ページ
+    Route::post('/contact/form/confirm',[ContactController::class,'confirm'])->name('confirm');
+    //送信完了ページ
+    Route::post('/contact/form/send',[ContactController::class,'send'])->name('send');
+
 
     //ログイン管理画面
     Route::get('/show/login',[LoginController::class,'showLogin'])->name('showLogin');
     //ログイン認証
     Route::post('/login',[LoginController::class,'login'])->name('login');
-    Route::get('/show/first/create',[UserController::class,'showFirstCreate'])->name('showFirstCreate');
-    Route::post('/first/create',[UserController::class,'firstCreate'])->name('firstCreate');
+    Route::get('/show/first/create',[NewCreateUserController::class,'showFirstCreate'])->name('showFirstCreate');
+    Route::post('/first/create',[NewCreateUserController::class,'firstCreate'])->name('firstCreate');
 
     //ログイン後
     Route::group(['middleware'=>['auth']],function(){
@@ -45,18 +55,11 @@ use App\Http\Controllers\Auth\LoginController;
         //登録処理
         Route::post('/user/edit/{user?}',[UserController::class,'editUser'])->name('editUser');
         //お問い合わせ一覧
-        Route::get('/show/contacts',[ContactController::class,'showContacts'])->name('showContacts');
+        Route::get('/show/contacts',[UserStatusContactController::class,'showContacts'])->name('showContacts');
         //お問い合わせ編集画面
-        Route::get('/show/contact/edit/{contact}',[ContactController::class,'showEditContact'])->name('showEditContact');
+        Route::get('/show/contact/edit/{contact}',[UserStatusContactController::class,'showEditContact'])->name('showEditContact');
         //お問い合わせ削除
-        Route::get('/contact/delete/{contact}',[ContactController::class,'contactDelete'])->name('contactDelete');
+        Route::get('/contact/delete/{contact}',[UserStatusContactController::class,'contactDelete'])->name('contactDelete');
         //お問い合わせ編集処理
-        Route::post('/contact/edit/{contact}',[ContactController::class,'contactEdit'])->name('contactEdit');
+        Route::post('/contact/edit/{contact}',[UserStatusContactController::class,'contactEdit'])->name('contactEdit');
     });
-
-    //お問い合わせ
-    Route::get('/contact',[ContactController::class,'form'])->name('form');
-    //確認ページ
-    Route::post('/contact/form/confirm',[ContactController::class,'confirm'])->name('confirm');
-    //送信完了ページ
-    Route::post('/contact/form/send',[ContactController::class,'send'])->name('send');

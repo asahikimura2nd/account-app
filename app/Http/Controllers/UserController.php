@@ -3,34 +3,11 @@
 namespace App\Http\Controllers;
 use App\Http\Requests\EditMemberRequest;
 use App\Models\User;
-use Attribute;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-
-    //新規会員登録
-    public function showFirstCreate()
-    {
-        $prefs = config('pref');
-        return view('first_create_form',compact('prefs'));
-    }
-
-    //新規会員登録処理
-    public function firstCreate(EditMemberRequest $request)
-    { 
-        $attributes = $request ->all();
-        $attributes['password'] = Hash::make('password');
-        $user = new User;
-        $user->fill($attributes);
-        $user->save();
-        return redirect()->route('showLogin')->with('success','登録完了しました');
-    }    
-
-
-
-
 
     // 会員一覧画面
     public function users(Request $request)
