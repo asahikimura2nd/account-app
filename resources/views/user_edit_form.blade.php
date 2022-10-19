@@ -19,11 +19,6 @@
     @else
         <h1>会員編集フォーム</h1>
     @endif
-    <div class="sessionError"> 
-        @foreach ($errors->all() as $error)
-            <li>{{$error}}</li>
-        @endforeach
-    </div>
 
     <form action="{{ route('editUser', $user->id) }}" method="POST">
         @csrf
@@ -33,31 +28,49 @@
         <label for="company"><p class="required-label">必須</p>会社名<br>
             <input type="text" name="company" id="company" value="{{ old('company',$user->company) }}">
         </label>
+        @if($errors->has('company'))
+            <li class="error_message">{{ $errors->first('company') }}</li>
+        @endif
         <br>
         <label for="name_katakana"><p class="required-label">必須</p>フリガナ<br>
             <input type="text" name="name_katakana" id="name_katakana" value="{{ old('name_katakana',$user->name_katakana) }}">
         </label>
         <br>
+        @if($errors->has('name_katakana'))
+            <li class="error_message">{{ $errors->first('name_katakana') }}</li>
+        @endif
         <label for="email"><p class="required-label">必須</p>メールアドレス<br>
             <input type="email" name="email" id="email" value="{{ old('email',$user->email) }}">
         </label>
+        @if($errors->has('email'))
+            <li class="error_message">{{ $errors->first('email') }}</li>
+        @endif
         <br>
         <label for="user_password">
             @if($user->id == null)
                 <p class="required-label">必須</p><span>パスワード</span><br>
             @else
-            <div style="padding:12px 60px;">パスワード</div>
+            <div style="padding:12px 0px;">パスワード</div>
             @endif
             <input type="password" name="password" id="password" value="{{ old('password') }}" autocomplete="new-password"  placeholder="8桁以上" >
         </label>
-        <br>
+        @if($errors->has('password'))
+            <li class="error_message">{{ $errors->first('password') }}</li>
+        @endif
+        <br>    
         <label for="tel"><p class="required-label">必須</p>電話番号<br>
             <input type="text" name="tel" id="tel" value="{{ old('tel',$user->tel)}}" placeholder="000-0000-0000">
         </label>
+        @if($errors->has('tel'))
+            <li class="error_message">{{ $errors->first('tel') }}</li>
+        @endif
         <br>
         <label for="postcode"><p class="required-label">必須</p>郵便番号<br>
             <input type="text" name="postcode" id="postcode" value="{{ old('postcode',$user->postcode) }}" placeholder="000-0000">
         </label>
+        @if($errors->has('postcode'))
+            <li class="error_message">{{ $errors->first('postcode') }}</li>
+        @endif
         <br>
         <label for="prefectures"><p class="required-label">必須</p>都道府県<br>        
             <select class="pref_select" name="prefectures" id="prefectures">
@@ -67,18 +80,30 @@
                 @endforeach
             </select>
         </label>
+        @if($errors->has('prefectures'))
+            <li class="error_message">{{ $errors->first('prefectures') }}</li>
+        @endif
         <br>
         <label for="city"><p class="required-label">必須</p>市区町村<br>
             <input type="text" name="city" id="city" value="{{ old('city', $user->city) }}">
         </label>
+        @if($errors->has('city'))
+            <li class="error_message">{{ $errors->first('city') }}</li>
+        @endif
         <br>
         <label for="address_and_building"><p class="required-label">必須</p>番号・アパート名<br>
             <input type="text" name="address_and_building" id="address_and_building" value="{{ old('address_and_building',$user->address_and_building) }}">
         </label>
+        @if($errors->has('address_and_building'))
+            <li class="error_message">{{ $errors->first('address_and_building') }}</li>
+        @endif
         <br>
         <label for="content"><p class="required-label">必須</p>備考欄<br>
             <textarea name="content" id="content" cols="30" rows="10">{{ old('content',$user->content) }}</textarea>
         </label>
+        @if($errors->has('content'))
+            <li class="error_message">{{ $errors->first('content') }}</li>
+        @endif
         <br>
         @if($user->id == null)
         <input class="submit" type="submit" value="登録する。">

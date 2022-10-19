@@ -26,7 +26,6 @@ class TelRule implements Rule
      */
     public function passes($attribute, $value)
     {
-        //https://qiita.com/y9025/items/294f2318842a27656cbf
         return preg_match('/^[0-9]{2,4}-[0-9]{2,4}-[0-9]{3,4}$/', $value);
     }
 
@@ -36,6 +35,6 @@ class TelRule implements Rule
      */
     public function message()
     {
-        return trans('validation.user_tel');
+        return trans('validation.tel');
     }
 }

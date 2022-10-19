@@ -10,13 +10,7 @@
     <title>新規会員登録</title>
 </head>
 <body>
-    <div class="sessionError"> 
-        @foreach ($errors->all() as $error)
-            <li>{{$error}}</li>
-        @endforeach
-    </div>
-
-    <form action="{{ route('firstCreate') }}" method="POST">
+    <form style="padding-bottom: 100px" action="{{ route('firstCreate') }}" method="POST">
         @csrf
         <label class="newstaff_form" for="company">
         <p class="required-label">必須</p>
@@ -24,28 +18,46 @@
         <br>
         <input class="input new-input" type="text" name="company" id="company" value="{{ old('company') }}">
         </label>
+        @if($errors->has('company'))
+            <li class="error_message">{{ $errors->first('company') }}</li>
+        @endif
         <br>
         <label class="newstaff_form" for="name_katakana">
         <p class="required-label">必須</p>フリガナ
         <br>
         <input class="input new-input" type="text" name="name_katakana" id="name_katakana" value="{{ old('name_katakana') }}">
         </label>
+        @if($errors->has('name_katakana'))
+            <li class="error_message">{{ $errors->first('name_katakana') }}</li>
+        @endif
         <br>
         <label class="newstaff_form" for="email"><p class="required-label">必須</p>メールアドレス<br>
             <input class="input new-input" type="email" name="email" id="email" value="{{ old('email') }}">
         </label>
+        @if($errors->has('email'))
+            <li class="error_message">{{ $errors->first('email') }}</li>
+        @endif
         <br>
         <label class="newstaff_form" for="password"><p class="required-label">必須</p>パスワード<br>
         <input class="input new-input" type="password" name="password" id="password" value="{{ old('password') }}" placeholder="8桁以上" >
         </label>
+        @if($errors->has('password'))
+            <li class="error_message">{{ $errors->first('password') }}</li>
+        @endif
         <br>
         <label class="newstaff_form" for="tel"><p class="required-label">必須</p>電話番号<br>
         <input  class="input" type="text" name="tel" id="tel" value="{{ old('tel')}}" placeholder="000-0000-0000">
         </label>
+        @if($errors->has('tel'))
+            <li class="error_message">{{ $errors->first('tel') }}</li>
+        @endif
         <br>
         <label class="newstaff_form" for="postcode"><p class="required-label">必須</p>郵便番号<br>
         <input class="input new-input" type="text" name="postcode" id="postcode" value="{{ old('postcode') }}" placeholder="000-0000">
         </label>
+        @if($errors->has('postcode'))
+            <li class="error_message">{{ $errors->first('postcode') }}</li>
+        @endif
         <br>
         <label class="newstaff_form" for="prefectures"><p class="required-label">必須</p>都道府県<br>
         <select class="pref_select" name="prefectures" id="prefectures">
@@ -55,20 +67,32 @@
             @endforeach
         </select>
         </label>
+        @if($errors->has('prefectures'))
+            <li class="error_message">{{ $errors->first('prefectures') }}</li>
+        @endif
         <br>
         <label class="newstaff_form" for="city"><p class="required-label">必須</p>市区町村
         <br>
         <input class="input new-input" type="text" name="city" id="city" value="{{ old('city') }}">
         </label>
+        @if($errors->has('city'))
+            <li class="error_message">{{ $errors->first('city') }}</li>
+        @endif
         <br>
         <label class="newstaff_form" for="address_and_building"><p class="required-label">必須</p>番号・アパート<br>
         <input class="input new-input" type="text" name="address_and_building" id="address_and_building" value="{{ old('address_and_building')}}">
         </label>
         <br>
+        @if($errors->has('address_and_building'))
+            <li class="error_message">{{ $errors->first('address_and_building') }}</li>
+        @endif
         <label class="newstaff_form" for="content"><p class="required-label">必須</p>備考欄
         <br>
         <textarea class="input" name="content" id="content" cols="80" rows="6">{{ old('content') }}</textarea>
         </label>
+        @if($errors->has('content'))
+            <li class="error_message">{{ $errors->first('content') }}</li>
+        @endif
         <br>
         <label class="newstaff_form" for="submit"><input class="submit" type="submit" value="登録する"></label>
     </form>

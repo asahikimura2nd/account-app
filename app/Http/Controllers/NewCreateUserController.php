@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Http\Requests\EditMemberRequest;
+use App\Http\Requests\CreateMemberRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
@@ -15,7 +15,7 @@ class NewCreateUserController extends Controller
         }
     
         //新規会員登録処理
-        public function firstCreate(EditMemberRequest $request)
+        public function firstCreate(CreateMemberRequest $request)
         { 
             $attributes = $request ->all();
             $attributes['password'] = Hash::make('password');
