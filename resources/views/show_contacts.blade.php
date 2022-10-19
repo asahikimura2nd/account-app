@@ -100,6 +100,6 @@
                 <td>{{ $contact->job_type }} </td>
                 </tr>
             @endforeach  
-        </tbody>  
+        </tbody>
     </table>
 @endsection

@@ -7,7 +7,7 @@
 @section('mainContainer','mainContainer')
 
 @section('content')
-    <form class="editForm" action="{{ route('contactEdit', $contact->id) }}" method="POST">
+    <form class="editForm" action="{{ route('contactEdit', $contact->id) }}" method="POST" style="padding-bottom: 100px">
         @csrf
         ステータス : 
         <input type="hidden" name="id" value='{{ $contact->id }}'>

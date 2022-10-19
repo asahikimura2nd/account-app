@@ -40,13 +40,13 @@
                 </div>     
                 <div style="margin-top: 200px"></div>
             </aside>
-            <div class="@yield('mainContainer')" id="mainContainer">
+            <div class="@yield('mainContainer')"style="padding-bottom: 100px" id="mainContainer">
                 @yield('search')   
                 <div class="mainTitle">@yield('style')<h1>@yield('mainTitle')</h1>
                 <div>@yield('session')</div>
                 <div>@yield('newCreate')</div>
                 </div>        
-                <div class="backImage">
+                <div class="backImage" >
                 <div class="innerContainer">
                     @yield('content')
                 </div>

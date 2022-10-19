@@ -20,11 +20,9 @@
         <h1>会員編集フォーム</h1>
     @endif
 
-    <form action="{{ route('editUser', $user->id) }}" method="POST">
+    <form style="padding-bottom: 100px" action="{{ route('editUser', $user->id) }}" method="POST">
         @csrf
-        @if($user->id != null)
-            <input type="hidden" name="id" value="{{ $user->id }}">
-        @endif
+        <input type="hidden" name="id" value="{{ $user->id == null ? null : $user->id }}">
         <label for="company"><p class="required-label">必須</p>会社名<br>
             <input type="text" name="company" id="company" value="{{ old('company',$user->company) }}">
         </label>
@@ -48,11 +46,12 @@
         <br>
         <label for="user_password">
             @if($user->id == null)
-                <p class="required-label">必須</p><span>パスワード</span><br>
-            @else
-            <div style="padding:12px 0px;">パスワード</div>
+                <p class="required-label">必須</p><div>パスワード</div><br>
+                <input type="password" name="password" id="password" value="" placeholder="8桁以上" >
+            @else   
+                <div style="padding:12px 0px;">パスワード</div>
+                <input type="password" name="password" id="password" value="{{ old('password') }}" autocomplete="new-password"  placeholder="8桁以上" >
             @endif
-            <input type="password" name="password" id="password" value="{{ old('password') }}" autocomplete="new-password"  placeholder="8桁以上" >
         </label>
         @if($errors->has('password'))
             <li class="error_message">{{ $errors->first('password') }}</li>

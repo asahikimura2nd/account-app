@@ -101,6 +101,7 @@ return [
     'regex'                => ':attributeに正しい形式を指定してください。',
     'required'             => ':attributeは必ず指定してください。',
     'required_if'          => ':otherが:valueの場合、:attributeも指定してください。',
+    
     'required_unless'      => ':otherが:valuesでない場合、:attributeを指定してください。',
     'required_with'        => ':valuesを指定する場合は、:attributeも指定してください。',
     'required_with_all'    => ':valuesを指定する場合は、:attributeも指定してください。',
@@ -129,6 +130,7 @@ return [
     'postcode'        => ':attributeはハイフンあり半角英数字で入力してください。',
     'email'             => ':attributeには、有効なメールアドレスを指定してください。',
     'tel'             => ':attributeはハイフンあり半角英数字で入力してください。',
+    
 
     /*
     |--------------------------------------------------------------------------
@@ -144,6 +146,10 @@ return [
     'custom' => [
         '属性名' => [
             'ルール名' => 'カスタムメッセージ',
+        ],
+        'password' =>  [
+            'required_if' =>'パスワードを指定してください'
+            
         ],
     ],
 
@@ -182,6 +188,7 @@ return [
         'gender'=>'性別',
         'job'=>'職業',
         'content'=>'お問い合わせ内容',
+        
     ],
 
 ];

@@ -43,6 +43,7 @@ class UserController extends Controller
         return view('user_edit_form', compact('user','prefs'));
     }
 
+    //会員処理
     public function editUser(EditMemberRequest $request, User $user)
     {
         $attributes = $request->all();
