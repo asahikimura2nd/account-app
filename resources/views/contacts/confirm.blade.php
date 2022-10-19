@@ -21,7 +21,7 @@
     </header>
 
     <main >
-        <form action="{{route('send')}}" method="POST">
+        <form action="{{route('send')}}" method="POST" style="margin-bottom:100px">
             @csrf
             <input type="hidden" name="status" value="no_response">
             <input type="hidden" name="company" value="{{ $contact->company }}">
@@ -51,7 +51,7 @@
             </div>
         </form>
     </main>
-    
+    <div style="margin-bottom:200px"></div>
     <script src="{{ mix('js/app.js') }}"></script>
     <div class="mb-5 "></div>
 </body>

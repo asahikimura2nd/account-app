@@ -43,4 +43,10 @@ class EditMemberRequest extends FormRequest
             'content'=> 'required|max:255',
         ];
     }
+
+    public function messages(){
+        return [
+            'required_if' => 'パスワードを指定してください。'
+        ];
+    }
 }
