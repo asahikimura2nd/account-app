@@ -16,7 +16,7 @@
         <p class="required-label">必須</p>
         会社名
         <br>
-        <input class="input new-input" type="text" name="company" id="company" value="{{ old('company') }}">
+        <input class="input new-input" type="text" name="company" id="company" value="{{ $user->company }}">
         </label>
         @if($errors->has('company'))
             <li class="error_message">{{ $errors->first('company') }}</li>
@@ -63,7 +63,7 @@
         <select class="pref_select" name="prefectures" id="prefectures">
             <option value="">選択してください</option>
             @foreach ($prefs as $key => $value)
-                <option value="{{ $key }}">{{ $value }}</option>
+                <option value="{{ $key }}" {{ request()->old('prefectures') == $key ? 'selected':'' }}>{{ $value }}</option>
             @endforeach
         </select>
         </label>
@@ -79,20 +79,17 @@
             <li class="error_message">{{ $errors->first('city') }}</li>
         @endif
         <br>
-        <label class="newstaff_form" for="address_and_building"><p class="required-label">必須</p>番号・アパート<br>
+        <label class="newstaff_form" for="address_and_building"><div style="padding:12px 0px;"></div>番地・アパート名<br>
         <input class="input new-input" type="text" name="address_and_building" id="address_and_building" value="{{ old('address_and_building')}}">
         </label>
         <br>
         @if($errors->has('address_and_building'))
             <li class="error_message">{{ $errors->first('address_and_building') }}</li>
         @endif
-        <label class="newstaff_form" for="content"><p class="required-label">必須</p>備考欄
+        <label class="newstaff_form" for="content"><div style="padding:12px 0px;"></div>備考欄
         <br>
         <textarea class="input" name="content" id="content" cols="80" rows="6">{{ old('content') }}</textarea>
         </label>
-        @if($errors->has('content'))
-            <li class="error_message">{{ $errors->first('content') }}</li>
-        @endif
         <br>
         <label class="newstaff_form" for="submit"><input class="submit" type="submit" value="登録する"></label>
     </form>

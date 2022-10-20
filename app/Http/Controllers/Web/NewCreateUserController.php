@@ -1,17 +1,18 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Web;
 use App\Http\Requests\CreateMemberRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Controllers\Controller;
 
 class NewCreateUserController extends Controller
 {
         //新規会員登録
-        public function showFirstCreate()
+        public function showFirstCreate(User $user)
         {
             $prefs = config('pref');
-            return view('first_create_form',compact('prefs'));
+            return view('first_create_form',compact('user', 'prefs'));
         }
     
         //新規会員登録処理

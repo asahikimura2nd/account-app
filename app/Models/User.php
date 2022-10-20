@@ -27,19 +27,6 @@ class User extends Authenticatable
     protected $guarded = [
         'id'
     ];
-    // protected $fillable = [
-    //     'company',
-    //     'name_katakana',
-    //     'email',
-    //     'password',
-    //     'tel',
-    //     'postcode',
-    //     'prefectures',
-    //     'city',
-    //     'address_and_building',
-    //     'content',
-    // ];
-
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -60,9 +47,9 @@ class User extends Authenticatable
     //     'email_verified_at' => 'datetime',
     // ];
     public function getAuthPassword()
-{
-    return $this->password;
-}
+    {
+        return $this->password;
+    }
 
     public function getPrefecturesTypeAttribute()
     {

@@ -39,8 +39,7 @@ class CreateMemberRequest extends FormRequest
             'postcode'=>['required', new postcode_check],
             'prefectures'=>'required',
             'city'=>'required|max:30',
-            'address_and_building'=>'required|max:50',
-            'content'=> 'required|max:255',
+            'address_and_building'=>'max:50'
         ];
     }
 }

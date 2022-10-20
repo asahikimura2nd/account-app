@@ -32,6 +32,7 @@
                 <div ><p class="gap">ステータス</p>
                     <div>
                         <select name="keyword_status" class=".selectWidth">
+                            <option value=""></option>
                             @foreach ($statuses as $key => $value)
                                 <option value="{{ $key }}" {{ $keyword_status == $key ? 'selected' : '' }}>{{ $value }} </option>
                             @endforeach
@@ -41,6 +42,7 @@
                 <div><p class="gap">職業</p>
                     <div>
                         <select name="keyword_job">
+                            <option value=""></option>
                             @foreach ($jobs as $key => $value)
                                 <option value="{{ $key }}" {{ $keyword_job == $key ? 'selected' : '' }}>{{ $value }}</option>
                             @endforeach    
@@ -93,11 +95,11 @@
                         <img class="" src="{{ asset('images/delete.svg') }}" alt="delete">
                     </a>
                 </td>
-                <td> {{ $contact->status_type }}</td>
+                <td> {{ $statuses[$contact->status] }}</td>
                 <td> {{ $contact->company }}</td>
                 <td>{{ $contact->name }}</td>
                 <td>{{ $contact->tel }} </td>
-                <td>{{ $contact->job_type }} </td>
+                <td>{{ $jobs[$contact->job] }} </td> 
                 </tr>
             @endforeach  
         </tbody>

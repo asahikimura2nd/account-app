@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-
+use App\Http\Controllers\Controller;
 class HomeController extends Controller
 {
     /**
@@ -21,16 +20,12 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+
+    //ホーム
+    public function home()
     {
         return view('home');
-    }
-
-        //ホーム
-        public function home()
-        {
-            return view('home');
-        } 
+    } 
 
 
 }

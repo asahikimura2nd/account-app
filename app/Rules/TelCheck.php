@@ -4,7 +4,7 @@ namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 
-class tel_check implements Rule
+class TelCheck implements Rule
 {
     /**
      * Create a new rule instance.

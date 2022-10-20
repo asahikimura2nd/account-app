@@ -75,7 +75,7 @@
             <select class="pref_select" name="prefectures" id="prefectures">
                 <option value="">選択してください</option>
                 @foreach ( $prefs as $key => $value )
-                    <option value="{{ $key }}" {{ ($user->id != null && $user->prefectures == $key) ? 'selected':'' }}>{{ $value }}</option>
+                    <option value="{{ $key }}" {{ (request()->old('prefectures') == $key) ? 'selected':'' }}>{{ $value }}</option>
                 @endforeach
             </select>
         </label>
@@ -90,19 +90,16 @@
             <li class="error_message">{{ $errors->first('city') }}</li>
         @endif
         <br>
-        <label for="address_and_building"><p class="required-label">必須</p>番号・アパート名<br>
+        <label for="address_and_building"><div style="padding:12px 0px;"></div>番地・アパート名<br>
             <input type="text" name="address_and_building" id="address_and_building" value="{{ old('address_and_building',$user->address_and_building) }}">
         </label>
         @if($errors->has('address_and_building'))
             <li class="error_message">{{ $errors->first('address_and_building') }}</li>
         @endif
         <br>
-        <label for="content"><p class="required-label">必須</p>備考欄<br>
+        <label for="content"><div style="padding:12px 0px;"></div>備考欄<br>
             <textarea name="content" id="content" cols="30" rows="10">{{ old('content',$user->content) }}</textarea>
         </label>
-        @if($errors->has('content'))
-            <li class="error_message">{{ $errors->first('content') }}</li>
-        @endif
         <br>
         @if($user->id == null)
         <input class="submit" type="submit" value="登録する。">

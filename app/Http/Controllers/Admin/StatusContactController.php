@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Contact;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class UserStatusContactController extends Controller
+
+class StatusContactController extends Controller
 {
     //お問い合わせ一覧画面
     public function showContacts(Request $request)
@@ -36,8 +38,8 @@ class UserStatusContactController extends Controller
             }
             $contacts = $qb->get();
         }
-        $statuses = config('const.statusSearch');
-        $jobs = config('const.jobSearch');
+        $statuses = config('const.status');
+        $jobs = config('const.job');
         return view('show_contacts',compact('contacts','statuses','jobs','keyword_name','keyword_company','keyword_job','keyword_status'));
     }            
     
@@ -52,7 +54,7 @@ class UserStatusContactController extends Controller
     public function contactEdit(Request $request, Contact $contact)
     {
         $contact->update($request->all());
-        return redirect()->route('showContacts')->with('flash_message','変更を更新しました。');
+        return redirect()->route('showContacts')->with('success','変更を更新しました。');
     }
 
     //削除機能
