@@ -35,9 +35,9 @@
         <br>
         生年月日：{{ $contact->birth_date }}
         <br>
-        性別：{{ $contact->gender_type }}
+        性別：{{ $gender[$contact->gender] }}
         <br>
-        職業：{{$contact->job_type}}
+        職業：{{$job[$contact->job]}}
         <br>
         <input class="submit" type="submit" value="登録する">
     </form>

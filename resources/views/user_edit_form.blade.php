@@ -73,9 +73,17 @@
         <br>
         <label for="prefectures"><p class="required-label">必須</p>都道府県<br>        
             <select class="pref_select" name="prefectures" id="prefectures">
-                <option value="">選択してください</option>
+                @if($user->id == null ? 'selected':'')
+                    <option value="">選択してください</option>
+                @endif
                 @foreach ( $prefs as $key => $value )
-                    <option value="{{ $key }}" {{ (request()->old('prefectures') == $key) ? 'selected':'' }}>{{ $value }}</option>
+                    <option value="{{ $key }}" 
+                        @if($user->id == null)
+                            {{ (request()->old('prefectures') == $key) ? 'selected':'' }} 
+                        @else 
+                            {{ $user->prefectures == $key ? 'selected':''}}
+                        @endif>{{ $value }}
+                    </option>
                 @endforeach
             </select>
         </label>

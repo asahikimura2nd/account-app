@@ -11,7 +11,7 @@ class NewCreateUserController extends Controller
         //新規会員登録
         public function showFirstCreate(User $user)
         {
-            $prefs = config('pref');
+            $prefs = config('const.pref');
             return view('first_create_form',compact('user', 'prefs'));
         }
     
@@ -21,8 +21,9 @@ class NewCreateUserController extends Controller
             $attributes = $request ->all();
             $attributes['password'] = Hash::make('password');
             $user = new User;
-            $user->fill($attributes);
-            $user->save();
+            dump($user);
+            // dd($attributes);
+            $user->fill($attributes)->save();
             return redirect()->route('showLogin')->with('success','登録完了しました');
         }    
 }

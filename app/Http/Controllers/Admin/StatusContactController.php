@@ -6,7 +6,6 @@ use App\Models\Contact;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-
 class StatusContactController extends Controller
 {
     //お問い合わせ一覧画面
@@ -47,7 +46,9 @@ class StatusContactController extends Controller
     public function showEditContact(Contact $contact)
     {
         $statuses = config('status');
-        return view('edit_contact_form',compact('contact','statuses'));
+        $gender = config('const.gender');
+        $job = config('const.job');
+        return view('edit_contact_form',compact('contact','statuses','gender','job'));
     }
     
     //お問い合わせ編集処理

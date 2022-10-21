@@ -16,7 +16,7 @@
         <p class="required-label">必須</p>
         会社名
         <br>
-        <input class="input new-input" type="text" name="company" id="company" value="{{ $user->company }}">
+        <input class="input new-input" type="text" name="company" id="company" value="{{ old('company') }}">
         </label>
         @if($errors->has('company'))
             <li class="error_message">{{ $errors->first('company') }}</li>

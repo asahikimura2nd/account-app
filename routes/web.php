@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\StatusContactController;
 use App\Http\Controllers\Admin\HomeController;
 use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,7 +30,6 @@ use Illuminate\Support\Facades\Route;
     Route::post('/contact/form/confirm',[ContactController::class,'confirm'])->name('confirm');
     //送信完了ページ
     Route::post('/contact/form/send',[ContactController::class,'send'])->name('send');
-
     //ログイン管理画面
     Route::get('/show/login',[LoginController::class,'showLogin'])->name('showLogin');
     //ログイン認証

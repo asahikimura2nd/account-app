@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class DropColumnUsersColumn extends Migration
+class ChangeTypeToUserpassTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,10 +14,9 @@ class DropColumnUsersColumn extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('member_name');
+            $table->string('password')->change();
         });
     }
-
     /**
      * Reverse the migrations.
      *
@@ -30,3 +29,4 @@ class DropColumnUsersColumn extends Migration
         });
     }
 }
+

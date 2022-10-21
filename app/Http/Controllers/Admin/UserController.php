@@ -14,7 +14,7 @@ class UserController extends Controller
     // 会員一覧画面
     public function users(Request $request)
     {
-        $pref = config('const.prefSearch');
+        $pref = config('const.pref');
         $users = User::all(); 
         $query = $request->query;
         $keyword_company = $query->get('keyword_company');
@@ -28,7 +28,7 @@ class UserController extends Controller
                 $qb->where('company','like',"%{$keyword_company}%");
             }
             if( $keyword_email ){
-                $qb->where('company','like',"%{$keyword_email}%");
+                $qb->where('email','like',"%{$keyword_email}%");
             }
             if($keyword_prefectures){
                 $qb->where('prefectures',$keyword_prefectures);     
@@ -41,7 +41,7 @@ class UserController extends Controller
     //会員登録
     public function showUser(User $user)
     {
-        $prefs = config('pref');
+        $prefs = config('const.pref');
         return view('user_edit_form', compact('user','prefs'));
     }
 

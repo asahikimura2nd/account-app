@@ -72,9 +72,6 @@
             @if($errors->has('gender'))
                 <div class="text-danger">{{$errors->first('gender')}}</div>
             @endif
-            {{-- うまく動作しない
-                ・エラーがあった場合、「職業」の選択がクリアされてしまう
-                →修正します。 --}}
             <div class="mb-5 "></div>
             <div class="col-sm-2 col-form-label" ></div>            
             <label for="job" type="button"  class="btn btn-success col-form-label">必須</label> <label for="job">職業</label>

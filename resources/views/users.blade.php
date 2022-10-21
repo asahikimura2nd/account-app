@@ -31,11 +31,13 @@
                 <div ><p class="gap">都道府県</p>
                     <div>
                         <select name="keyword_prefectures" class="selectWidth">
+                            <option value=""></option>
                             @foreach ($pref as $key => $value)
                                 <option value="{{ $key }}" {{ $keyword_prefectures == $key ? 'selected' : '' }}>{{ $value }} </option>
                             @endforeach
                         </select>
                     </div>
+                    
                 </div>
                 <button class="submitButton" type="submit" value="click" name="on" >検索する</button>
             </div> 
@@ -86,7 +88,7 @@
                 <td>{{ $user->company }}</td> 
                 <td>{{ $user->email }}</td> 
                 <td>{{ $user->tel }}</td> 
-                <td>{{ $user->prefectures_type }}</td> 
+                <td>{{ $pref[$user->prefectures] }}</td> 
                 <td>{{ $user->city }}</td> 
                 <td>{{ $user->address_and_building }}</td> 
                 </tr>

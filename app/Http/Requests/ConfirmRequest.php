@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use App\Rules\TelCheck;
 use Illuminate\Foundation\Http\FormRequest;
 
-class TestRequest extends FormRequest
+class ConfirmRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,6 @@ class TestRequest extends FormRequest
      */
     public function rules()
     {
-        // dd(request()->all());
-        // dd(request()->job);
         return 
         [
             'company' =>'required|max:20',

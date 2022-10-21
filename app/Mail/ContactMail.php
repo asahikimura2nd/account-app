@@ -16,17 +16,12 @@ class ContactMail extends Mailable
      *
      * @return void
      */
-    public function __construct($company, $name, $tel, $email, $birth_date, $gender, $job, $content)
+
+    public function __construct($data)
     {
-        $this->company = $company;
-        $this->name = $name;
-        $this->tel = $tel;
-        $this->email = $email;
-        $this->birth_date = $birth_date;
-        $this->gender = $gender;
-        $this->job = $job;
-        $this->content = $content;       
+        $this->data = $data;
     }
+
 
     /**
      * Build the message.
@@ -36,22 +31,9 @@ class ContactMail extends Mailable
     public function build()
     {
         return $this->to($this->email)
-        ->subject('タイトル')
-        ->view('contacts.send')
-        ->with( [
-            'company' => $this->company,
-            'name' => $this->name,
-            'tel' => $this->tel,
-            'email' => $this->email,
-            'birth_date' => $this->birth_date,
-            'gender' => $this->gender,
-            'job' => $this->job,
-            'content' => $this->content       
-        ] );
-        // return $this->view('send')
-        // ->attachData($this->pdf,'send.pdf',[
-        //     'mine' => 'application/pdf'
-        // ]);
-
+        ->subject('テストタイトル')
+        ->from($data['email'],$data['company'])
+        ->view('mail')
+        ->with(['name' => $this->name])
     }
 }
