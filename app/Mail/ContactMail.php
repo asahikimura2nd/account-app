@@ -16,10 +16,25 @@ class ContactMail extends Mailable
      *
      * @return void
      */
-
-    public function __construct($data)
+    public $company;
+    public $name;
+    public $tel;
+    public $email;
+    public $birth_date;
+    public $gender;
+    public  $job;
+    public $content;
+    
+    public function __construct($company ,$name ,$tel ,$email ,$birth_date ,$gender ,$job ,$content)
     {
-        $this->data = $data;
+        $this->company = $company;
+        $this->name = $name;
+        $this->tel = $tel;
+        $this->email = $email;
+        $this->birth_date = $birth_date;
+        $this->gender = $gender;
+        $this->job = $job;
+        $this->content = $content;
     }
 
 
@@ -30,10 +45,8 @@ class ContactMail extends Mailable
      */
     public function build()
     {
-        return $this->to($this->email)
-        ->subject('テストタイトル')
-        ->from($data['email'],$data['company'])
-        ->view('mail')
-        ->with(['name' => $this->name])
+        return $this
+        // ->from('revite@com')->attach('path/to/file')->cc('moreUser')
+        ->markdown('contacts.mail');
     }
 }

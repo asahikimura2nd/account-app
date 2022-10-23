@@ -27,7 +27,6 @@ class ContactController extends Controller
         $contact = new Contact;
         $gender = config('const.gender');
         $job = config('const.job');
-        // dd($attributes);
         $contact->fill($attributes);
         return view('contacts.confirm',compact('contact','gender','job'));
     }
@@ -38,16 +37,17 @@ class ContactController extends Controller
         $attributes = $request->all();
         $contact = new Contact;
         $contact->fill($attributes)->save();
-        $request->session()->regenerateToken();
-
+        // $request->session()->regenerateToken();
         //メール送信
-        Mail::send([ 'text' => 'contacts.mail'],
-            $attributes,
-            function($message)
-                $attributes,
-            {
-                $message->to('aa@aa')->subject('登録ありがとう');
-            });
+        Mail::to('faker@mail.com')
+        ->send(new ContactMail($attributes['company'],
+        $attributes['name'],
+        $attributes['tel'],
+        $attributes['email'],
+        $attributes['birth_date'],
+        $attributes['gender'],
+        $attributes['job'],
+        $attributes['content']));
 
         $gender = config('const.gender');
         $job = config('const.job');    
