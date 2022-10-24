@@ -16,37 +16,46 @@ class ContactMail extends Mailable
      *
      * @return void
      */
-    public $company;
-    public $name;
-    public $tel;
-    public $email;
-    public $birth_date;
-    public $gender;
-    public  $job;
-    public $content;
     
-    public function __construct($company ,$name ,$tel ,$email ,$birth_date ,$gender ,$job ,$content)
-    {
-        $this->company = $company;
-        $this->name = $name;
-        $this->tel = $tel;
-        $this->email = $email;
-        $this->birth_date = $birth_date;
-        $this->gender = $gender;
-        $this->job = $job;
-        $this->content = $content;
-    }
+    public $attributes = null;
+    public $temp = null;
+    public $subject = null;
+    public $gender = null;
+    public $job = null;
+    
 
+        // setFormにお問合せの内容を設定して、メールで表示
+        // setType 利用するbladeを指定
+        
+        // 管理者とユーザーに対してメールを送信
+        // 管理者へ送る本文は「お問合せがありました」,ユーザーへはお問合せの内容
+        // 管理者へ送る件名は「お問合せがありました」,ユーザーへの件名は「お問合せありがとうございます」
+        // テキストメール
+        public function setForm($attributes)
+        {
+            $this->attributes = $attributes;
+
+            return $this;
+        }
+
+        public function setType($type){
+            $this->temp = "contacts.{$type}";
+            $this->gender = config('const.gender');
+            $this->job = config('const.job'); 
+            return $this;
+        }
 
     /**
      * Build the message.
      *
      * @return $this
-     */
+       */
     public function build()
     {
-        return $this
-        // ->from('revite@com')->attach('path/to/file')->cc('moreUser')
-        ->markdown('contacts.mail');
+        // $this->gender = config('const.gender');
+        // $this->job = config('const.job'); 
+
+        // dd($this);
+        return $this->text($this->temp, [$this->attributes,$this->gender,$this->job]);
     }
 }

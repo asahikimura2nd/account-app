@@ -21,8 +21,6 @@ class NewCreateUserController extends Controller
             $attributes = $request ->all();
             $attributes['password'] = Hash::make('password');
             $user = new User;
-            dump($user);
-            // dd($attributes);
             $user->fill($attributes)->save();
             return redirect()->route('showLogin')->with('success','登録完了しました');
         }    
