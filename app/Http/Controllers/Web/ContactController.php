@@ -37,7 +37,7 @@ class ContactController extends Controller
         $attributes = $request->all();
         $contact = new Contact;
         $contact->fill($attributes)->save();
-        // $request->session()->regenerateToken();
+        $request->session()->regenerateToken();
         //メール送信
         Mail::to('faker@mail.com')
         ->send(new ContactMail($attributes['company'],

@@ -100,6 +100,9 @@
             @endif    
             <div class="mb-5 "></div>         
             <input type="submit" class="btn btn-primary" value="送信する">
+            <div class="mb-5 "></div>
         </form>
+
     </div>
+    <div class="mb-5 "></div>
 @endsection
