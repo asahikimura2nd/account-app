@@ -91,6 +91,7 @@
         <textarea class="input" name="content" id="content" cols="80" rows="6">{{ old('content') }}</textarea>
         </label>
         <br>
+        <br>
         <label class="newstaff_form" for="submit"><input class="submit" type="submit" value="登録する"></label>
     </form>
 </body>

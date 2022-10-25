@@ -36,7 +36,7 @@ class EditMemberRequest extends FormRequest
             'email' => ['required', Rule::unique('users')->ignore($id, 'id')],
             'password' => ['required_if:id,null','nullable','min:8'],
             'tel'=>['required', new TelCheck],
-            'postcode'=>['required', new PostCodeCheck],
+            'postcode'=>['required', new PostcodeCheck],
             'prefectures'=>'required',
             'city'=>'required|max:30',
             'address_and_building'=>'max:50'

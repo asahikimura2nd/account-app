@@ -8,20 +8,20 @@ use App\Http\Controllers\Controller;
 
 class NewCreateUserController extends Controller
 {
-        //新規会員登録
-        public function showFirstCreate(User $user)
-        {
-            $prefs = config('const.pref');
-            return view('first_create_form',compact('user', 'prefs'));
-        }
-    
-        //新規会員登録処理
-        public function firstCreate(CreateMemberRequest $request)
-        { 
-            $attributes = $request ->all();
-            $attributes['password'] = Hash::make('password');
-            $user = new User;
-            $user->fill($attributes)->save();
-            return redirect()->route('showLogin')->with('success','登録完了しました');
-        }    
+    //新規会員登録
+    public function showFirstCreate(User $user)
+    {
+        $prefs = config('const.pref');
+        return view('first_create_form',compact('user', 'prefs'));
+    }
+
+    //新規会員登録処理
+    public function firstCreate(CreateMemberRequest $request)
+    { 
+        $attributes = $request ->all();
+        $attributes['password'] = Hash::make('password');
+        $user = new User;
+        $user->fill($attributes)->save();
+        return redirect()->route('showLogin')->with('success','登録完了しました');
+    }    
 }

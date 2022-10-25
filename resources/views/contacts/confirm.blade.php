@@ -29,10 +29,21 @@
         <div class="container">
             <div class="row">
                 <div class="col text-center">
-                    <input type="submit"  class="btn btn-success col-form-label" value="送信する">
+                    <input type="submit"  class="btn btn-success col-form-label" value="送信する" id = 'onclick'>
                     <input type="button"  class="btn btn-success col-form-label" onclick="history.back()" value="戻る">
                 </div>
             </div>
         </div>
     </form>
+
+    <script>
+
+        function butotnClick(){
+            alert('送信しますか？');
+        }
+        let button = document.getElementById('onclick');
+        button.addEventListener('click', butotnClick);
+        
+    </script>
+
 @endsection

@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Rules\PostCodeCheck;
+use App\Rules\PostcodeCheck;
 use App\Rules\TelCheck;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\RequiredIf;

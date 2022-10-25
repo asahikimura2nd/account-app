@@ -50,9 +50,9 @@
             @endif
             <div class="mb-5 "></div>         
             <div class="form-group row">
-                <label for="birth_date" class="col-sm-4 col-form-label"><div type="button" class="btn btn-success" placeholder="yyyy/mm/dd">必須</div>生年月日</label>
+                <label for="birth_date" class="col-sm-4 col-form-label"><div type="button" class="btn btn-success" >必須</div>生年月日</label>
                 <div class="col-sm-5">
-                    <input class="form-control" type="date" name="birth_date" id="birth_date" value="{{old("birth_date")}}">
+                    <input class="form-control" placeholder="yyyy/mm/dd" type="text" name="birth_date" id="birth_date" value="{{old("birth_date")}}">
                 </div>
             </div>
             @if($errors->has('birth_date'))
@@ -101,8 +101,12 @@
             <div class="mb-5 "></div>         
             <input type="submit" class="btn btn-primary" value="送信する">
             <div class="mb-5 "></div>
+            <input type="text" id = 'cal'>
         </form>
 
     </div>
     <div class="mb-5 "></div>
+    <script>
+        $('#birth_date').datepicker();
+    </script>
 @endsection

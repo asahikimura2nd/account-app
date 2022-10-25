@@ -3,8 +3,8 @@
 namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Validator;
-use App\Rules\tel_check;
-use App\Rules\postcode_check;
+use App\Rules\PostcodeCheck;
+use App\Rules\TelCheck;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Pagination\Paginator;
 
@@ -29,10 +29,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //運営側
-        Validator::extend('tel',[tel_check::class,'passes']);
-        Validator::extend('postcode',[postcode_check::class,'passes']);
-        //お問い合わせ側
-        Validator::extend('tel', [App\Rules\TelRule::class,'passes']);
+        Validator::extend('tel',[TelCheck::class,'passes']);
+        Validator::extend('postcode',[PostcodeCheck::class,'passes']);
         //heroku 
         Schema::defaultStringLength(191);
         Paginator::useBootstrap();
